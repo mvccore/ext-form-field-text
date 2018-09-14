@@ -49,7 +49,7 @@ composer require mvccore/ext-form-field-text
 ## Features
 - always server side checked attributes `required`, `disabled` and `readonly`
 - all HTML5 specific and global atributes (by [Mozilla Development Network Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference))
-- every field has it's build-in specific validator described bellow
+- every field has it's build-in specific validator described above
 - every build-in validator adds form error (when necessary) into session
   and than all errors are displayed/rendered and cleared from session on error page, 
   where user is redirected after submit
