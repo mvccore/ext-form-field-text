@@ -26,7 +26,7 @@ composer require mvccore/ext-form-field-text
 		- submethods: `RenderNaturally()`, `RenderTemplate()`, `RenderControl()`, `RenderLabel()` ...
 	- `Submit()`		- called on every instance when form is submitted
 
-### Fields
+### Fields And Default Validators
 - `input:text`
 - `input:password`
 - `input:email`
