@@ -27,6 +27,13 @@ composer require mvccore/ext-form-field-text
 	- `Submit()`		- called on every instance when form is submitted
 
 ### Fields
+- `input:text`
+- `input:password`
+- `input:email`
+- `input:search`
+- `input:tel`
+- `input:url`
+- `textarea`
 
 ## Examples
 - [**Example - CD Collection (mvccore/example-cdcol)**](https://github.com/mvccore/example-cdcol)
