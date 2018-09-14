@@ -11,6 +11,82 @@ MvcCore form extension with input field types text, email, password, search, tel
 composer require mvccore/ext-form-field-text
 ```
 
+### Fields And Default Validators
+- `input:text`
+	- `SafeString`
+		- **configured by default**
+		- XSS string protection to safely display submitted value in response, configured by default
+	- `MinMaxLength`
+		- not configured by default
+		- validation by PHP `mb_strlen()` for min. and max.
+	- `Pattern`
+		- not configured by default
+		- validation by PHP `preg_match()`
+- `input:password`
+	- `Password`
+		- not configured by default
+		- validation by configurable password strength rules
+	- `SafeString`
+		- not configured by default
+		- XSS string protection to safely display submitted value in response, configured by default
+	- `MinMaxLength`
+		- not configured by default
+		- validation by PHP `mb_strlen()` for min. and max.
+	- `Pattern`
+		- not configured by default
+		- validation by PHP `preg_match()`
+- `input:email`
+	- `Email`
+		- **configured by default**
+		- single/multiple email form validation by PHP `filter_var($rawValue, FILTER_VALIDATE_EMAIL);`
+	- `SafeString`
+		- not configured by default
+		- XSS string protection to safely display submitted value in response, configured by default
+	- `MinMaxLength`
+		- not configured by default
+		- validation by PHP `mb_strlen()` for min. and max.
+	- `Pattern`
+		- not configured by default
+		- validation by PHP `preg_match()`
+- `input:search`
+	- directly extended from `input:text`, it has the same validators configured
+- `input:tel`
+	- `Tel`
+		- **configured by default**
+		- validation for not allowed chars in phone number, **no validation for international phone number form**
+	- `SafeString`
+		- not configured by default
+		- XSS string protection to safely display submitted value in response, configured by default
+	- `MinMaxLength`
+		- not configured by default
+		- validation by PHP `mb_strlen()` for min. and max.
+	- `Pattern`
+		- not configured by default
+		- validation by PHP `preg_match()`
+- `input:url`
+	- `Url`
+		- **configured by default**
+		- url form validation by PHP `filter_var($rawValue, FILTER_VALIDATE_URL);`
+	- `SafeString`
+		- not configured by default
+		- XSS string protection to safely display submitted value in response, configured by default
+	- `MinMaxLength`
+		- not configured by default
+		- validation by PHP `mb_strlen()` for min. and max.
+	- `Pattern`
+		- not configured by default
+		- validation by PHP `preg_match()`
+- `textarea`
+	- `SafeString`
+		- **configured by default**
+		- XSS string protection to safely display submitted value in response, configured by default
+	- `MinMaxLength`
+		- not configured by default
+		- validation by PHP `mb_strlen()` for min. and max.
+	- `Pattern`
+		- not configured by default
+		- validation by PHP `preg_match()`
+
 ## Features
 - always server side checked attributes `required`, `disabled` and `readonly`
 - all HTML5 specific and global atributes (by [Mozilla Development Network Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference))
@@ -26,17 +102,25 @@ composer require mvccore/ext-form-field-text
 		- submethods: `RenderNaturally()`, `RenderTemplate()`, `RenderControl()`, `RenderLabel()` ...
 	- `Submit()`		- called on every instance when form is submitted
 
-### Fields And Default Validators
-- `input:text`
-- `input:password`
-- `input:email`
-- `input:search`
-- `input:tel`
-- `input:url`
-- `textarea`
-
 ## Examples
 - [**Example - CD Collection (mvccore/example-cdcol)**](https://github.com/mvccore/example-cdcol)
 - [**Application - Questionnaires (mvccore/app-questionnaires)**](https://github.com/mvccore/app-questionnaires)
 
 ## Basic Example
+
+```php
+$form new \MvcCore\Ext\Form();
+...
+$username = new \MvcCore\Ext\Forms\Fields\Text();[
+$username
+	->SetName('username')
+	->SetPlaceHolder('User');
+$password = new \MvcCore\Ext\Forms\Fields\Password([
+	'name'			=> 'password',
+	'placeHolder'	=> 'Password',
+	'validators'	=> ['Password'],
+]);
+...
+$form->AddFields($username, $password);
+
+```
