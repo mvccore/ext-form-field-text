@@ -11,7 +11,7 @@ MvcCore form extension with input field types text, email, password, search, tel
 composer require mvccore/ext-form-field-text
 ```
 
-### Fields And Default Validators
+## Fields And Default Validators
 - `input:text`, `input:search`
 	- `SafeString`
 		- **configured by default**
