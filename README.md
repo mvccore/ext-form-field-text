@@ -12,7 +12,7 @@ composer require mvccore/ext-form-field-text
 ```
 
 ### Fields And Default Validators
-- `input:text`
+- `input:text`, `input:search`
 	- `SafeString`
 		- **configured by default**
 		- XSS string protection to safely display submitted value in response, configured by default
@@ -22,70 +22,29 @@ composer require mvccore/ext-form-field-text
 	- `Pattern`
 		- not configured by default
 		- validation by PHP `preg_match()`
-- `input:password`
+- `input:password` (extended from `input:text`)
 	- `Password`
 		- not configured by default
 		- validation by configurable password strength rules
-	- `SafeString`
-		- not configured by default
-		- XSS string protection to safely display submitted value in response, configured by default
-	- `MinMaxLength`
-		- not configured by default
-		- validation by PHP `mb_strlen()` for min. and max.
-	- `Pattern`
-		- not configured by default
-		- validation by PHP `preg_match()`
-- `input:email`
+	- `SafeString`, `MinMaxLength`, `Pattern` - not configured by default
+- `input:email` (extended from `input:text`)
 	- `Email`
 		- **configured by default**
 		- single/multiple email form validation by PHP `filter_var($rawValue, FILTER_VALIDATE_EMAIL);`
-	- `SafeString`
-		- not configured by default
-		- XSS string protection to safely display submitted value in response, configured by default
-	- `MinMaxLength`
-		- not configured by default
-		- validation by PHP `mb_strlen()` for min. and max.
-	- `Pattern`
-		- not configured by default
-		- validation by PHP `preg_match()`
-- `input:search`
-	- directly extended from `input:text`, it has the same validators configured
-- `input:tel`
+	- `SafeString`, `MinMaxLength`, `Pattern` - not configured by default
+- `input:tel` (extended from `input:text`)
 	- `Tel`
 		- **configured by default**
 		- validation for not allowed chars in phone number, **no validation for international phone number form**
-	- `SafeString`
-		- not configured by default
-		- XSS string protection to safely display submitted value in response, configured by default
-	- `MinMaxLength`
-		- not configured by default
-		- validation by PHP `mb_strlen()` for min. and max.
-	- `Pattern`
-		- not configured by default
-		- validation by PHP `preg_match()`
-- `input:url`
+	- `SafeString`, `MinMaxLength`, `Pattern` - not configured by default
+- `input:url` (extended from `input:text`)
 	- `Url`
 		- **configured by default**
 		- url form validation by PHP `filter_var($rawValue, FILTER_VALIDATE_URL);`
-	- `SafeString`
-		- not configured by default
-		- XSS string protection to safely display submitted value in response, configured by default
-	- `MinMaxLength`
-		- not configured by default
-		- validation by PHP `mb_strlen()` for min. and max.
-	- `Pattern`
-		- not configured by default
-		- validation by PHP `preg_match()`
+	- `SafeString`, `MinMaxLength`, `Pattern` - not configured by default
 - `textarea`
-	- `SafeString`
-		- **configured by default**
-		- XSS string protection to safely display submitted value in response, configured by default
-	- `MinMaxLength`
-		- not configured by default
-		- validation by PHP `mb_strlen()` for min. and max.
-	- `Pattern`
-		- not configured by default
-		- validation by PHP `preg_match()`
+	- `SafeString` - **configured by default**
+	- `MinMaxLength`, `Pattern` - not configured by default
 
 ## Features
 - always server side checked attributes `required`, `disabled` and `readonly`
