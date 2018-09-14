@@ -15,7 +15,9 @@ composer require mvccore/ext-form-field-text
 - always server side checked attributes `required`, `disabled` and `readonly`
 - all HTML5 specific and global atributes (by [Mozilla Development Network Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference))
 - every field has it's build-in specific validator described bellow
-- every build-in validator adds form error into session displayed on error page, where user is redirected after submit
+- every build-in validator adds form error (when necessary) into session
+  and than all errors are displayed/rendered and cleared from session on error page, 
+  where user is redirected after submit
 - any field is possible to render naturally or with custom template for specific field class/instance
 - very extensible field classes - every field has public template methods:
 	- `SetForm()`		- called immediatelly after field instance is added into form instance
