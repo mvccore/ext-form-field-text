@@ -56,7 +56,7 @@ class Text
 	 *					This validator is not prevent SQL inject attacks!
 	 * @var string[]|\Closure[]
 	 */
-	protected $validators = ['SafeString'/*, 'MinLength', 'MaxLength', 'Pattern'*/];
+	protected $validators = ['SafeString'/*, 'MinMaxLength', 'Pattern'*/];
 
 	/**
 	 * This INTERNAL method is called from `\MvcCore\Ext\Form` after field

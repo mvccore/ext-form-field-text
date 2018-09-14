@@ -63,7 +63,7 @@ implements	\MvcCore\Ext\Forms\Fields\IMultiple
 	}
 
 	/**
-	 * Validate URI string by PHP `filter_var($rawSubmittedValue, FILTER_VALIDATE_URL);`.
+	 * Validate URI string by PHP `filter_var($rawSubmittedValue, FILTER_VALIDATE_EMAIL);`.
 	 * @param string|array $rawSubmittedValue Raw submitted value from user.
 	 * @return string|\string[]|NULL Safe submitted string value or array of string for `multiple` attribute defined or `NULL` if not possible to return safe value.
 	 */
