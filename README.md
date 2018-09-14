@@ -70,7 +70,7 @@ composer require mvccore/ext-form-field-text
 ```php
 $form new \MvcCore\Ext\Form();
 ...
-$username = new \MvcCore\Ext\Forms\Fields\Text();[
+$username = new \MvcCore\Ext\Forms\Fields\Text();
 $username
 	->SetName('username')
 	->SetPlaceHolder('User');
