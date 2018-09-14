@@ -26,25 +26,25 @@ composer require mvccore/ext-form-field-text
 	- `Password`
 		- not configured by default
 		- validation by configurable password strength rules
-	- `SafeString`, `MinMaxLength`, `Pattern` - not configured by default
+	- `SafeString`, `MinMaxLength`, `Pattern` - not configured by default, ...description above
 - `input:email` (extended from `input:text`)
 	- `Email`
 		- **configured by default**
 		- single/multiple email form validation by PHP `filter_var($rawValue, FILTER_VALIDATE_EMAIL);`
-	- `SafeString`, `MinMaxLength`, `Pattern` - not configured by default
+	- `SafeString`, `MinMaxLength`, `Pattern` - not configured by default, ...description above
 - `input:tel` (extended from `input:text`)
 	- `Tel`
 		- **configured by default**
 		- validation for not allowed chars in phone number, **no validation for international phone number form**
-	- `SafeString`, `MinMaxLength`, `Pattern` - not configured by default
+	- `SafeString`, `MinMaxLength`, `Pattern` - not configured by default, ...description above
 - `input:url` (extended from `input:text`)
 	- `Url`
 		- **configured by default**
 		- url form validation by PHP `filter_var($rawValue, FILTER_VALIDATE_URL);`
-	- `SafeString`, `MinMaxLength`, `Pattern` - not configured by default
+	- `SafeString`, `MinMaxLength`, `Pattern` - not configured by default, ...description above
 - `textarea`
 	- `SafeString` - **configured by default**
-	- `MinMaxLength`, `Pattern` - not configured by default
+	- `MinMaxLength`, `Pattern` - not configured by default, ...description above
 
 ## Features
 - always server side checked attributes `required`, `disabled` and `readonly`
