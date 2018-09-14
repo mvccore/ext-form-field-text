@@ -68,7 +68,7 @@ composer require mvccore/ext-form-field-text
 ## Basic Example
 
 ```php
-$form new \MvcCore\Ext\Form();
+$form = (new \MvcCore\Ext\Form($controller))->SetId('demo');
 ...
 $username = new \MvcCore\Ext\Forms\Fields\Text();
 $username
