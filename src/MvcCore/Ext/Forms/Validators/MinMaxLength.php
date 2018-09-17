@@ -42,40 +42,13 @@ class MinMaxLength
 	];
 
 	/**
-	 * Set up field instance, where is validated value by this 
-	 * validator durring submit before every `Validate()` method call.
-	 * This method is also called once, when validator instance is separately 
-	 * added into already created field instance to process any field checking.
-	 * @param \MvcCore\Ext\Forms\Field|\MvcCore\Ext\Forms\IField $field 
-	 * @return \MvcCore\Ext\Forms\Validator|\MvcCore\Ext\Forms\IValidator
+	 * Field specific values (camel case) and their validator default values.
+	 * @var array
 	 */
-	public function & SetField (\MvcCore\Ext\Forms\IField & $field) {
-		parent::SetField($field);
-		if (!$field instanceof \MvcCore\Ext\Forms\Fields\IMinMaxLength) 
-			$this->throwNewInvalidArgumentException(
-				"Field doesn't implement interface `\\MvcCore\\Ext\\Forms\\Fields\\IMinMaxLength`."
-			);
-		
-		$fieldMinLength = $field->GetMinLength();
-		if ($fieldMinLength !== NULL) {
-			// if validator is added as string - get min property from field:
-			$this->minLength = $fieldMinLength;
-		} else if ($this->minLength !== NULL && $fieldMinLength === NULL) {
-			// if this validator is added into field as instance - check field if it has min attribute defined:
-			$field->SetMinLength($this->minLength);
-		}
-
-		$fieldMaxLength = $field->GetMaxLength();
-		if ($fieldMaxLength !== NULL) {
-			// if validator is added as string - get max property from field:
-			$this->maxLength = $fieldMaxLength;
-		} else if ($this->maxLength !== NULL && $fieldMaxLength === NULL) {
-			// if this validator is added into field as instance - check field if it has max attribute defined:
-			$field->SetMaxLength($this->maxLength);
-		}
-
-		return $this;
-	}
+	protected static $fieldSpecificProperties = [
+		'minLength'	=> NULL,
+		'maxLength'	=> NULL,
+	];
 
 	/**
 	 * Validate raw user input with maximum string length check.

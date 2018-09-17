@@ -80,6 +80,26 @@ class Text
 	}
 
 	/**
+	 * Return field specific data for validator.
+	 * @param array $fieldPropsDefaultValidValues 
+	 * @return array
+	 */
+	public function & GetValidatorData ($fieldPropsDefaultValidValues = []) {
+		$result = [
+			'pattern'	=> $this->pattern,
+			'minLength'	=> $this->minLength, 
+			'maxLength'	=> $this->maxLength, 
+		];
+		if ($this->list !== NULL) {
+			$result['list'] = $this->list;
+			$listField = $this->form->GetField($this->list);
+			if ($listField instanceof \MvcCore\Ext\Forms\Fields\IOptions) 
+				$result['options'] = $listField->GetOptions();
+		}
+		return $result;
+	}
+
+	/**
 	 * This INTERNAL method is called from `\MvcCore\Ext\Form` just before
 	 * field is naturally rendered. It sets up field for rendering process.
 	 * Do not use this method even if you don't develop any form field.

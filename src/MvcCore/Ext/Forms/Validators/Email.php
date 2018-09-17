@@ -36,31 +36,12 @@ implements	\MvcCore\Ext\Forms\Fields\IMultiple
 	];
 
 	/**
-	 * Set up field instance, where is validated value by this 
-	 * validator durring submit before every `Validate()` method call.
-	 * Check if given field implements `\MvcCore\Ext\Forms\Fields\IAccept`
-	 * and `\MvcCore\Ext\Forms\Fields\IMultiple`.
-	 * @param \MvcCore\Ext\Form|\MvcCore\Ext\Forms\IForm $form 
-	 * @return \MvcCore\Ext\Forms\Validator|\MvcCore\Ext\Forms\IValidator
+	 * Field specific values (camel case) and their validator default values.
+	 * @var array
 	 */
-	public function & SetField (\MvcCore\Ext\Forms\IField & $field) {
-		if (!$field instanceof \MvcCore\Ext\Forms\Fields\IMultiple) 
-			$this->throwNewInvalidArgumentException(
-				'If field has configured `Email` validator, it has to implement '
-				.'interface `\\MvcCore\\Ext\\Forms\\Fields\\IMultiple`.'
-			);
-		
-		$fieldMultiple = $field->GetMultiple();
-		if ($fieldMultiple !== NULL) {
-			// if validator is added as string - get multiple property from field:
-			$this->multiple = $fieldMultiple;
-		} else if ($this->multiple !== NULL && $fieldMultiple === NULL) {
-			// if this validator is added into field as instance - check field if it has multiple attribute defined:
-			$field->SetMultiple($this->multiple);
-		}
-		
-		return parent::SetField($field);
-	}
+	protected static $fieldSpecificProperties = [
+		'multiple'	=> NULL,
+	];
 
 	/**
 	 * Validate URI string by PHP `filter_var($rawSubmittedValue, FILTER_VALIDATE_EMAIL);`.

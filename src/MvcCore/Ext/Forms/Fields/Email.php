@@ -42,6 +42,17 @@ implements	\MvcCore\Ext\Forms\Fields\IMultiple
 	 * @var string[]|\Closure[]
 	 */
 	protected $validators = ['Email'/*, 'MinLength', 'MaxLength', 'Pattern'*/];
+
+	/**
+	 * Return field specific data for validator.
+	 * @param array $fieldPropsDefaultValidValues 
+	 * @return array
+	 */
+	public function & GetValidatorData ($fieldPropsDefaultValidValues = []) {
+		$parentResult = parent::GetValidatorData($fieldPropsDefaultValidValues);
+		$parentResult['multiple'] = $this->multiple;
+		return $parentResult;
+	}
 	
 	/**
 	 * This INTERNAL method is called from `\MvcCore\Ext\Forms\Field\Rendering` 

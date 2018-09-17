@@ -94,6 +94,18 @@ class Textarea
 	}
 
 	/**
+	 * Return field specific data for validator.
+	 * @param array $fieldPropsDefaultValidValues 
+	 * @return array
+	 */
+	public function & GetValidatorData ($fieldPropsDefaultValidValues = []) {
+		return [
+			'minLength'	=> $this->minLength, 
+			'maxLength'	=> $this->maxLength, 
+		];
+	}
+
+	/**
 	 * This INTERNAL method is called from `\MvcCore\Ext\Form` just before
 	 * field is naturally rendered. It sets up field for rendering process.
 	 * Do not use this method even if you don't develop any form field.

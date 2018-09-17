@@ -38,30 +38,12 @@ implements	\MvcCore\Ext\Forms\Fields\IPattern
 	];
 
 	/**
-	 * Set up field instance, where is validated value by this 
-	 * validator durring submit before every `Validate()` method call.
-	 * This method is also called once, when validator instance is separately 
-	 * added into already created field instance to process any field checking.
-	 * @param \MvcCore\Ext\Forms\Field|\MvcCore\Ext\Forms\IField $field 
-	 * @return \MvcCore\Ext\Forms\Validator|\MvcCore\Ext\Forms\IValidator
+	 * Field specific values (camel case) and their validator default values.
+	 * @var array
 	 */
-	public function & SetField (\MvcCore\Ext\Forms\IField & $field) {
-		parent::SetField($field);
-		if (!$field instanceof \MvcCore\Ext\Forms\Fields\IPattern) 
-			$this->throwNewInvalidArgumentException(
-				"Field doesn't implement interface `\\MvcCore\\Ext\\Forms\\Fields\\IPattern`."
-			);
-
-		$fieldPattern = $field->GetPattern();
-		if ($fieldPattern !== NULL) {
-			// if validator is added as string - get pattern property from field:
-			$this->pattern = $fieldPattern;
-		} else if ($this->pattern !== NULL && $fieldPattern === NULL) {
-			// if this validator is added into field as instance - check field if it has pattern attribute defined:
-			$field->SetPattern($this->pattern);
-		} 
-		return $this;
-	}
+	protected static $fieldSpecificProperties = [
+		'pattern'	=> NULL,
+	];
 
 	/**
 	 * Validate raw user input by configured regexp match pattern.
