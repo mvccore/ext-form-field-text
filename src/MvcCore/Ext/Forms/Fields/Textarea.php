@@ -144,7 +144,7 @@ class Textarea
 		return $formViewClass::Format(static::$templates->control, [
 			'id'		=> $this->id,
 			'name'		=> $this->name,
-			'value'		=> htmlspecialchars($this->value, ENT_QUOTES),
+			'value'		=> htmlspecialchars_decode(htmlspecialchars($this->value, ENT_QUOTES), ENT_QUOTES),
 			'attrs'		=> strlen($attrsStr) > 0 ? ' ' . $attrsStr : '',
 		]);
 	}
