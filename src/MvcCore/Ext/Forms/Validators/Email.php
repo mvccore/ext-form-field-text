@@ -21,6 +21,8 @@ class		Email
 extends		\MvcCore\Ext\Forms\Validator
 implements	\MvcCore\Ext\Forms\Fields\IMultiple
 {
+	use \MvcCore\Ext\Forms\Field\Props\Multiple;
+
 	/**
 	 * Error message index(es).
 	 * @var int
