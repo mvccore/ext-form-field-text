@@ -99,10 +99,11 @@ class Textarea
 	 * @return array
 	 */
 	public function & GetValidatorData ($fieldPropsDefaultValidValues = []) {
-		return [
+		$result = [
 			'minLength'	=> $this->minLength, 
 			'maxLength'	=> $this->maxLength, 
 		];
+		return $result;
 	}
 
 	/**
