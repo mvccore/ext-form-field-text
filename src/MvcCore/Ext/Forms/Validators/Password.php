@@ -16,7 +16,7 @@ namespace MvcCore\Ext\Forms\Validators;
 /**
  * Responsibility: Validate raw user password by configured password strength 
  *				   rules.  Password still could contain very dangerous 
- *				   characters for XSS, SQL or any other attacks. Be carefull!!! 
+ *				   characters for XSS, SQL or any other attacks. Be careful!!! 
  *				   This doesn't escape enything. It only check if configured 
  *				   character groups are presented and how much and that's all.
  */
@@ -38,12 +38,12 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	const SPECIAL_CHARS = '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~';
 
 	/**
-	 * Default lowercase chars count presented in password - 1;
+	 * Default lower case chars count presented in password - 1;
 	 */
 	const MIN_LOWERCASE_CHARS_COUNT = 1;
 
 	/**
-	 * Default uppercase chars count presented in password - 1;
+	 * Default upper case chars count presented in password - 1;
 	 */
 	const MIN_UPPERCASE_CHARS_COUNT = 1;
 
@@ -85,33 +85,33 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	protected $mustHaveMaxLength = self::MAX_LENGTH;
 
 	/**
-	 * Password strength rule to have any lowercase character presented in password.
-	 * Default value is `TRUE` to must have lowercase character in password.
-	 * Lowercase characters from latin alphabet: abcdefghijklmnopqrstuvwxyz.
+	 * Password strength rule to have any lower case character presented in password.
+	 * Default value is `TRUE` to must have lower case character in password.
+	 * Lower case characters from latin alphabet: abcdefghijklmnopqrstuvwxyz.
 	 * @var bool
 	 */
 	protected $mustHaveLowerCaseChars = TRUE;
 
 	/**
-	 * Password strength rule to have minimum lowercase characters count presented in password.
-	 * Default value is `1` to must have at least one lowercase character in password.
-	 * Lowercase characters from latin alphabet: abcdefghijklmnopqrstuvwxyz.
+	 * Password strength rule to have minimum lower case characters count presented in password.
+	 * Default value is `1` to must have at least one lower case character in password.
+	 * Lower case characters from latin alphabet: abcdefghijklmnopqrstuvwxyz.
 	 * @var int
 	 */
 	protected $mustHaveLowerCaseCharsCount = self::MIN_LOWERCASE_CHARS_COUNT;
 
 	/**
-	 * Password strength rule to have any uppercase character presented in password.
-	 * Default value is `TRUE` to must have uppercase character in password.
-	 * Uppercase characters from latin alphabet: ABCDEFGHIJKLMNOPQRSTUVWXYZ.
+	 * Password strength rule to have any upper case character presented in password.
+	 * Default value is `TRUE` to must have upper case character in password.
+	 * Upper case characters from latin alphabet: ABCDEFGHIJKLMNOPQRSTUVWXYZ.
 	 * @var bool
 	 */
 	protected $mustHaveUpperCaseChars = TRUE;
 
 	/**
-	 * Password strength rule to have minimum uppercase characters count presented in password.
-	 * Default value is `1` to must have at least one uppercase character in password.
-	 * Uppercase characters from latin alphabet: ABCDEFGHIJKLMNOPQRSTUVWXYZ.
+	 * Password strength rule to have minimum upper case characters count presented in password.
+	 * Default value is `1` to must have at least one upper case character in password.
+	 * Upper case characters from latin alphabet: ABCDEFGHIJKLMNOPQRSTUVWXYZ.
 	 * @var int
 	 */
 	protected $mustHaveUpperCaseCharsCount = self::MIN_UPPERCASE_CHARS_COUNT;
@@ -177,10 +177,10 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	protected static $errorMessages = [
 		self::ERROR_MIN_LENGTH			=> "Password must have a minimum length of {1} characters.",
 		self::ERROR_MAX_LENGTH			=> "Password must have a maximum length of {1} characters.",
-		self::ERROR_LOWERCASE_CHARS		=> "Password must contain lowercase characters ({1}).",
-		self::ERROR_LOWERCASE_CHARS_MIN	=> "Password must contain at minimum {1} lowercase characters ({2}).",
-		self::ERROR_UPPERCASE_CHARS		=> "Password must contain uppercase characters ({1}).",
-		self::ERROR_UPPERCASE_CHARS_MIN	=> "Password must contain at minimum {1} uppercase characters ({2}).",
+		self::ERROR_LOWERCASE_CHARS		=> "Password must contain lower case characters ({1}).",
+		self::ERROR_LOWERCASE_CHARS_MIN	=> "Password must contain at minimum {1} lower case characters ({2}).",
+		self::ERROR_UPPERCASE_CHARS		=> "Password must contain upper case characters ({1}).",
+		self::ERROR_UPPERCASE_CHARS_MIN	=> "Password must contain at minimum {1} upper case characters ({2}).",
 		self::ERROR_DIGIT_CHARS			=> "Password must contain digits ({1}).",
 		self::ERROR_DIGIT_CHARS_MIN		=> "Password must contain at minimum {1} digits ({2}).",
 		self::ERROR_SPECIAL_CHARS		=> "Password must contain special characters ( {1} ).",
@@ -224,12 +224,12 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	}
 
 	/**
-	 * Get password strength rule to have any lowercase character presented in password.
-	 * Default value is `TRUE` to must have lowercase character in password.
-	 * Lowercase characters from latin alphabet: abcdefghijklmnopqrstuvwxyz.
+	 * Get password strength rule to have any lower case character presented in password.
+	 * Default value is `TRUE` to must have lower case character in password.
+	 * Lower case characters from latin alphabet: abcdefghijklmnopqrstuvwxyz.
 	 * 
 	 * This function returns array with the rule `boolean` as first item and 
-	 * second item is minimum lowercase characters count i n password as `integer`.
+	 * second item is minimum lower case characters count i n password as `integer`.
 	 * If you set function first argument to `FALSE`, function returns only array
 	 * `[TRUE]`, if the rule is `TRUE` or an empty array `[]` if the rule is `FALSE`.
 	 * @param bool $getWithMinCount
@@ -242,12 +242,12 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	}
 
 	/**
-	 * Set password strength rule to have any lowercase character presented in password.
-	 * Default value is `TRUE` to must have lowercase character in password.
-	 * Lowercase characters from latin alphabet: abcdefghijklmnopqrstuvwxyz.
+	 * Set password strength rule to have any lower case character presented in password.
+	 * Default value is `TRUE` to must have lower case character in password.
+	 * Lower case characters from latin alphabet: abcdefghijklmnopqrstuvwxyz.
 	 * 
-	 * Function has second argument to set minimum lowercase characters in password.
-	 * Default value is at least one lowercase character in password.
+	 * Function has second argument to set minimum lower case characters in password.
+	 * Default value is at least one lower case character in password.
 	 * @param bool $mustHaveLowerCaseChars 
 	 * @param int $minCount
 	 * @return \MvcCore\Ext\Forms\Validators\Password|\MvcCore\Ext\Forms\IValidator
@@ -259,12 +259,12 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	}
 
 	/**
-	 * Get password strength rule to have any uppercase character presented in password.
-	 * Default value is `TRUE` to must have uppercase character in password.
-	 * Uppercase characters from latin alphabet: abcdefghijklmnopqrstuvwxyz.
+	 * Get password strength rule to have any upper case character presented in password.
+	 * Default value is `TRUE` to must have upper case character in password.
+	 * Upper case characters from latin alphabet: abcdefghijklmnopqrstuvwxyz.
 	 * 
 	 * This function returns array with the rule `boolean` as first item and 
-	 * second item is minimum uppercase characters count i n password as `integer`.
+	 * second item is minimum upper case characters count i n password as `integer`.
 	 * If you set function first argument to `FALSE`, function returns only array
 	 * `[TRUE]`, if the rule is `TRUE` or an empty array `[]` if the rule is `FALSE`.
 	 * @param bool $getWithMinCount
@@ -277,12 +277,12 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	}
 
 	/**
-	 * Set password strength rule to have any uppercase character presented in password.
-	 * Default value is `TRUE` to must have uppercase character in password.
-	 * Uppercase characters from latin alphabet: abcdefghijklmnopqrstuvwxyz.
+	 * Set password strength rule to have any upper case character presented in password.
+	 * Default value is `TRUE` to must have upper case character in password.
+	 * Upper case characters from latin alphabet: abcdefghijklmnopqrstuvwxyz.
 	 * 
-	 * Function has second argument to set minimum uppercase characters in password.
-	 * Default value is at least one uppercase character in password.
+	 * Function has second argument to set minimum upper case characters in password.
+	 * Default value is at least one upper case character in password.
 	 * @param bool $mustHaveUpperCaseChars
 	 * @param int $minCount
 	 * @return \MvcCore\Ext\Forms\Validators\Password|\MvcCore\Ext\Forms\IValidator
@@ -452,7 +452,7 @@ class Password extends \MvcCore\Ext\Forms\Validator
 
 	/**
 	 * Validate raw user password by configured rules. Password still could contain 
-	 * very dangerous characters for XSS, SQL or any other attacks. Be carefull!!!
+	 * very dangerous characters for XSS, SQL or any other attacks. Be careful!!!
 	 * @param string|array $rawSubmittedValue Raw submitted value from user.
 	 * @return string|NULL Safe submitted value or `NULL` if not possible to return safe value.
 	 */
@@ -474,7 +474,7 @@ class Password extends \MvcCore\Ext\Forms\Validator
 			);
 		}
 
-		// check password lowercase characters and minimum lowercase characters count if necessary:
+		// check password lower case characters and minimum lower case characters count if necessary:
 		if ($this->mustHaveLowerCaseChars) {
 			$lowerCaseChars = preg_replace('#[^a-z]#', '', $password);
 			$lowerCaseCharsCount = strlen($lowerCaseChars);
@@ -491,7 +491,7 @@ class Password extends \MvcCore\Ext\Forms\Validator
 			}
 		}
 		
-		// check password uppercase characters and minimum uppercase characters count if necessary:
+		// check password upper case characters and minimum upper case characters count if necessary:
 		if ($this->mustHaveUpperCaseChars) {
 			$upperCaseChars = preg_replace('#[^A-Z]#', '', $password);
 			$upperCaseCharsCount = strlen($upperCaseChars);

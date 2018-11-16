@@ -19,7 +19,7 @@ namespace MvcCore\Ext\Forms\Fields;
  *				   validator define (not defined by default) to check 
  *				   subbmited value for password strength rules. 
  *				   But raw user password still could contain very dangerous 
- *				   characters for XSS, SQL or any other attacks. Be carefull!!! 
+ *				   characters for XSS, SQL or any other attacks. Be careful!!! 
  *				   It doesn't escape enything. It only check if configured 
  *				   character groups are presented and how much and that's all.
  */
@@ -35,7 +35,7 @@ class Password extends Text
 	 * Validators: 
 	 * - `Password` - Validate raw user password by configured password strength rules.
 	 * 				  Password still could contain very dangerous characters for XSS, 
-	 * 				  SQL or any other attacks. Be carefull!!! This doesn't escape enything.
+	 * 				  SQL or any other attacks. Be careful!!! This doesn't escape enything.
 	 * 				  It only check if configured character groups are presented and how much
 	 * 				  and that's all.
 	 * @var string[]|\Closure[]
