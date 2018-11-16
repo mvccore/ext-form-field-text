@@ -14,7 +14,7 @@
 namespace MvcCore\Ext\Forms\Fields;
 
 /**
- * Responsibility: init, predispatch and render `<input>` HTML element 
+ * Responsibility: init, pre-dispatch and render `<input>` HTML element 
  *				   with type `password`. `Password` could have a `Password`
  *				   validator define (not defined by default) to check 
  *				   subbmited value for password strength rules. 

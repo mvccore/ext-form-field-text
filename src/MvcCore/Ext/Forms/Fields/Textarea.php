@@ -14,7 +14,7 @@
 namespace MvcCore\Ext\Forms\Fields;
 
 /**
- * Responsibility: init, predispatch and render `<textarea>` HTML element.
+ * Responsibility: init, pre-dispatch and render `<textarea>` HTML element.
  *				   `Textarea` field has it's own validator(s) to check 
  *				   submitted value for min length/max length and validator
  *				   `SafeString` to remove base ASCII chars and escape dangerous 

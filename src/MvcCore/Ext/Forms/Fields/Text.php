@@ -14,7 +14,7 @@
 namespace MvcCore\Ext\Forms\Fields;
 
 /**
- * Responsibility: init, predispatch and render `<input>` HTML element 
+ * Responsibility: init, pre-dispatch and render `<input>` HTML element 
  *				   with types `text` and types `email`, `password`, 
  *				   `search`, `tel` and `url` in extended class. `Text` 
  *				   field and it's extended fields could have their own 

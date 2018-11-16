@@ -14,7 +14,7 @@
 namespace MvcCore\Ext\Forms\Fields;
 
 /**
- * Responsibility: init, predispatch and render `<input>` HTML element with type 
+ * Responsibility: init, pre-dispatch and render `<input>` HTML element with type 
  *				   `url`. `Url` field has it's own validator to check raw submitted 
  *				   value only by `filter_var($rawSubmittedValue, FILTER_VALIDATE_URL);`.
  */
@@ -33,7 +33,7 @@ class Url extends Text
 
 	/**
 	 * Validators: 
-	 * - `Url` - to check url format by PHP `filter_var($url, FILTER_VALIDATE_URL)`.
+	 * - `Url` - to check URL format by PHP `filter_var($url, FILTER_VALIDATE_URL)`.
 	 * @var string[]|\Closure[]
 	 */
 	protected $validators = ['Url'/*, 'SafeString', 'MinLength', 'MaxLength', 'Pattern'*/];

@@ -46,7 +46,7 @@ implements	\MvcCore\Ext\Forms\Fields\IPattern
 	];
 
 	/**
-	 * Validate raw user input by configured regexp match pattern.
+	 * Validate raw user input by configured regular expression match pattern.
   * @param string|array $rawSubmittedValue Raw submitted value from user.
 	 * @return string|NULL Safe submitted value or `NULL` if not possible to return safe value.
 	 */

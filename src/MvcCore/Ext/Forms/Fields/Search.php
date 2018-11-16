@@ -14,7 +14,7 @@
 namespace MvcCore\Ext\Forms\Fields;
 
 /**
- * Responsibility: init, predispatch and render `<input>` HTML element with 
+ * Responsibility: init, pre-dispatch and render `<input>` HTML element with 
  *				   type `search`. `Search` field has no default validator, only
  *				   validator `SafeString` from parent class `Text`. It replace 
  *				   characters & " \' < > to &amp; &quot; &#039; &lt; &gt;
