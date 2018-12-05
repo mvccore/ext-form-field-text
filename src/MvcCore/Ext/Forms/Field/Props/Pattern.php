@@ -57,6 +57,7 @@ trait Pattern
 	 * @return \MvcCore\Ext\Forms\Field|\MvcCore\Ext\Forms\IField
 	 */
 	public function & SetPattern ($pattern) {
+		/** @var $this \MvcCore\Ext\Forms\IField */
 		$this->pattern = $pattern;
 		return $this;
 	}
@@ -64,7 +65,7 @@ trait Pattern
 	/**
 	 * Check after field is added into form, if field 
 	 * has defined any value for pattern property and if it does,
-	 * add automaticaly build in pattern validator.
+	 * add automatically build in pattern validator.
 	 * @return void
 	 */
 	protected function setFormPattern () {

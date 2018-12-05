@@ -19,7 +19,7 @@ namespace MvcCore\Ext\Forms\Fields;
  *				   validator `SafeString` from parent class `Text`. It replace 
  *				   characters & " \' < > to &amp; &quot; &#039; &lt; &gt;
  *				   Se be careful if you want to search in database with 
- *				   apostrophe quots, you need to remove `SafeString` validator
+ *				   apostrophe quotas, you need to remove `SafeString` validator
  *				   or you need to replace back `&#035;` to `'`, but 
  *				   every time - you have to use database escaping by `\PDO::prepare()`!
  */

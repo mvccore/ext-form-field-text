@@ -17,7 +17,7 @@ namespace MvcCore\Ext\Forms\Validators;
  * Responsibility: Validate minimum or maximum characters length in submitted 
  *				   value by configured field `minlength` and `maxlength` HTML 
  *				   attributes. To measure characters length in submitted value, 
- *				   validator uses multibyte string function `mb_strlen()`.
+ *				   validator uses multi-byte string function `mb_strlen()`.
  */
 class MinMaxLength 
 	extends		\MvcCore\Ext\Forms\Validator 

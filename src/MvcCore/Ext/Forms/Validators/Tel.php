@@ -16,7 +16,7 @@ namespace MvcCore\Ext\Forms\Validators;
 /**
  * Responsibility: Validate phone number only by removing all other characters 
  *				   than digits and plus. To validate phone number really deeply
- *				   by local conventions, use zend validator instead.
+ *				   by local conventions, use Zend validator instead.
  * @see https://github.com/zendframework/zend-i18n
  * @see https://github.com/zendframework/zend-i18n/blob/master/src/Validator/PhoneNumber.php
  * @see https://olegkrivtsov.github.io/using-zend-framework-3-book/html/en/Checking_Input_Data_with_Validators/Validator_Usage_Examples.html#Example
@@ -39,7 +39,7 @@ class Tel extends \MvcCore\Ext\Forms\Validator
 
 	/**
 	 * Validate phone number only by removing all other characters than digits and plus.
-	 * To validate phone number really deeply - use zend validator instead:
+	 * To validate phone number really deeply - use Zend validator instead:
 	 * @see https://github.com/zendframework/zend-i18n
 	 * @see https://github.com/zendframework/zend-i18n/blob/master/src/Validator/PhoneNumber.php
 	 * @see https://olegkrivtsov.github.io/using-zend-framework-3-book/html/en/Checking_Input_Data_with_Validators/Validator_Usage_Examples.html#Example
@@ -53,7 +53,7 @@ class Tel extends \MvcCore\Ext\Forms\Validator
 		$result = preg_replace("#[^0-9\+]#", '', $rawSubmittedValue);
 		$resultLength = mb_strlen($result);
 		if (!$resultLength) $result = NULL;
-		// add error if result is an emptry string or if there was any other characters than numbers and plus.
+		// add error if result is an empty string or if there was any other characters than numbers and plus.
 		if (!$resultLength || ($resultLength && $resultLength !== mb_strlen($rawSubmittedValue))) {
 			$this->field->AddValidationError(
 				 static::GetErrorMessage(self::ERROR_PHONE)	

@@ -64,7 +64,7 @@ class Textarea
 	 *					 values which you want to configure, presented 
 	 *					 in camel case properties names syntax.
 	 * @throws \InvalidArgumentException
-	 * @return \MvcCore\Ext\Forms\Fields\Textarea|\MvcCore\Ext\Forms\IField
+	 * @return void
 	 */
 	public function __construct (array $cfg = []) {
 		parent::__construct($cfg);
@@ -88,6 +88,7 @@ class Textarea
 	 * @return \MvcCore\Ext\Forms\Fields\Text|\MvcCore\Ext\Forms\IField
 	 */
 	public function & SetForm (\MvcCore\Ext\Forms\IForm & $form) {
+		/** @var $this \MvcCore\Ext\Forms\IField */
 		parent::SetForm($form);
 		$this->setFormMinMaxLength();
 		return $this;
@@ -142,7 +143,9 @@ class Textarea
 			$attrsStr .= (strlen($attrsStr) > 0 ? ' ' : '')
 				. 'form="' . $this->form->GetId() . '"';
 		$formViewClass = $this->form->GetViewClass();
-		return $formViewClass::Format(static::$templates->control, [
+		/** @var $templates \stdClass */
+		$templates = static::$templates;
+		return $formViewClass::Format($templates->control, [
 			'id'		=> $this->id,
 			'name'		=> $this->name,
 			'value'		=> htmlspecialchars_decode(htmlspecialchars($this->value, ENT_QUOTES), ENT_QUOTES),

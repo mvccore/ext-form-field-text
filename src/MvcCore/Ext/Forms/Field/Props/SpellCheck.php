@@ -28,7 +28,7 @@ trait SpellCheck
 	/**
 	 * Setting the value of this attribute to `TRUE` indicates that the element needs
 	 * to have its spelling and grammar checked. The value `default` indicates that 
-	 * the element is to act according to a default behavior, possibly based on the 
+	 * the element is to act according to a default behaviour, possibly based on the 
 	 * parent element's own spellcheck value. The value `FALSE indicates that the 
 	 * element should not be checked. Possible values are strings: `default`, `true` or `false`. 
 	 * Value `NULL` means to not render any attribute in HTML.
@@ -40,7 +40,7 @@ trait SpellCheck
 	/**
 	 * Setting the value of this attribute to `TRUE` indicates that the element needs
 	 * to have its spelling and grammar checked. The value `default` indicates that 
-	 * the element is to act according to a default behavior, possibly based on the 
+	 * the element is to act according to a default behaviour, possibly based on the 
 	 * parent element's own spellcheck value. The value `FALSE indicates that the 
 	 * element should not be checked. Possible values are strings: `default`, `true` or `false`. 
 	 * Value `NULL` means to not render any attribute in HTML.
@@ -54,7 +54,7 @@ trait SpellCheck
 	/**
 	 * Setting the value of this attribute to `TRUE` indicates that the element needs
 	 * to have its spelling and grammar checked. The value `default` indicates that 
-	 * the element is to act according to a default behavior, possibly based on the 
+	 * the element is to act according to a default behaviour, possibly based on the 
 	 * parent element's own spellcheck value. The value `FALSE indicates that the 
 	 * element should not be checked. Possible values are strings: `default`, `true` or `false`. 
 	 * Value `NULL` means to not render any attribute in HTML.
@@ -63,6 +63,7 @@ trait SpellCheck
 	 * @return \MvcCore\Ext\Forms\Field|\MvcCore\Ext\Forms\IField
 	 */
 	public function & SetSpellCheck ($spellCheck) {
+		/** @var $this \MvcCore\Ext\Forms\IField */
 		if ($spellCheck === TRUE) {
 			$spellCheck = 'true';
 		} else if ($spellCheck === FALSE) {

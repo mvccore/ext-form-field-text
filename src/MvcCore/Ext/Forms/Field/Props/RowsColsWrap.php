@@ -70,6 +70,7 @@ trait RowsColsWrap
 	 * @return \MvcCore\Ext\Forms\Field|\MvcCore\Ext\Forms\IField
 	 */
 	public function & SetRows ($rows) {
+		/** @var $this \MvcCore\Ext\Forms\IField */
 		$this->rows = $rows;
 		return $this;
 	}
@@ -94,6 +95,7 @@ trait RowsColsWrap
 	 * @return \MvcCore\Ext\Forms\Field|\MvcCore\Ext\Forms\IField
 	 */
 	public function & SetCols ($columns = 20) {
+		/** @var $this \MvcCore\Ext\Forms\IField */
 		$this->cols = $columns;
 		return $this;
 	}
@@ -105,7 +107,7 @@ trait RowsColsWrap
 	 * 			must also be specified for this to take effect.
 	 * - `'soft'`: The browser ensures that all line breaks in the value consist of 
 	 * 			a `CR+LF` pair, but does not insert any additional line breaks.
-	 * - `'off '`: Like `soft` but changes appearance to `white-space: pre;` so line 
+	 * - `'off'`: Like `soft` but changes appearance to `white-space: pre;` so line 
 	 * 			segments exceeding `cols` are not wrapped and the `<textarea>` 
 	 * 			becomes horizontally scrollable.
 	 * If this attribute is not specified, `soft` is its default browser`s value.
@@ -132,6 +134,7 @@ trait RowsColsWrap
 	 * @return \MvcCore\Ext\Forms\Field|\MvcCore\Ext\Forms\IField
 	 */
 	public function & SetWrap ($wrap = 'soft') {
+		/** @var $this \MvcCore\Ext\Forms\IField */
 		$this->wrap = $wrap;
 		return $this;
 	}

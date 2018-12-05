@@ -17,7 +17,7 @@ namespace MvcCore\Ext\Forms\Validators;
  * Responsibility: Validate raw user password by configured password strength 
  *				   rules.  Password still could contain very dangerous 
  *				   characters for XSS, SQL or any other attacks. Be careful!!! 
- *				   This doesn't escape enything. It only check if configured 
+ *				   This doesn't escape everything. It only check if configured 
  *				   character groups are presented and how much and that's all.
  */
 class Password extends \MvcCore\Ext\Forms\Validator
@@ -201,6 +201,7 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	 * @return \MvcCore\Ext\Forms\Validators\Password|\MvcCore\Ext\Forms\IValidator
 	 */
 	public function & SetMustHaveMinLength ($mustHaveMinLength = self::MIN_LENGTH) {
+		/** @var $this \MvcCore\Ext\Forms\IValidator */
 		$this->mustHaveMinLength = $mustHaveMinLength;
 		return $this;
 	}
@@ -219,6 +220,7 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	 * @return \MvcCore\Ext\Forms\Validators\Password|\MvcCore\Ext\Forms\IValidator
 	 */
 	public function & SetMustHaveMaxLength ($mustHaveMaxLength = self::MAX_LENGTH) {
+		/** @var $this \MvcCore\Ext\Forms\IValidator */
 		$this->mustHaveMaxLength = $mustHaveMaxLength;
 		return $this;
 	}
@@ -253,6 +255,7 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	 * @return \MvcCore\Ext\Forms\Validators\Password|\MvcCore\Ext\Forms\IValidator
 	 */
 	public function & SetMustHaveLowerCaseChars ($mustHaveLowerCaseChars = TRUE, $minCount = self::MIN_LOWERCASE_CHARS_COUNT) {
+		/** @var $this \MvcCore\Ext\Forms\IValidator */
 		$this->mustHaveLowerCaseChars = $mustHaveLowerCaseChars;
 		$this->mustHaveLowerCaseCharsCount = $minCount;
 		return $this;
@@ -288,6 +291,7 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	 * @return \MvcCore\Ext\Forms\Validators\Password|\MvcCore\Ext\Forms\IValidator
 	 */
 	public function & SetMustHaveUpperCaseChars ($mustHaveUpperCaseChars = TRUE, $minCount = self::MIN_UPPERCASE_CHARS_COUNT) {
+		/** @var $this \MvcCore\Ext\Forms\IValidator */
 		$this->mustHaveUpperCaseChars = $mustHaveUpperCaseChars;
 		$this->mustHaveUpperCaseCharsCount = $minCount;
 		return $this;
@@ -323,6 +327,7 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	 * @return \MvcCore\Ext\Forms\Validators\Password|\MvcCore\Ext\Forms\IValidator
 	 */
 	public function & SetMustHaveDigits ($mustHaveDigits = TRUE, $minCount = self::MIN_DIGIT_CHARS_COUNT) {
+		/** @var $this \MvcCore\Ext\Forms\IValidator */
 		$this->mustHaveDigits = $mustHaveDigits;
 		$this->mustHaveDigitsCount = $minCount;
 		return $this;
@@ -368,6 +373,7 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	 * @return \MvcCore\Ext\Forms\Validators\Password|\MvcCore\Ext\Forms\IValidator
 	 */
 	public function & SetMustHaveSpecialChars ($mustHaveSpecialChars = TRUE, $minCount = self::MIN_SPECIAL_CHARS_COUNT) {
+		/** @var $this \MvcCore\Ext\Forms\IValidator */
 		$this->mustHaveSpecialChars = $mustHaveSpecialChars;
 		$this->mustHaveSpecialCharsCount = $minCount;
 		return $this;
@@ -394,6 +400,7 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	 * @return \MvcCore\Ext\Forms\Validators\Password|\MvcCore\Ext\Forms\IValidator
 	 */
 	public function & SetSpecialChars ($specialChars = self::SPECIAL_CHARS) {
+		/** @var $this \MvcCore\Ext\Forms\IValidator */
 		$this->specialChars = $specialChars;
 		return $this;
 	}
@@ -420,7 +427,7 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	 * );
 	 * ```
 	 * @param array $cfg 
-	 * @return \MvcCore\Ext\Forms\Validators\Password|\MvcCore\Ext\Forms\IValidator
+	 * @return void
 	 */
 	public function __construct (array $cfg = []) {
 		foreach ($cfg as $propertyName => $propertyValue) {
