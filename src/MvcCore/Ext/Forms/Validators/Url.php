@@ -89,9 +89,14 @@ class Url extends \MvcCore\Ext\Forms\Validator
 		$rawSubmittedValue = trim((string) $rawSubmittedValue);
 		if ($rawSubmittedValue === '') 
 			return NULL;
-		while (mb_strpos($rawSubmittedValue, '%') !== FALSE)
+		while (preg_match("#%[0-9a-zA-Z]{2}#", $rawSubmittedValue)) 
 			$rawSubmittedValue = rawurldecode($rawSubmittedValue);
-
+		$queryPos = mb_strpos($rawSubmittedValue, '?');
+		if ($queryPos !== FALSE) {
+			$rawSubmittedValueWithoutQs = mb_substr($rawSubmittedValue, 0, $queryPos);
+		} else {
+			$rawSubmittedValueWithoutQs = $rawSubmittedValue;
+		}
 
 
 
@@ -109,8 +114,8 @@ class Url extends \MvcCore\Ext\Forms\Validator
 			? str_replace('(%s):', '(?:(%s):)?', static::PATTERN) 
 			: static::PATTERN;
         $pattern = sprintf($pattern, implode('|', $schemes));
-
-        if (!preg_match($pattern, $rawSubmittedValue)) {
+		x([$rawSubmittedValueWithoutQs, $pattern, preg_match($pattern, $rawSubmittedValueWithoutQs)]);
+        if (!preg_match($pattern, $rawSubmittedValueWithoutQs)) {
 			$rawSubmittedValue = NULL;
 			$this->field->AddValidationError(
 				static::GetErrorMessage(self::ERROR_URL)
@@ -139,8 +144,8 @@ class Url extends \MvcCore\Ext\Forms\Validator
 				));
             }
 
-            $host = parse_url($rawSubmittedValue, PHP_URL_HOST);
-            if (!\is_string($host) || !checkdnsrr($host, $checkDns)) {
+            $host = parse_url($rawSubmittedValueWithoutQs, PHP_URL_HOST);
+            if (!is_string($host) || !checkdnsrr($host, $checkDns)) {
 				$rawSubmittedValue = NULL;
 				$this->field->AddValidationError(
 					static::GetErrorMessage(self::ERROR_DNS)
