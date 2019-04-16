@@ -114,7 +114,7 @@ class Url extends \MvcCore\Ext\Forms\Validator
 			? str_replace('(%s):', '(?:(%s):)?', static::PATTERN) 
 			: static::PATTERN;
         $pattern = sprintf($pattern, implode('|', $schemes));
-		x([$rawSubmittedValueWithoutQs, $pattern, preg_match($pattern, $rawSubmittedValueWithoutQs)]);
+		
         if (!preg_match($pattern, $rawSubmittedValueWithoutQs)) {
 			$rawSubmittedValue = NULL;
 			$this->field->AddValidationError(
