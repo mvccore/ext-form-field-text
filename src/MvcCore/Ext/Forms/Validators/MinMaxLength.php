@@ -56,8 +56,10 @@ class MinMaxLength
 	 * @return string|NULL Safe submitted value or `NULL` if not possible to return safe value.
 	 */
 	public function Validate ($rawSubmittedValue) {
-		$result = trim((string) $rawSubmittedValue);
-		$resultLength = mb_strlen($result);
+		$rawSubmittedValue = trim((string) $rawSubmittedValue);
+		$resultLength = mb_strlen($rawSubmittedValue);
+		if ($resultLength === 0) return NULL;
+		$result = $rawSubmittedValue;
 		if (
 			$this->minLength !== NULL && 
 			$this->minLength > 0 && 
@@ -68,6 +70,7 @@ class MinMaxLength
 			);
 		}
 		if (
+			$this->required &&
 			$this->maxLength !== NULL && 
 			$this->maxLength > 0 &&
 			$resultLength > $this->maxLength

@@ -51,9 +51,12 @@ implements	\MvcCore\Ext\Forms\Fields\IPattern
 	 * @return string|NULL Safe submitted value or `NULL` if not possible to return safe value.
 	 */
 	public function Validate ($rawSubmittedValue) {
+		$rawSubmittedValue = trim((string) $rawSubmittedValue);
+		$resultLength = mb_strlen($rawSubmittedValue);
+		if ($resultLength === 0) return NULL;
 		$result = NULL;
-		$rawSubmittedValue = trim($rawSubmittedValue);
 		if ($this->pattern !== NULL) {
+
 			$pattern = $this->pattern;
 			$beginBorderChar = mb_strpos($pattern, '#') === 0;
 			$endBorderChar = mb_substr($pattern, mb_strlen($pattern) - 2, 1) === '#';

@@ -87,8 +87,7 @@ class Url extends \MvcCore\Ext\Forms\Validator
 	public function Validate ($rawSubmittedValue) {
 		$result = NULL;
 		$rawSubmittedValue = trim((string) $rawSubmittedValue);
-		if ($rawSubmittedValue === '') 
-			return NULL;
+		if ($rawSubmittedValue === '') return NULL;
 		while (preg_match("#%[0-9a-zA-Z]{2}#", $rawSubmittedValue)) 
 			$rawSubmittedValue = rawurldecode($rawSubmittedValue);
 		$queryPos = mb_strpos($rawSubmittedValue, '?');

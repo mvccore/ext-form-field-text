@@ -52,8 +52,7 @@ implements	\MvcCore\Ext\Forms\Fields\IMultiple
 	 */
 	public function Validate ($rawSubmittedValue) {
 		$rawSubmittedValue = trim((string) $rawSubmittedValue);
-		if ($rawSubmittedValue === '') 
-			return NULL;
+		if ($rawSubmittedValue === '') return NULL;
 		if ($this->multiple) {
 			$result = [];
 			$rawValues = explode(',', $rawSubmittedValue);

@@ -464,23 +464,21 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	 * @return string|NULL Safe submitted value or `NULL` if not possible to return safe value.
 	 */
 	public function Validate ($rawSubmittedValue) {
-		$required = $this->field->GetRequired();
 		$password = trim((string) $rawSubmittedValue);
 		$passwordLength = mb_strlen($password);
-
-		if ($passwordLength === 0 && !$required) return '';
+		if ($passwordLength === 0) return NULL;
 
 		// check password global minimum and maximum length:
 		if ($passwordLength < $this->mustHaveMinLength) 
 			$this->field->AddValidationError(
 				static::GetErrorMessage(static::ERROR_MIN_LENGTH),
-				[static::ERROR_MIN_LENGTH]
+				[$this->mustHaveMinLength]
 			);
 		if ($passwordLength > $this->mustHaveMaxLength) {
 			$password = mb_substr($password, 0, static::ERROR_MAX_LENGTH);
 			$this->field->AddValidationError(
 				static::GetErrorMessage(static::ERROR_MAX_LENGTH),
-				[static::ERROR_MAX_LENGTH]
+				[$this->mustHaveMaxLength]
 			);
 		}
 

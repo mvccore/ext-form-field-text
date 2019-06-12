@@ -52,13 +52,12 @@ class Tel extends \MvcCore\Ext\Forms\Validator
 		// eliminate every char except 0-9 and +
 		$result = preg_replace("#[^0-9\+]#", '', $rawSubmittedValue);
 		$resultLength = mb_strlen($result);
-		if (!$resultLength) $result = NULL;
+		if ($resultLength === 0) return NULL;
 		// add error if result is an empty string or if there was any other characters than numbers and plus.
-		if (!$resultLength || ($resultLength && $resultLength !== mb_strlen($rawSubmittedValue))) {
+		if ($resultLength && $resultLength !== mb_strlen($rawSubmittedValue)) 
 			$this->field->AddValidationError(
 				 static::GetErrorMessage(self::ERROR_PHONE)	
 			);
-		}
 		return $result;
 	}
 }
