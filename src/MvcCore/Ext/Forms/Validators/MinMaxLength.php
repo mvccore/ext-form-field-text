@@ -70,7 +70,6 @@ class MinMaxLength
 			);
 		}
 		if (
-			$this->required &&
 			$this->maxLength !== NULL && 
 			$this->maxLength > 0 &&
 			$resultLength > $this->maxLength
