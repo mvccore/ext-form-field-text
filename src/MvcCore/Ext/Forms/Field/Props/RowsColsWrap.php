@@ -69,7 +69,7 @@ trait RowsColsWrap
 	 * @param int|NULL $rows 
 	 * @return \MvcCore\Ext\Forms\Field|\MvcCore\Ext\Forms\IField
 	 */
-	public function & SetRows ($rows) {
+	public function SetRows ($rows) {
 		/** @var $this \MvcCore\Ext\Forms\IField */
 		$this->rows = $rows;
 		return $this;
@@ -94,7 +94,7 @@ trait RowsColsWrap
 	 * @param int|NULL $columns 
 	 * @return \MvcCore\Ext\Forms\Field|\MvcCore\Ext\Forms\IField
 	 */
-	public function & SetCols ($columns = 20) {
+	public function SetCols ($columns = 20) {
 		/** @var $this \MvcCore\Ext\Forms\IField */
 		$this->cols = $columns;
 		return $this;
@@ -133,7 +133,7 @@ trait RowsColsWrap
 	 * @param string|NULL $wrap 
 	 * @return \MvcCore\Ext\Forms\Field|\MvcCore\Ext\Forms\IField
 	 */
-	public function & SetWrap ($wrap = 'soft') {
+	public function SetWrap ($wrap = 'soft') {
 		/** @var $this \MvcCore\Ext\Forms\IField */
 		$this->wrap = $wrap;
 		return $this;

@@ -56,7 +56,7 @@ trait Pattern
 	 * @param string $pattern RegExp pattern without border characters for javascript and PHP.
 	 * @return \MvcCore\Ext\Forms\Field|\MvcCore\Ext\Forms\IField
 	 */
-	public function & SetPattern ($pattern) {
+	public function SetPattern ($pattern) {
 		/** @var $this \MvcCore\Ext\Forms\IField */
 		$this->pattern = $pattern;
 		return $this;

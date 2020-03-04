@@ -62,7 +62,7 @@ trait SpellCheck
 	 * @param string|bool|NULL $spellCheck Values could be strings: `default`, `true` or `false` or boolean values `TRUE` or `FALSE`. Value `NULL` means to not render any attribute in HTML.
 	 * @return \MvcCore\Ext\Forms\Field|\MvcCore\Ext\Forms\IField
 	 */
-	public function & SetSpellCheck ($spellCheck) {
+	public function SetSpellCheck ($spellCheck) {
 		/** @var $this \MvcCore\Ext\Forms\IField */
 		if ($spellCheck === TRUE) {
 			$spellCheck = 'true';

@@ -39,7 +39,7 @@ interface IMinMaxLength
 	 * @param int|NULL $minLength 
 	 * @return \MvcCore\Ext\Forms\IField
 	 */
-	public function & SetMinLength ($minLength);
+	public function SetMinLength ($minLength);
 	
 	/**
 	 * Get maximum characters length. Default value is `NULL`.
@@ -52,5 +52,5 @@ interface IMinMaxLength
 	 * @param int|NULL $minLength 
 	 * @return \MvcCore\Ext\Forms\IField
 	 */
-	public function & SetMaxLength ($maxLength);
+	public function SetMaxLength ($maxLength);
 }

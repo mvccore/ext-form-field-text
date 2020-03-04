@@ -51,7 +51,7 @@ trait MinMaxLength
 	 * @param int|NULL $minLength 
 	 * @return \MvcCore\Ext\Forms\Field|\MvcCore\Ext\Forms\IField
 	 */
-	public function & SetMinLength ($minLength) {
+	public function SetMinLength ($minLength) {
 		/** @var $this \MvcCore\Ext\Forms\IField */
 		$this->minLength = $minLength;
 		return $this;
@@ -70,7 +70,7 @@ trait MinMaxLength
 	 * @param int|NULL $minLength 
 	 * @return \MvcCore\Ext\Forms\Field|\MvcCore\Ext\Forms\IField
 	 */
-	public function & SetMaxLength ($maxLength) {
+	public function SetMaxLength ($maxLength) {
 		/** @var $this \MvcCore\Ext\Forms\IField */
 		$this->maxLength = $maxLength;
 		return $this;
