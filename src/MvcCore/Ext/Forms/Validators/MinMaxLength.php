@@ -4,7 +4,7 @@
  * MvcCore
  *
  * This source file is subject to the BSD 3 License
- * For the full copyright and license information, please view 
+ * For the full copyright and license information, please view
  * the LICENSE.md file that are distributed with this source code.
  *
  * @copyright	Copyright (c) 2016 Tom Flídr (https://github.com/mvccore/mvccore)
@@ -14,17 +14,17 @@
 namespace MvcCore\Ext\Forms\Validators;
 
 /**
- * Responsibility: Validate minimum or maximum characters length in submitted 
- *				   value by configured field `minlength` and `maxlength` HTML 
- *				   attributes. To measure characters length in submitted value, 
+ * Responsibility: Validate minimum or maximum characters length in submitted
+ *				   value by configured field `minlength` and `maxlength` HTML
+ *				   attributes. To measure characters length in submitted value,
  *				   validator uses multi-byte string function `mb_strlen()`.
  */
-class MinMaxLength 
-	extends		\MvcCore\Ext\Forms\Validator 
+class MinMaxLength
+	extends		\MvcCore\Ext\Forms\Validator
 	implements	\MvcCore\Ext\Forms\Fields\IMinMaxLength
 {
 	use \MvcCore\Ext\Forms\Field\Props\MinMaxLength;
-	
+
 	/**
 	 * Valid email address error message index.
 	 * @var int
@@ -61,21 +61,21 @@ class MinMaxLength
 		if ($resultLength === 0) return NULL;
 		$result = $rawSubmittedValue;
 		if (
-			$this->minLength !== NULL && 
-			$this->minLength > 0 && 
+			$this->minLength !== NULL &&
+			$this->minLength > 0 &&
 			$resultLength < $this->minLength
 		) {
 			$this->field->AddValidationError(
-				static::GetErrorMessage(self::ERROR_MIN_LENGTH)
+				static::GetErrorMessage(self::ERROR_MIN_LENGTH), [$this->minLength]
 			);
 		}
 		if (
-			$this->maxLength !== NULL && 
+			$this->maxLength !== NULL &&
 			$this->maxLength > 0 &&
 			$resultLength > $this->maxLength
 		) {
 			$this->field->AddValidationError(
-				static::GetErrorMessage(self::ERROR_MAX_LENGTH)
+				static::GetErrorMessage(self::ERROR_MAX_LENGTH), [$this->maxLength]
 			);
 		}
 		return $result;
