@@ -14,10 +14,10 @@
 namespace MvcCore\Ext\Forms\Validators;
 
 /**
- * Responsibility: Validate raw user password by configured password strength 
- *				   rules.  Password still could contain very dangerous 
- *				   characters for XSS, SQL or any other attacks. Be careful!!! 
- *				   This doesn't escape everything. It only check if configured 
+ * Responsibility: Validate raw user password by configured password strength
+ *				   rules.  Password still could contain very dangerous
+ *				   characters for XSS, SQL or any other attacks. Be careful!!!
+ *				   This doesn't escape everything. It only check if configured
  *				   character groups are presented and how much and that's all.
  */
 class Password extends \MvcCore\Ext\Forms\Validator
@@ -26,7 +26,7 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	 * Default minimum password characters length - 12.
 	 */
 	const MIN_LENGTH = 12;
-	
+
 	/**
 	 * Default maximum password characters length - 255.
 	 */
@@ -136,9 +136,9 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	 * Password strength rule to have any special character presented in password.
 	 * Default value is `TRUE` to must have special character in password.
 	 * Default special characters are: !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~.
-	 * 
+	 *
 	 * It's possible to configure own collection of special characters to check
-	 * if any of them is presented in password by method: 
+	 * if any of them is presented in password by method:
 	 * `$validator->SetSpecialChars('...');` or by constructor configuration record:
 	 * `new \MvcCore\Ext\Forms\Validators\Password(['specialChars' => '...']);
 	 * @var bool
@@ -149,9 +149,9 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	 * Password strength rule to have minimum special characters count presented in password.
 	 * Default value is `1` to must have at least one special character in password.
 	 * Default special characters are: !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~.
-	 * 
+	 *
 	 * It's possible to configure own collection of special characters to check
-	 * if any of them is presented in password by method: 
+	 * if any of them is presented in password by method:
 	 * `$validator->SetSpecialChars('...');` or by constructor configuration record:
 	 * `new \MvcCore\Ext\Forms\Validators\Password(['specialChars' => '...']);
 	 * @var int
@@ -161,9 +161,9 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	/**
 	 * Special characters collection to check if any of them is presented in password.
 	 * Default special characters are: !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~.
-	 * 
+	 *
 	 * It's possible to configure own collection of special characters to check
-	 * if any of them is presented in password by method: 
+	 * if any of them is presented in password by method:
 	 * `$validator->SetSpecialChars('...');` or by constructor configuration record:
 	 * `new \MvcCore\Ext\Forms\Validators\Password(['specialChars' => '...']);
 	 * @var string
@@ -197,7 +197,7 @@ class Password extends \MvcCore\Ext\Forms\Validator
 
 	/**
 	 * Set global minimum password characters length, default value is 12.
-	 * @param int $mustHaveMinLength 
+	 * @param int $mustHaveMinLength
 	 * @return \MvcCore\Ext\Forms\Validators\Password|\MvcCore\Ext\Forms\IValidator
 	 */
 	public function SetMustHaveMinLength ($mustHaveMinLength = self::MIN_LENGTH) {
@@ -216,7 +216,7 @@ class Password extends \MvcCore\Ext\Forms\Validator
 
 	/**
 	 * Set global maximum password characters length, default value is 255.
-	 * @param int $mustHaveMaxLength 
+	 * @param int $mustHaveMaxLength
 	 * @return \MvcCore\Ext\Forms\Validators\Password|\MvcCore\Ext\Forms\IValidator
 	 */
 	public function SetMustHaveMaxLength ($mustHaveMaxLength = self::MAX_LENGTH) {
@@ -229,8 +229,8 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	 * Get password strength rule to have any lower case character presented in password.
 	 * Default value is `TRUE` to must have lower case character in password.
 	 * Lower case characters from latin alphabet: abcdefghijklmnopqrstuvwxyz.
-	 * 
-	 * This function returns array with the rule `boolean` as first item and 
+	 *
+	 * This function returns array with the rule `boolean` as first item and
 	 * second item is minimum lower case characters count i n password as `integer`.
 	 * If you set function first argument to `FALSE`, function returns only array
 	 * `[TRUE]`, if the rule is `TRUE` or an empty array `[]` if the rule is `FALSE`.
@@ -238,7 +238,7 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	 * @return array
 	 */
 	public function GetMustHaveLowerCaseChars ($getWithMinCount = TRUE) {
-		if ($getWithMinCount) 
+		if ($getWithMinCount)
 			return [$this->mustHaveLowerCaseChars, $this->mustHaveLowerCaseCharsCount];
 		return $this->mustHaveLowerCaseChars ? [TRUE] : [];
 	}
@@ -247,10 +247,10 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	 * Set password strength rule to have any lower case character presented in password.
 	 * Default value is `TRUE` to must have lower case character in password.
 	 * Lower case characters from latin alphabet: abcdefghijklmnopqrstuvwxyz.
-	 * 
+	 *
 	 * Function has second argument to set minimum lower case characters in password.
 	 * Default value is at least one lower case character in password.
-	 * @param bool $mustHaveLowerCaseChars 
+	 * @param bool $mustHaveLowerCaseChars
 	 * @param int $minCount
 	 * @return \MvcCore\Ext\Forms\Validators\Password|\MvcCore\Ext\Forms\IValidator
 	 */
@@ -265,8 +265,8 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	 * Get password strength rule to have any upper case character presented in password.
 	 * Default value is `TRUE` to must have upper case character in password.
 	 * Upper case characters from latin alphabet: abcdefghijklmnopqrstuvwxyz.
-	 * 
-	 * This function returns array with the rule `boolean` as first item and 
+	 *
+	 * This function returns array with the rule `boolean` as first item and
 	 * second item is minimum upper case characters count i n password as `integer`.
 	 * If you set function first argument to `FALSE`, function returns only array
 	 * `[TRUE]`, if the rule is `TRUE` or an empty array `[]` if the rule is `FALSE`.
@@ -274,7 +274,7 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	 * @return array
 	 */
 	public function GetMustHaveUpperCaseChars ($getWithMinCount = TRUE) {
-		if ($getWithMinCount) 
+		if ($getWithMinCount)
 			return [$this->mustHaveUpperCaseChars, $this->mustHaveUpperCaseCharsCount];
 		return $this->mustHaveUpperCaseChars ? [TRUE] : [];
 	}
@@ -283,7 +283,7 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	 * Set password strength rule to have any upper case character presented in password.
 	 * Default value is `TRUE` to must have upper case character in password.
 	 * Upper case characters from latin alphabet: abcdefghijklmnopqrstuvwxyz.
-	 * 
+	 *
 	 * Function has second argument to set minimum upper case characters in password.
 	 * Default value is at least one upper case character in password.
 	 * @param bool $mustHaveUpperCaseChars
@@ -301,8 +301,8 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	 * Get password strength rule to have any digit presented in password.
 	 * Default value is `TRUE` to must have digit characters in password.
 	 * Digit (arabian) characters from arabian alphabet: 0123456789.
-	 * 
-	 * This function returns array with the rule `boolean` as first item and 
+	 *
+	 * This function returns array with the rule `boolean` as first item and
 	 * second item is minimum digit characters count i n password as `integer`.
 	 * If you set function first argument to `FALSE`, function returns only array
 	 * `[TRUE]`, if the rule is `TRUE` or an empty array `[]` if the rule is `FALSE`.
@@ -310,7 +310,7 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	 * @return array|bool
 	 */
 	public function GetMustHaveDigits ($getWithMinCount = TRUE) {
-		if ($getWithMinCount) 
+		if ($getWithMinCount)
 			return [$this->mustHaveDigits, $this->mustHaveDigitsCount];
 		return $this->mustHaveDigits ? [TRUE] : [];
 	}
@@ -319,10 +319,10 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	 * Set password strength rule to have any digit presented in password.
 	 * Default value is `TRUE` to must have digit characters in password.
 	 * Digit (arabian) characters from arabian alphabet: 0123456789.
-	 * 
+	 *
 	 * Function has second argument to set minimum digit characters in password.
 	 * Default value is at least one digit character in password.
-	 * @param bool $mustHaveDigits 
+	 * @param bool $mustHaveDigits
 	 * @param int $minCount
 	 * @return \MvcCore\Ext\Forms\Validators\Password|\MvcCore\Ext\Forms\IValidator
 	 */
@@ -337,21 +337,21 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	 * Get password strength rule to have any special character presented in password.
 	 * Default value is `TRUE` to must have special character in password.
 	 * Default special characters are: !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~.
-	 * 
-	 * This function returns array with the rule `boolean` as first item and 
+	 *
+	 * This function returns array with the rule `boolean` as first item and
 	 * second item is minimum special characters count i n password as `integer`.
 	 * If you set function first argument to `FALSE`, function returns only array
 	 * `[TRUE]`, if the rule is `TRUE` or an empty array `[]` if the rule is `FALSE`.
-	 * 
+	 *
 	 * It's possible to configure own collection of special characters to check
-	 * if any of them is presented in password by method: 
+	 * if any of them is presented in password by method:
 	 * `$validator->SetSpecialChars('...');` or by constructor configuration record:
 	 * `new \MvcCore\Ext\Forms\Validators\Password(['specialChars' => '...']);
 	 * @param bool $getWithMinCount
 	 * @return array|bool
 	 */
 	public function GetMustHaveSpecialChars ($getWithMinCount = TRUE) {
-		if ($getWithMinCount) 
+		if ($getWithMinCount)
 			return [$this->mustHaveSpecialChars, $this->mustHaveSpecialCharsCount];
 		return $this->mustHaveSpecialChars;
 	}
@@ -360,15 +360,15 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	 * Set password strength rule to have any special character presented in password.
 	 * Default value is `TRUE` to must have special character in password.
 	 * Default special characters are: !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~.
-	 * 
+	 *
 	 * Function has second argument to set minimum special characters in password.
 	 * Default value is at least one digit character in password.
-	 * 
+	 *
 	 * It's possible to configure own collection of special characters to check
-	 * if any of them is presented in password by method: 
+	 * if any of them is presented in password by method:
 	 * `$validator->SetSpecialChars('...');` or by constructor configuration record:
 	 * `new \MvcCore\Ext\Forms\Validators\Password(['specialChars' => '...']);
-	 * @param bool $mustHaveSpecialChars 
+	 * @param bool $mustHaveSpecialChars
 	 * @param int $minCount
 	 * @return \MvcCore\Ext\Forms\Validators\Password|\MvcCore\Ext\Forms\IValidator
 	 */
@@ -391,12 +391,12 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	/**
 	 * Set special characters collection to check if any of them is presented in password.
 	 * Default special characters are: !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~.
-	 * 
+	 *
 	 * It's possible to configure own collection of special characters to check
-	 * if any of them is presented in password by this method: 
+	 * if any of them is presented in password by this method:
 	 * `$validator->SetSpecialChars('...');` or by constructor configuration record:
 	 * `new \MvcCore\Ext\Forms\Validators\Password(['specialChars' => '...']);
-	 * @param string $specialChars 
+	 * @param string $specialChars
 	 * @return \MvcCore\Ext\Forms\Validators\Password|\MvcCore\Ext\Forms\IValidator
 	 */
 	public function SetSpecialChars ($specialChars = self::SPECIAL_CHARS) {
@@ -426,7 +426,7 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	 * 	  'specialChars'				=> '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~',
 	 * );
 	 * ```
-	 * @param array $cfg 
+	 * @param array $cfg
 	 * @return void
 	 */
 	public function __construct (array $cfg = []) {
@@ -458,7 +458,7 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	}
 
 	/**
-	 * Validate raw user password by configured rules. Password still could contain 
+	 * Validate raw user password by configured rules. Password still could contain
 	 * very dangerous characters for XSS, SQL or any other attacks. Be careful!!!
 	 * @param string|array $rawSubmittedValue Raw submitted value from user.
 	 * @return string|NULL Safe submitted value or `NULL` if not possible to return safe value.
@@ -469,7 +469,7 @@ class Password extends \MvcCore\Ext\Forms\Validator
 		if ($passwordLength === 0) return NULL;
 
 		// check password global minimum and maximum length:
-		if ($passwordLength < $this->mustHaveMinLength) 
+		if ($passwordLength < $this->mustHaveMinLength)
 			$this->field->AddValidationError(
 				static::GetErrorMessage(static::ERROR_MIN_LENGTH),
 				[$this->mustHaveMinLength]
@@ -498,7 +498,7 @@ class Password extends \MvcCore\Ext\Forms\Validator
 				);
 			}
 		}
-		
+
 		// check password upper case characters and minimum upper case characters count if necessary:
 		if ($this->mustHaveUpperCaseChars) {
 			$upperCaseChars = preg_replace('#[^A-Z]#', '', $password);
@@ -515,7 +515,7 @@ class Password extends \MvcCore\Ext\Forms\Validator
 				);
 			}
 		}
-		
+
 		// check password digit characters and minimum digit characters count if necessary:
 		if ($this->mustHaveDigits) {
 			$digitChars = preg_replace('#[^0-9]#', '', $password);
@@ -532,7 +532,7 @@ class Password extends \MvcCore\Ext\Forms\Validator
 				);
 			}
 		}
-		
+
 		// check password special characters and minimum special characters count if necessary:
 		if ($this->mustHaveSpecialChars) {
 			$specialCharsArr = str_split($this->specialChars);
