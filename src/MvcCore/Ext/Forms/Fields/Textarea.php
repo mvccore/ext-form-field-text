@@ -119,7 +119,7 @@ class Textarea
 	 */
 	public function PreDispatch () {
 		parent::PreDispatch();
-		if ($this->translate && $this->placeHolder)
+		if ($this->translate && $this->placeHolder !== NULL && $this->translatePlaceholder)
 			$this->placeHolder = $this->form->Translate($this->placeHolder);
 		$this->preDispatchTabIndex();
 	}

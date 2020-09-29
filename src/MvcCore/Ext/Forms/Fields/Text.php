@@ -113,8 +113,7 @@ class Text
 	 */
 	public function PreDispatch () {
 		parent::PreDispatch();
-		if ($this->translate && $this->placeHolder)
-			$this->placeHolder = $this->form->Translate($this->placeHolder);
+		$this->preDispatchPlaceHolder();
 		$this->preDispatchInputMode();
 		$this->preDispatchTabIndex();
 	}
