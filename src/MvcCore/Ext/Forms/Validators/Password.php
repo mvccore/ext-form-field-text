@@ -475,7 +475,7 @@ class Password extends \MvcCore\Ext\Forms\Validator
 				[$this->mustHaveMinLength]
 			);
 		if ($passwordLength > $this->mustHaveMaxLength) {
-			$password = mb_substr($password, 0, static::ERROR_MAX_LENGTH);
+			$password = mb_substr($password, 0, $this->mustHaveMaxLength);
 			$this->field->AddValidationError(
 				static::GetErrorMessage(static::ERROR_MAX_LENGTH),
 				[$this->mustHaveMaxLength]

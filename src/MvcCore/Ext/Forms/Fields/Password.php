@@ -40,5 +40,5 @@ class Password extends Text
 	 * 				  and that's all.
 	 * @var string[]|\Closure[]
 	 */
-	protected $validators = [/*'Password', 'SafeString', 'MinLength', 'MaxLength', 'Pattern'*/];
+	protected $validators = ['Password'/*, 'SafeString', 'MinLength', 'MaxLength', 'Pattern'*/];
 }
