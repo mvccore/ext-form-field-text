@@ -7,8 +7,8 @@
  * For the full copyright and license information, please view
  * the LICENSE.md file that are distributed with this source code.
  *
- * @copyright	Copyright (c) 2016 Tom Flídr (https://github.com/mvccore/mvccore)
- * @license		https://mvccore.github.io/docs/mvccore/4.0.0/LICENCE.md
+ * @copyright	Copyright (c) 2016 Tom Flidr (https://github.com/mvccore)
+ * @license		https://mvccore.github.io/docs/mvccore/5.0.0/LICENCE.md
  */
 
 namespace MvcCore\Ext\Forms\Fields;
@@ -21,12 +21,12 @@ namespace MvcCore\Ext\Forms\Fields;
  *				   characters in submitted text value. But it don't prevent 
  *				   SQL inject attacks and more.
  */
-class Textarea 
-	extends		\MvcCore\Ext\Forms\Field 
-	implements	\MvcCore\Ext\Forms\Fields\IVisibleField, 
-				\MvcCore\Ext\Forms\Fields\ILabel,
-				\MvcCore\Ext\Forms\Fields\IMinMaxLength
-{
+class		Textarea 
+extends		\MvcCore\Ext\Forms\Field 
+implements	\MvcCore\Ext\Forms\Fields\IVisibleField, 
+			\MvcCore\Ext\Forms\Fields\ILabel,
+			\MvcCore\Ext\Forms\Fields\IMinMaxLength {
+
 	use \MvcCore\Ext\Forms\Field\Props\VisibleField;
 	use \MvcCore\Ext\Forms\Field\Props\Label;
 	use \MvcCore\Ext\Forms\Field\Props\AutoComplete;
@@ -83,12 +83,12 @@ class Textarea
 	 * - Set up required.
 	 * - Set up translate boolean property.
 	 * - Set up min/max length validator if necessary.
-	 * @param \MvcCore\Ext\Form|\MvcCore\Ext\IForm $form
+	 * @param \MvcCore\Ext\Form $form
 	 * @throws \InvalidArgumentException
-	 * @return \MvcCore\Ext\Forms\Fields\Text|\MvcCore\Ext\Forms\IField
+	 * @return \MvcCore\Ext\Forms\Fields\Text
 	 */
 	public function SetForm (\MvcCore\Ext\IForm $form) {
-		/** @var $this \MvcCore\Ext\Forms\IField */
+		/** @var $this \MvcCore\Ext\Forms\Field */
 		parent::SetForm($form);
 		$this->setFormMinMaxLength();
 		return $this;

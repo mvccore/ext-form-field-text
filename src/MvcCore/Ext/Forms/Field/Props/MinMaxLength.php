@@ -7,8 +7,8 @@
  * For the full copyright and license information, please view
  * the LICENSE.md file that are distributed with this source code.
  *
- * @copyright	Copyright (c) 2016 Tom Flídr (https://github.com/mvccore/mvccore)
- * @license		https://mvccore.github.io/docs/mvccore/4.0.0/LICENCE.md
+ * @copyright	Copyright (c) 2016 Tom Flidr (https://github.com/mvccore)
+ * @license		https://mvccore.github.io/docs/mvccore/5.0.0/LICENCE.md
  */
 
 namespace MvcCore\Ext\Forms\Field\Props;
@@ -24,8 +24,8 @@ namespace MvcCore\Ext\Forms\Field\Props;
  * - `\MvcCore\Ext\Forms\Fields\Textarea`
  * - `\MvcCore\Ext\Forms\Validators\MinMaxLength`
  */
-trait MinMaxLength
-{
+trait MinMaxLength {
+
 	/**
 	 * Minimum characters length. Default value is `NULL`.
 	 * @var int|NULL
@@ -49,10 +49,10 @@ trait MinMaxLength
 	/**
 	 * Set minimum characters length. Default value is `NULL`.
 	 * @param int|NULL $minLength 
-	 * @return \MvcCore\Ext\Forms\Field|\MvcCore\Ext\Forms\IField
+	 * @return \MvcCore\Ext\Forms\Field
 	 */
 	public function SetMinLength ($minLength) {
-		/** @var $this \MvcCore\Ext\Forms\IField */
+		/** @var $this \MvcCore\Ext\Forms\Field */
 		$this->minLength = $minLength;
 		return $this;
 	}
@@ -68,10 +68,10 @@ trait MinMaxLength
 	/**
 	 * Set maximum characters length. Default value is `NULL`.
 	 * @param int|NULL $minLength 
-	 * @return \MvcCore\Ext\Forms\Field|\MvcCore\Ext\Forms\IField
+	 * @return \MvcCore\Ext\Forms\Field
 	 */
 	public function SetMaxLength ($maxLength) {
-		/** @var $this \MvcCore\Ext\Forms\IField */
+		/** @var $this \MvcCore\Ext\Forms\Field */
 		$this->maxLength = $maxLength;
 		return $this;
 	}

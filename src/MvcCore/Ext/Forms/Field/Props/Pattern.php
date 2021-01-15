@@ -7,8 +7,8 @@
  * For the full copyright and license information, please view
  * the LICENSE.md file that are distributed with this source code.
  *
- * @copyright	Copyright (c) 2016 Tom Flídr (https://github.com/mvccore/mvccore)
- * @license		https://mvccore.github.io/docs/mvccore/4.0.0/LICENCE.md
+ * @copyright	Copyright (c) 2016 Tom Flidr (https://github.com/mvccore)
+ * @license		https://mvccore.github.io/docs/mvccore/5.0.0/LICENCE.md
  */
 
 namespace MvcCore\Ext\Forms\Field\Props;
@@ -23,8 +23,8 @@ namespace MvcCore\Ext\Forms\Field\Props;
  *    - `\MvcCore\Ext\Forms\Fields\Url`
  * - `\MvcCore\Ext\Forms\Validators\Pattern`
  */
-trait Pattern
-{
+trait Pattern {
+
 	/**
 	 * RegExp match pattern for HTML attribute `pattern` and
 	 * RegExp match pattern for build in `Pattern` validator
@@ -54,10 +54,10 @@ trait Pattern
 	 * RegExp pattern value defined.
 	 * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-pattern
 	 * @param string $pattern RegExp pattern without border characters for javascript and PHP.
-	 * @return \MvcCore\Ext\Forms\Field|\MvcCore\Ext\Forms\IField
+	 * @return \MvcCore\Ext\Forms\Field
 	 */
 	public function SetPattern ($pattern) {
-		/** @var $this \MvcCore\Ext\Forms\IField */
+		/** @var $this \MvcCore\Ext\Forms\Field */
 		$this->pattern = $pattern;
 		return $this;
 	}

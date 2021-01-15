@@ -7,8 +7,8 @@
  * For the full copyright and license information, please view
  * the LICENSE.md file that are distributed with this source code.
  *
- * @copyright	Copyright (c) 2016 Tom Flídr (https://github.com/mvccore/mvccore)
- * @license		https://mvccore.github.io/docs/mvccore/4.0.0/LICENCE.md
+ * @copyright	Copyright (c) 2016 Tom Flidr (https://github.com/mvccore)
+ * @license		https://mvccore.github.io/docs/mvccore/5.0.0/LICENCE.md
  */
 
 /**
@@ -29,8 +29,8 @@ namespace MvcCore\Ext\Forms\Validators;
  *				   THIS VALIDATOR DOESN'T MEAN SAFE VALUE TO PREVENT SQL INJECTS! 
  *				   To prevent sql injects - use `\PDO::prepare();` and `\PDO::execute()`.
  */
-class Url extends \MvcCore\Ext\Forms\Validator
-{
+class Url extends \MvcCore\Ext\Forms\Validator {
+
 	const VALIDATE_DNS_TYPE_NONE	= FALSE;
 	const VALIDATE_DNS_TYPE_ANY		= 'ANY';
 	const VALIDATE_DNS_TYPE_A		= 'A';

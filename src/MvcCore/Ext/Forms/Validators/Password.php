@@ -7,8 +7,8 @@
  * For the full copyright and license information, please view
  * the LICENSE.md file that are distributed with this source code.
  *
- * @copyright	Copyright (c) 2016 Tom Flídr (https://github.com/mvccore/mvccore)
- * @license		https://mvccore.github.io/docs/mvccore/4.0.0/LICENCE.md
+ * @copyright	Copyright (c) 2016 Tom Flidr (https://github.com/mvccore)
+ * @license		https://mvccore.github.io/docs/mvccore/5.0.0/LICENCE.md
  */
 
 namespace MvcCore\Ext\Forms\Validators;
@@ -20,8 +20,8 @@ namespace MvcCore\Ext\Forms\Validators;
  *				   This doesn't escape everything. It only check if configured
  *				   character groups are presented and how much and that's all.
  */
-class Password extends \MvcCore\Ext\Forms\Validator
-{
+class Password extends \MvcCore\Ext\Forms\Validator {
+
 	/**
 	 * Default minimum password characters length - 12.
 	 */
@@ -57,7 +57,7 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	 */
 	const MIN_SPECIAL_CHARS_COUNT = 1;
 
-    /**
+	/**
 	 * Error message index(es).
 	 * @var int
 	 */
@@ -198,10 +198,10 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	/**
 	 * Set global minimum password characters length, default value is 12.
 	 * @param int $mustHaveMinLength
-	 * @return \MvcCore\Ext\Forms\Validators\Password|\MvcCore\Ext\Forms\IValidator
+	 * @return \MvcCore\Ext\Forms\Validators\Password
 	 */
 	public function SetMustHaveMinLength ($mustHaveMinLength = self::MIN_LENGTH) {
-		/** @var $this \MvcCore\Ext\Forms\IValidator */
+		/** @var $this \MvcCore\Ext\Forms\Validator */
 		$this->mustHaveMinLength = $mustHaveMinLength;
 		return $this;
 	}
@@ -217,10 +217,10 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	/**
 	 * Set global maximum password characters length, default value is 255.
 	 * @param int $mustHaveMaxLength
-	 * @return \MvcCore\Ext\Forms\Validators\Password|\MvcCore\Ext\Forms\IValidator
+	 * @return \MvcCore\Ext\Forms\Validators\Password
 	 */
 	public function SetMustHaveMaxLength ($mustHaveMaxLength = self::MAX_LENGTH) {
-		/** @var $this \MvcCore\Ext\Forms\IValidator */
+		/** @var $this \MvcCore\Ext\Forms\Validator */
 		$this->mustHaveMaxLength = $mustHaveMaxLength;
 		return $this;
 	}
@@ -252,10 +252,10 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	 * Default value is at least one lower case character in password.
 	 * @param bool $mustHaveLowerCaseChars
 	 * @param int $minCount
-	 * @return \MvcCore\Ext\Forms\Validators\Password|\MvcCore\Ext\Forms\IValidator
+	 * @return \MvcCore\Ext\Forms\Validators\Password
 	 */
 	public function SetMustHaveLowerCaseChars ($mustHaveLowerCaseChars = TRUE, $minCount = self::MIN_LOWERCASE_CHARS_COUNT) {
-		/** @var $this \MvcCore\Ext\Forms\IValidator */
+		/** @var $this \MvcCore\Ext\Forms\Validator */
 		$this->mustHaveLowerCaseChars = $mustHaveLowerCaseChars;
 		$this->mustHaveLowerCaseCharsCount = $minCount;
 		return $this;
@@ -288,10 +288,10 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	 * Default value is at least one upper case character in password.
 	 * @param bool $mustHaveUpperCaseChars
 	 * @param int $minCount
-	 * @return \MvcCore\Ext\Forms\Validators\Password|\MvcCore\Ext\Forms\IValidator
+	 * @return \MvcCore\Ext\Forms\Validators\Password
 	 */
 	public function SetMustHaveUpperCaseChars ($mustHaveUpperCaseChars = TRUE, $minCount = self::MIN_UPPERCASE_CHARS_COUNT) {
-		/** @var $this \MvcCore\Ext\Forms\IValidator */
+		/** @var $this \MvcCore\Ext\Forms\Validator */
 		$this->mustHaveUpperCaseChars = $mustHaveUpperCaseChars;
 		$this->mustHaveUpperCaseCharsCount = $minCount;
 		return $this;
@@ -324,10 +324,10 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	 * Default value is at least one digit character in password.
 	 * @param bool $mustHaveDigits
 	 * @param int $minCount
-	 * @return \MvcCore\Ext\Forms\Validators\Password|\MvcCore\Ext\Forms\IValidator
+	 * @return \MvcCore\Ext\Forms\Validators\Password
 	 */
 	public function SetMustHaveDigits ($mustHaveDigits = TRUE, $minCount = self::MIN_DIGIT_CHARS_COUNT) {
-		/** @var $this \MvcCore\Ext\Forms\IValidator */
+		/** @var $this \MvcCore\Ext\Forms\Validator */
 		$this->mustHaveDigits = $mustHaveDigits;
 		$this->mustHaveDigitsCount = $minCount;
 		return $this;
@@ -370,10 +370,10 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	 * `new \MvcCore\Ext\Forms\Validators\Password(['specialChars' => '...']);
 	 * @param bool $mustHaveSpecialChars
 	 * @param int $minCount
-	 * @return \MvcCore\Ext\Forms\Validators\Password|\MvcCore\Ext\Forms\IValidator
+	 * @return \MvcCore\Ext\Forms\Validators\Password
 	 */
 	public function SetMustHaveSpecialChars ($mustHaveSpecialChars = TRUE, $minCount = self::MIN_SPECIAL_CHARS_COUNT) {
-		/** @var $this \MvcCore\Ext\Forms\IValidator */
+		/** @var $this \MvcCore\Ext\Forms\Validator */
 		$this->mustHaveSpecialChars = $mustHaveSpecialChars;
 		$this->mustHaveSpecialCharsCount = $minCount;
 		return $this;
@@ -397,10 +397,10 @@ class Password extends \MvcCore\Ext\Forms\Validator
 	 * `$validator->SetSpecialChars('...');` or by constructor configuration record:
 	 * `new \MvcCore\Ext\Forms\Validators\Password(['specialChars' => '...']);
 	 * @param string $specialChars
-	 * @return \MvcCore\Ext\Forms\Validators\Password|\MvcCore\Ext\Forms\IValidator
+	 * @return \MvcCore\Ext\Forms\Validators\Password
 	 */
 	public function SetSpecialChars ($specialChars = self::SPECIAL_CHARS) {
-		/** @var $this \MvcCore\Ext\Forms\IValidator */
+		/** @var $this \MvcCore\Ext\Forms\Validator */
 		$this->specialChars = $specialChars;
 		return $this;
 	}

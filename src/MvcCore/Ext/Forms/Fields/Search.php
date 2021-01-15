@@ -7,8 +7,8 @@
  * For the full copyright and license information, please view
  * the LICENSE.md file that are distributed with this source code.
  *
- * @copyright	Copyright (c) 2016 Tom Flídr (https://github.com/mvccore/mvccore)
- * @license		https://mvccore.github.io/docs/mvccore/4.0.0/LICENCE.md
+ * @copyright	Copyright (c) 2016 Tom Flidr (https://github.com/mvccore)
+ * @license		https://mvccore.github.io/docs/mvccore/5.0.0/LICENCE.md
  */
 
 namespace MvcCore\Ext\Forms\Fields;
@@ -23,8 +23,8 @@ namespace MvcCore\Ext\Forms\Fields;
  *				   or you need to replace back `&#035;` to `'`, but 
  *				   every time - you have to use database escaping by `\PDO::prepare()`!
  */
-class Search extends Text
-{
+class Search extends Text {
+
 	/**
 	 * Possible values: `search`.
 	 * @var string

@@ -7,8 +7,8 @@
  * For the full copyright and license information, please view 
  * the LICENSE.md file that are distributed with this source code.
  *
- * @copyright	Copyright (c) 2016 Tom Flídr (https://github.com/mvccore/mvccore)
- * @license		https://mvccore.github.io/docs/mvccore/4.0.0/LICENCE.md
+ * @copyright	Copyright (c) 2016 Tom Flidr (https://github.com/mvccore)
+ * @license		https://mvccore.github.io/docs/mvccore/5.0.0/LICENCE.md
  */
 
 namespace MvcCore\Ext\Forms\Validators;
@@ -21,8 +21,8 @@ namespace MvcCore\Ext\Forms\Validators;
  * @see https://github.com/zendframework/zend-i18n/blob/master/src/Validator/PhoneNumber.php
  * @see https://olegkrivtsov.github.io/using-zend-framework-3-book/html/en/Checking_Input_Data_with_Validators/Validator_Usage_Examples.html#Example
  */
-class Tel extends \MvcCore\Ext\Forms\Validator
-{
+class Tel extends \MvcCore\Ext\Forms\Validator {
+
 	/**
 	 * Error message index(es).
 	 * @var int

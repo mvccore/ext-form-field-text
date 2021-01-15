@@ -7,8 +7,8 @@
  * For the full copyright and license information, please view
  * the LICENSE.md file that are distributed with this source code.
  *
- * @copyright	Copyright (c) 2016 Tom Flídr (https://github.com/mvccore/mvccore)
- * @license		https://mvccore.github.io/docs/mvccore/4.0.0/LICENCE.md
+ * @copyright	Copyright (c) 2016 Tom Flidr (https://github.com/mvccore)
+ * @license		https://mvccore.github.io/docs/mvccore/5.0.0/LICENCE.md
  */
 
 namespace MvcCore\Ext\Forms\Field\Props;
@@ -17,8 +17,8 @@ namespace MvcCore\Ext\Forms\Field\Props;
  * Trait for classes:
  * - `\MvcCore\Ext\Forms\Fields\Textarea`
  */
-trait RowsColsWrap
-{
+trait RowsColsWrap {
+
 	/**
 	 * The number of visible text lines for the control. `NULL` value means no `cols`
 	 * attribute will bee rendered.
@@ -67,10 +67,10 @@ trait RowsColsWrap
 	 * attribute will bee rendered.
 	 * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-rows
 	 * @param int|NULL $rows 
-	 * @return \MvcCore\Ext\Forms\Field|\MvcCore\Ext\Forms\IField
+	 * @return \MvcCore\Ext\Forms\Field
 	 */
 	public function SetRows ($rows) {
-		/** @var $this \MvcCore\Ext\Forms\IField */
+		/** @var $this \MvcCore\Ext\Forms\Field */
 		$this->rows = $rows;
 		return $this;
 	}
@@ -92,10 +92,10 @@ trait RowsColsWrap
 	 * browser's value is `20`. `NULL` value means no `cols` attribute will bee rendered.
 	 * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-cols
 	 * @param int|NULL $columns 
-	 * @return \MvcCore\Ext\Forms\Field|\MvcCore\Ext\Forms\IField
+	 * @return \MvcCore\Ext\Forms\Field
 	 */
 	public function SetCols ($columns = 20) {
-		/** @var $this \MvcCore\Ext\Forms\IField */
+		/** @var $this \MvcCore\Ext\Forms\Field */
 		$this->cols = $columns;
 		return $this;
 	}
@@ -131,10 +131,10 @@ trait RowsColsWrap
 	 * If this attribute is not specified, `soft` is its default browser`s value.
 	 * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-wrap
 	 * @param string|NULL $wrap 
-	 * @return \MvcCore\Ext\Forms\Field|\MvcCore\Ext\Forms\IField
+	 * @return \MvcCore\Ext\Forms\Field
 	 */
 	public function SetWrap ($wrap = 'soft') {
-		/** @var $this \MvcCore\Ext\Forms\IField */
+		/** @var $this \MvcCore\Ext\Forms\Field */
 		$this->wrap = $wrap;
 		return $this;
 	}
