@@ -46,7 +46,8 @@ implements	\MvcCore\Ext\Forms\Fields\IMultiple
 	];
 
 	/**
-	 * Validate URI string by PHP `filter_var($rawSubmittedValue, FILTER_VALIDATE_EMAIL);`.
+	 * Validate URI string by regular expression.
+	 * @see https://github.com/nette/utils/blob/72d8f087e7d750521a15e0b25b7a4f6d20ed45dc/src/Utils/Validators.php#L308
 	 * @param string|array $rawSubmittedValue Raw submitted value from user.
 	 * @return string|\string[]|NULL Safe submitted string value or array of string for `multiple` attribute defined or `NULL` if not possible to return safe value.
 	 */
@@ -62,12 +63,22 @@ implements	\MvcCore\Ext\Forms\Fields\IMultiple
 		}
 		$errorReported = FALSE;
 		foreach ($rawValues as $rawValue) {
-			$safeValue = filter_var($rawValue, FILTER_VALIDATE_EMAIL);
-			if ($safeValue !== FALSE) {
+			$atom = "[-a-z0-9!#$%&'*+/=?^_`{|}~]"; // RFC 5322 unquoted characters in local-part
+			$alpha = "a-z\x80-\xFF"; // superset of IDN
+			$emailIsValid = (bool) preg_match(<<<XX
+			(^
+				("([ !#-[\\]-~]*|\\\\[ -~])+"|{$atom}+(\\.{$atom}+)*)    # quoted or unquoted
+				@
+				([0-9{$alpha}]([-0-9{$alpha}]{0,61}[0-9{$alpha}])?\\.)+  # domain - RFC 1034
+				[{$alpha}]([-0-9{$alpha}]{0,17}[{$alpha}])?              # top domain
+			$)Dix
+XX
+			, $rawValue);
+			if ($emailIsValid) {
 				if ($this->multiple) {
-					$result[] = $safeValue;
+					$result[] = $rawValue;
 				} else {
-					$result = $safeValue;
+					$result = $rawValue;
 				}
 			} else {
 				if (!$errorReported) {

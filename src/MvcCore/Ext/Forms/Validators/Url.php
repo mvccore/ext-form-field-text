@@ -31,37 +31,38 @@ namespace MvcCore\Ext\Forms\Validators;
  */
 class Url extends \MvcCore\Ext\Forms\Validator
 {
-	const VALIDATE_DNS_TYPE_NONE = FALSE;
-    const VALIDATE_DNS_TYPE_ANY = 'ANY';
-    const VALIDATE_DNS_TYPE_A = 'A';
-    const VALIDATE_DNS_TYPE_A6 = 'A6';
-    const VALIDATE_DNS_TYPE_AAAA = 'AAAA';
-    const VALIDATE_DNS_TYPE_CNAME = 'CNAME';
-    const VALIDATE_DNS_TYPE_MX = 'MX';
-    const VALIDATE_DNS_TYPE_NAPTR = 'NAPTR';
-    const VALIDATE_DNS_TYPE_NS = 'NS';
-    const VALIDATE_DNS_TYPE_PTR = 'PTR';
-    const VALIDATE_DNS_TYPE_SOA = 'SOA';
-    const VALIDATE_DNS_TYPE_SRV = 'SRV';
-    const VALIDATE_DNS_TYPE_TXT = 'TXT';
+	const VALIDATE_DNS_TYPE_NONE	= FALSE;
+	const VALIDATE_DNS_TYPE_ANY		= 'ANY';
+	const VALIDATE_DNS_TYPE_A		= 'A';
+	const VALIDATE_DNS_TYPE_A6		= 'A6';
+	const VALIDATE_DNS_TYPE_AAAA	= 'AAAA';
+	const VALIDATE_DNS_TYPE_CNAME	= 'CNAME';
+	const VALIDATE_DNS_TYPE_MX		= 'MX';
+	const VALIDATE_DNS_TYPE_NAPTR	= 'NAPTR';
+	const VALIDATE_DNS_TYPE_NS		= 'NS';
+	const VALIDATE_DNS_TYPE_PTR		= 'PTR';
+	const VALIDATE_DNS_TYPE_SOA		= 'SOA';
+	const VALIDATE_DNS_TYPE_SRV		= 'SRV';
+	const VALIDATE_DNS_TYPE_TXT		= 'TXT';
 
-	const PATTERN = '~^
-            (%s)://                                 # scheme
-            (([\.\pL\pN-]+:)?([\.\pL\pN-]+)@)?      # basic auth
-            (
-                ([\pL\pN\pS\-\.])+(\.?([\pL\pN]|xn\-\-[\pL\pN-]+)+\.?) # a domain name
-                    |                                                 # or
-                \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}                    # an IP address
-                    |                                                 # or
-                \[
-                    (?:(?:(?:(?:(?:(?:(?:[0-9a-f]{1,4})):){6})(?:(?:(?:(?:(?:[0-9a-f]{1,4})):(?:(?:[0-9a-f]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:::(?:(?:(?:[0-9a-f]{1,4})):){5})(?:(?:(?:(?:(?:[0-9a-f]{1,4})):(?:(?:[0-9a-f]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:[0-9a-f]{1,4})))?::(?:(?:(?:[0-9a-f]{1,4})):){4})(?:(?:(?:(?:(?:[0-9a-f]{1,4})):(?:(?:[0-9a-f]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-f]{1,4})):){0,1}(?:(?:[0-9a-f]{1,4})))?::(?:(?:(?:[0-9a-f]{1,4})):){3})(?:(?:(?:(?:(?:[0-9a-f]{1,4})):(?:(?:[0-9a-f]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-f]{1,4})):){0,2}(?:(?:[0-9a-f]{1,4})))?::(?:(?:(?:[0-9a-f]{1,4})):){2})(?:(?:(?:(?:(?:[0-9a-f]{1,4})):(?:(?:[0-9a-f]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-f]{1,4})):){0,3}(?:(?:[0-9a-f]{1,4})))?::(?:(?:[0-9a-f]{1,4})):)(?:(?:(?:(?:(?:[0-9a-f]{1,4})):(?:(?:[0-9a-f]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-f]{1,4})):){0,4}(?:(?:[0-9a-f]{1,4})))?::)(?:(?:(?:(?:(?:[0-9a-f]{1,4})):(?:(?:[0-9a-f]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-f]{1,4})):){0,5}(?:(?:[0-9a-f]{1,4})))?::)(?:(?:[0-9a-f]{1,4})))|(?:(?:(?:(?:(?:(?:[0-9a-f]{1,4})):){0,6}(?:(?:[0-9a-f]{1,4})))?::))))
-                \]  # an IPv6 address
-            )
-            (:[0-9]+)?                              # a port (optional)
-            (?:/ (?:[\pL\pN\-._\~!$&\'()*+,;=:@]|%%[0-9A-Fa-f]{2})* )*      # a path
-            (?:\? (?:[\pL\pN\-._\~!$&\'()*+,;=:@/?]|%%[0-9A-Fa-f]{2})* )?   # a query (optional)
-            (?:\# (?:[\pL\pN\-._\~!$&\'()*+,;=:@/?]|%%[0-9A-Fa-f]{2})* )?   # a fragment (optional)
-        $~ixu';
+	/**
+	 * All DNS validation types.
+	 * @var \string[]
+	 */
+	protected static $allDnsValidations = [
+		self::VALIDATE_DNS_TYPE_ANY,
+		self::VALIDATE_DNS_TYPE_A,
+		self::VALIDATE_DNS_TYPE_A6,
+		self::VALIDATE_DNS_TYPE_AAAA,
+		self::VALIDATE_DNS_TYPE_CNAME,
+		self::VALIDATE_DNS_TYPE_MX,
+		self::VALIDATE_DNS_TYPE_NAPTR,
+		self::VALIDATE_DNS_TYPE_NS,
+		self::VALIDATE_DNS_TYPE_PTR,
+		self::VALIDATE_DNS_TYPE_SOA,
+		self::VALIDATE_DNS_TYPE_SRV,
+		self::VALIDATE_DNS_TYPE_TXT,
+	];
 
 	/**
 	 * Error message index(es).
@@ -76,11 +77,76 @@ class Url extends \MvcCore\Ext\Forms\Validator
 	 */
 	protected static $errorMessages = [
 		self::ERROR_URL	=> "Field '{0}' requires a valid URL.",
-		self::ERROR_DNS	=> "The host in field {0} could not be resolved.",
+		self::ERROR_DNS	=> "The host in field '{0}' could not be resolved.",
 	];
 
+
 	/**
-	 * Validate URI string by PHP `filter_var($rawSubmittedValue, FILTER_VALIDATE_URL);`.
+	 * DNS optional validation.
+	 * @var string|bool
+	 */
+	protected $dnsValidation = self::VALIDATE_DNS_TYPE_NONE;
+
+	/**
+	 * Allowed URL schemes, `http,https,ftp,ftps` allowed by default.
+	 * @var \string[]
+	 */
+	protected $allowedSchemes = ['http', 'https', 'ftp', 'ftps',];
+	
+
+	/**
+	 * Returns the allowed absolute url schemes,
+	 * `http,https,ftp,ftps` allowed by default.
+	 * @return \string[]
+	 */
+	public function GetAllowedSchemes () {
+		return $this->allowedSchemes;
+	}
+
+	/**
+	 * Sets the allowed absolute url schemes, 
+	 * `http,https,ftp,ftps` allowed by default.
+	 * @param  \string[] $allowedSchemes,...
+	 * @return \MvcCore\Ext\Forms\Validators\Url
+	 */
+	public function SetAllowedSchemes ($allowedSchemes) {
+		if (!is_array($allowedSchemes)) 
+			$allowedSchemes = func_get_args();	
+		foreach ($allowedSchemes as $allowedScheme)
+			if (!preg_match("#^[a-z]+$#", $allowedScheme)) 
+				throw new \Exception(
+					"[".get_class($this)."] Invalid value for URL scheme `{$allowedScheme}`."
+				);
+		$this->allowedSchemes = $allowedSchemes;
+		return $this;
+	}
+	
+	/**
+	 * Returns the DNS validation option.
+	 * @return string|bool
+	 */
+	public function GetDnsValidation () {
+		return $this->dnsValidation;
+	}
+
+	/**
+	 * Sets the DNS validation option.
+	 * @param  string|bool $dnsValidation
+	 * @return \MvcCore\Ext\Forms\Validators\Url
+	 */
+	public function SetDnsValidation ($dnsValidation = self::VALIDATE_DNS_TYPE_A) {
+		if (!in_array($dnsValidation, self::$allDnsValidations, TRUE)) 
+			throw new \Exception(
+				"[".get_class($this)."] Invalid value for DNS checking `{$this->dnsValidation}`."
+			);
+		$this->dnsValidation = $dnsValidation;
+		return $this;
+	}
+
+
+	/**
+	 * Validate URI string by regular expression and optionally by DNS check.
+	 * @see https://github.com/nette/utils/blob/72d8f087e7d750521a15e0b25b7a4f6d20ed45dc/src/Utils/Validators.php#L327
 	 * @param string|array $rawSubmittedValue Raw submitted value from user.
 	 * @return string|NULL Safe submitted value or `NULL` if not possible to return safe value.
 	 */
@@ -88,102 +154,53 @@ class Url extends \MvcCore\Ext\Forms\Validator
 		$result = NULL;
 		$rawSubmittedValue = trim((string) $rawSubmittedValue);
 		if ($rawSubmittedValue === '') return NULL;
+
 		while (preg_match("#%[0-9a-zA-Z]{2}#", $rawSubmittedValue)) 
 			$rawSubmittedValue = rawurldecode($rawSubmittedValue);
-		$queryPos = mb_strpos($rawSubmittedValue, '?');
-		if ($queryPos !== FALSE) {
-			$rawSubmittedValueWithoutQs = mb_substr($rawSubmittedValue, 0, $queryPos);
-		} else {
-			$rawSubmittedValueWithoutQs = $rawSubmittedValue;
-		}
-
-
-
-
-
-		$checkDns = static::VALIDATE_DNS_TYPE_NONE;
-		$relativeProtocol = FALSE;
-		$schemes = ['http', 'https'];
-
-
-
-
-
-		$pattern = $relativeProtocol 
-			? str_replace('(%s):', '(?:(%s):)?', static::PATTERN) 
-			: static::PATTERN;
-        $pattern = sprintf($pattern, implode('|', $schemes));
 		
-        if (!preg_match($pattern, $rawSubmittedValueWithoutQs)) {
+		$alpha = "a-z\x80-\xFF";
+		$schemes = implode('|', $this->allowedSchemes);
+		$pattern = <<<PATTERN
+		(^
+			{$schemes}://(
+				(([-_0-9{$alpha}]+\\.)*											# subdomain
+					[0-9{$alpha}]([-0-9{$alpha}]{0,61}[0-9{$alpha}])?\\.)?		# domain
+					[{$alpha}]([-0-9{$alpha}]{0,17}[{$alpha}])?					# top domain
+				|\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}						# IPv4
+				|\\[[0-9a-f:]{3,39}\\]											# IPv6
+			)(:\\d{1,5})?														# port
+			(/\\S*)?															# path
+			(\\?\\S*)?															# query
+			(\\#\\S*)?															# fragment
+		$)Dix
+PATTERN;
+		$urlIsValid = (bool) preg_match($pattern, $rawSubmittedValue);
+		if (!$urlIsValid) {
 			$rawSubmittedValue = NULL;
 			$this->field->AddValidationError(
 				static::GetErrorMessage(self::ERROR_URL)
 			);
-        } else if ($checkDns) {
-            if (!\in_array($checkDns, [
-                static::VALIDATE_DNS_TYPE_ANY,
-                static::VALIDATE_DNS_TYPE_A,
-                static::VALIDATE_DNS_TYPE_A6,
-                static::VALIDATE_DNS_TYPE_AAAA,
-                static::VALIDATE_DNS_TYPE_CNAME,
-                static::VALIDATE_DNS_TYPE_MX,
-                static::VALIDATE_DNS_TYPE_NAPTR,
-                static::VALIDATE_DNS_TYPE_NS,
-                static::VALIDATE_DNS_TYPE_PTR,
-                static::VALIDATE_DNS_TYPE_SOA,
-                static::VALIDATE_DNS_TYPE_SRV,
-                static::VALIDATE_DNS_TYPE_TXT,
-            ], TRUE)) {
-				/*$this->field->AddValidationError(
-					static::GetErrorMessage(self::ERROR_URL_INVALID_OPTION)
-				);*/
-                throw new \Exception(sprintf(
-					'Invalid value for option "checkDNS" in constraint %s', 
-					$checkDns
-				));
-            }
+		}
 
-            $host = parse_url($rawSubmittedValueWithoutQs, PHP_URL_HOST);
-            if (!is_string($host) || !checkdnsrr($host, $checkDns)) {
+		if ($this->dnsValidation) {
+			$queryPos = mb_strpos($rawSubmittedValue, '?');
+			if ($queryPos !== FALSE) {
+				$rawSubmittedValueWithoutQs = mb_substr($rawSubmittedValue, 0, $queryPos);
+			} else {
+				$rawSubmittedValueWithoutQs = $rawSubmittedValue;
+			}
+			$host = parse_url($rawSubmittedValueWithoutQs, PHP_URL_HOST);
+			if (!is_string($host) || !checkdnsrr($host, $this->dnsValidation)) {
 				$rawSubmittedValue = NULL;
 				$this->field->AddValidationError(
 					static::GetErrorMessage(self::ERROR_DNS)
 				);
-            }
-        }
-		//xxx($rawSubmittedValue);
-
-
-
-
-
+			}
+		}
+		
 		if ($rawSubmittedValue !== NULL) 
 			$result = $rawSubmittedValue;
-		return $result;
-	}
 
-	/**
-	 * Validate URI string by PHP `filter_var($rawSubmittedValue, FILTER_VALIDATE_URL);`.
-	 * @param string|array $rawSubmittedValue Raw submitted value from user.
-	 * @return string|NULL Safe submitted value or `NULL` if not possible to return safe value.
-	 */
-	public function _Validate ($rawSubmittedValue) {
-		$result = NULL;
-		$rawSubmittedValue = trim((string) $rawSubmittedValue);
-		if ($rawSubmittedValue === '') 
-			return NULL;
-		while (mb_strpos($rawSubmittedValue, '%') !== FALSE)
-			$rawSubmittedValue = rawurldecode($rawSubmittedValue);
-		$safeValue = filter_var($rawSubmittedValue, FILTER_VALIDATE_URL);
-		x($rawSubmittedValue);
-		xxx($safeValue);
-		if ($safeValue !== FALSE) {
-			$result = $safeValue;
-		} else {
-			$this->field->AddValidationError(
-				static::GetErrorMessage(self::ERROR_URL)
-			);
-		}
 		return $result;
 	}
 }
