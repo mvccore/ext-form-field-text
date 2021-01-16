@@ -3,23 +3,23 @@
 	"type": "library",
 	"description": "MvcCore - Extension - Form - Field - Text - form field types - input:text, input:email, input:password, input:search, input:tel, input:url and textarea.",
 	"keywords": [
-		"mvc", 
-		"mvccore", 
-		"framework", 
-		"extension", 
-		"plugin", 
-		"plug-in", 
-		"ext", 
-		"mvccore", 
-		"form", 
-		"forms", 
-		"webform", 
-		"html5", 
-		"input", 
-		"inputs", 
-		"text", 
-		"texts", 
-		"textarea", 
+		"mvc",
+		"mvccore",
+		"framework",
+		"extension",
+		"plugin",
+		"plug-in",
+		"ext",
+		"mvccore",
+		"form",
+		"forms",
+		"webform",
+		"html5",
+		"input",
+		"inputs",
+		"text",
+		"texts",
+		"textarea",
 		"email",
 		"emails",
 		"password",
@@ -38,13 +38,15 @@
 	}],
 	"require": {
 		"php": ">=5.4.0",
-		"mvccore/mvccore": "dev-master"
+		"mvccore/mvccore": "^5.0"
 	},
 	"suggest": {
 		"mvccore/ext-form-validator-special": "MvcCore form extension with special text and numeric validators."
-    },
+	},
 	"autoload": {
-		"classmap": ["src/"]
+		"classmap": [
+			"src/"
+		]
 	},
 	"minimum-stability": "dev"
 }
