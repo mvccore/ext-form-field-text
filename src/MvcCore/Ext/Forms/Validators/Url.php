@@ -13,37 +13,68 @@
 
 /**
  * (c) Fabien Potencier <fabien@symfony.com>
- * Filtering URL functionality is proudly used from Symfony framework.
- * @see https://github.com/symfony/Validator
- * @see https://github.com/symfony/validator/blob/master/LICENSE
+ * Filtering URL functionality is proudly used from Symfony framework with slight improvements.
  * @see https://github.com/symfony/Validator/blob/master/Constraints/UrlValidator.php
- * @author Bernhard Schussek <bschussek@gmail.com>
- * @author Fabien Potencier <fabien@symfony.com>
  */
 
 namespace MvcCore\Ext\Forms\Validators;
 
 /**
- * Responsibility: Validate URI string by PHP: 
- *				   `filter_var($rawSubmittedValue, FILTER_VALIDATE_URL);
- *				   THIS VALIDATOR DOESN'T MEAN SAFE VALUE TO PREVENT SQL INJECTS! 
+ * Responsibility: Validate URI string by PHP regular expression and optionally by DNS record.
+ *				   THIS VALIDATOR DOESN'T MEAN YOU WILL GET SAFE VALUE TO PREVENT SQL INJECTS! 
  *				   To prevent sql injects - use `\PDO::prepare();` and `\PDO::execute()`.
  */
 class Url extends \MvcCore\Ext\Forms\Validator {
 
+	/**
+	 * @author Bernhard Schussek <bschussek@gmail.com>
+	 * @see https://en.wikipedia.org/wiki/Uniform_Resource_Identifier
+	 */
+	const PATTERN_ALL				= '~^{%protocol}//{%auth}{%hostname}{%port}{%path}{%query}{%fragment}$~ixu';
+
+	const PATTERN_PART_AUTH			= '(((?:[\_\.\pL\pN-]|%%[0-9A-Fa-f]{2})+:)?((?:[\_\.\pL\pN-]|%%[0-9A-Fa-f]{2})+)@)?';
+
+	const PATTERN_PART_DOMAIN		= '([\pL\pN\pS\-\_\.])+(\.?([\pL\pN]|xn\-\-[\pL\pN-]+)+\.?)';
+
+	const PATTERN_PART_IPV4			= '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}';
+
+	const PATTERN_PART_IPV6			= '\[(?:(?:(?:(?:(?:(?:(?:[0-9a-f]{1,4})):){6})(?:(?:(?:(?:(?:[0-9a-f]{1,4})):(?:(?:[0-9a-f]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:::(?:(?:(?:[0-9a-f]{1,4})):){5})(?:(?:(?:(?:(?:[0-9a-f]{1,4})):(?:(?:[0-9a-f]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:[0-9a-f]{1,4})))?::(?:(?:(?:[0-9a-f]{1,4})):){4})(?:(?:(?:(?:(?:[0-9a-f]{1,4})):(?:(?:[0-9a-f]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-f]{1,4})):){0,1}(?:(?:[0-9a-f]{1,4})))?::(?:(?:(?:[0-9a-f]{1,4})):){3})(?:(?:(?:(?:(?:[0-9a-f]{1,4})):(?:(?:[0-9a-f]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-f]{1,4})):){0,2}(?:(?:[0-9a-f]{1,4})))?::(?:(?:(?:[0-9a-f]{1,4})):){2})(?:(?:(?:(?:(?:[0-9a-f]{1,4})):(?:(?:[0-9a-f]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-f]{1,4})):){0,3}(?:(?:[0-9a-f]{1,4})))?::(?:(?:[0-9a-f]{1,4})):)(?:(?:(?:(?:(?:[0-9a-f]{1,4})):(?:(?:[0-9a-f]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-f]{1,4})):){0,4}(?:(?:[0-9a-f]{1,4})))?::)(?:(?:(?:(?:(?:[0-9a-f]{1,4})):(?:(?:[0-9a-f]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-f]{1,4})):){0,5}(?:(?:[0-9a-f]{1,4})))?::)(?:(?:[0-9a-f]{1,4})))|(?:(?:(?:(?:(?:(?:[0-9a-f]{1,4})):){0,6}(?:(?:[0-9a-f]{1,4})))?::))))\]';
+	
+	const PATTERN_PART_PORT			= '(:[0-9]+)?';
+
+	const PATTERN_PART_PATH			= '(?:/(?:[\pL\pN\-._\~!$&\'()*+,;=:@]|%%[0-9A-Fa-f]{2})*)*';
+
+	const PATTERN_PART_QUERY		= '(?:\?(?:[\pL\pN\-._\~!$&\'\[\]()*+,;=:@/?]|%%[0-9A-Fa-f]{2})*)?';
+
+	const PATTERN_PART_FRAGMENT		= '(?:\#(?:[\pL\pN\-._\~!$&\'()*+,;=:@/?]|%%[0-9A-Fa-f]{2})*)?';
+
+
 	const VALIDATE_DNS_TYPE_NONE	= FALSE;
+	
 	const VALIDATE_DNS_TYPE_ANY		= 'ANY';
+	
 	const VALIDATE_DNS_TYPE_A		= 'A';
+	
 	const VALIDATE_DNS_TYPE_A6		= 'A6';
+	
 	const VALIDATE_DNS_TYPE_AAAA	= 'AAAA';
+	
 	const VALIDATE_DNS_TYPE_CNAME	= 'CNAME';
+	
 	const VALIDATE_DNS_TYPE_MX		= 'MX';
+	
 	const VALIDATE_DNS_TYPE_NAPTR	= 'NAPTR';
+	
 	const VALIDATE_DNS_TYPE_NS		= 'NS';
+	
 	const VALIDATE_DNS_TYPE_PTR		= 'PTR';
+	
 	const VALIDATE_DNS_TYPE_SOA		= 'SOA';
+	
 	const VALIDATE_DNS_TYPE_SRV		= 'SRV';
+	
 	const VALIDATE_DNS_TYPE_TXT		= 'TXT';
+
 
 	/**
 	 * All DNS validation types.
@@ -82,21 +113,272 @@ class Url extends \MvcCore\Ext\Forms\Validator {
 
 
 	/**
-	 * DNS optional validation.
+	 * DNS validation. No DNS validation by default.
 	 * @var string|bool
 	 */
 	protected $dnsValidation = self::VALIDATE_DNS_TYPE_NONE;
 
 	/**
-	 * Allowed URL schemes, `http,https,ftp,ftps` allowed by default.
+	 * Allow url with not defined protocol, like: `//domain.com/...`. 
+	 * `FALSE` by default.
+	 * @var bool
+	 */
+	protected $allowRelativeProtocol = FALSE;
+
+	/**
+	 * Allowed URL schemes. 
+	 * Schemes `http,https,ftp,ftps` are allowed by default.
 	 * @var \string[]
 	 */
 	protected $allowedSchemes = ['http', 'https', 'ftp', 'ftps',];
 	
+	/**
+	 * Allow url with basic authentication before hostname, 
+	 * like: `https://john.doe@www.domain.com/...`.
+	 * `FALSE` by default.
+	 * @var bool
+	 */
+	protected $allowBasicAuth = FALSE;
+	
+	/**
+	 * Allow url with domains, `TRUE` by default.
+	 * @var bool
+	 */
+	protected $allowDomains = TRUE;
+	
+	/**
+	 * Allow url with IPv4, `TRUE` by default.
+	 * @var bool
+	 */
+	protected $allowIPv4 = TRUE;
+	
+	/**
+	 * Allow url with IPv4, `TRUE` by default.
+	 * @var bool
+	 */
+	protected $allowIPv6 = TRUE;
+	
+	/**
+	 * Allow url with ports, `TRUE` by default.
+	 * @var bool
+	 */
+	protected $allowPorts = TRUE;
 
 	/**
-	 * Returns the allowed absolute url schemes,
-	 * `http,https,ftp,ftps` allowed by default.
+	 * Set allowed domains or IPs. 
+	 * All domains or ips are allowed by default.
+	 * @var \string[]
+	 */
+	protected $allowedHostnames = [];
+
+	/**
+	 * Allowed port numbers. 
+	 * No port number or any port number is allowed by default.
+	 * @var \string[]
+	 */
+	protected $allowedPorts = [];
+
+	/**
+	 * Completed pattern for validation
+	 * @var string|NULL
+	 */
+	protected $pattern = NULL;
+
+	/**
+	 * Completed back reference index for completed pattern 
+	 * to check hostname against allowed values.
+	 * @var int|NULL
+	 */
+	protected $backReferencePosHostname = NULL;
+
+	/**
+	 * Completed back reference index for completed pattern 
+	 * to check port against allowed values.
+	 * @var int|NULL
+	 */
+	protected $backReferencePosPort = NULL;
+	
+	
+	/**
+	 * Get if allowed url with not defined protocol, like: `//domain.com/...`. 
+	 * Relative protocols are not allowed by default.
+	 * @return bool
+	 */
+	public function GetAllowRelativeProtocol () {
+		return $this->allowRelativeProtocol;
+	}
+
+	/**
+	 * Set if allowed url with not defined protocol, like: `//domain.com/...`. 
+	 * Relative protocols are not allowed by default.
+	 * @param  bool $allowRelativeProtocol
+	 * @return \MvcCore\Ext\Forms\Validators\Url
+	 */
+	public function SetAllowRelativeProtocol ($allowRelativeProtocol = TRUE) {
+		$this->allowRelativeProtocol = $allowRelativeProtocol;
+		return $this;
+	}
+	
+	/**
+	 * Get if allowed url with basic authentication before hostname, 
+	 * like: `https://john.doe@www.domain.com/...`.
+	 * No basic authentication allowed by default.
+	 * @return bool
+	 */
+	public function GetAllowBasicAuth () {
+		return $this->allowBasicAuth;
+	}
+
+	/**
+	 * Set if allowed url with basic authentication before hostname, 
+	 * like: `https://john.doe@www.domain.com/...`.
+	 * No basic authentication allowed by default.
+	 * @param  bool $allowBasicAuth
+	 * @return \MvcCore\Ext\Forms\Validators\Url
+	 */
+	public function SetAllowBasicAuth ($allowBasicAuth = TRUE) {
+		$this->allowBasicAuth = $allowBasicAuth;
+		return $this;
+	}
+	
+	/**
+	 * Get if allowed url with domains, `TRUE` by default.
+	 * @return bool
+	 */
+	public function GetAllowDomains () {
+		return $this->allowDomains;
+	}
+
+	/**
+	 * Set if allowed url with domains, `TRUE` by default.
+	 * @param  bool $allowDomains
+	 * @return \MvcCore\Ext\Forms\Validators\Url
+	 */
+	public function SetAllowDomains ($allowDomains = TRUE) {
+		$this->allowDomains = $allowDomains;
+		return $this;
+	}
+	
+	/**
+	 * Get if allowed url with IPv4, `TRUE` by default.
+	 * @return bool
+	 */
+	public function GetAllowIPv4 () {
+		return $this->allowIPv4;
+	}
+
+	/**
+	 * Set if allowed url with IPv4, `TRUE` by default.
+	 * @param  bool $allowIPv4
+	 * @return \MvcCore\Ext\Forms\Validators\Url
+	 */
+	public function SetAllowIPv4 ($allowIPv4 = TRUE) {
+		$this->allowIPv4 = $allowIPv4;
+		return $this;
+	}
+	
+	/**
+	 * Get if allowed url with IPv6, `TRUE` by default.
+	 * @return bool
+	 */
+	public function GetAllowIPv6 () {
+		return $this->allowIPv6;
+	}
+
+	/**
+	 * Set if allowed url with IPv6, `TRUE` by default.
+	 * @param  bool $allowIPv6
+	 * @return \MvcCore\Ext\Forms\Validators\Url
+	 */
+	public function SetAllowIPv6 ($allowIPv6 = TRUE) {
+		$this->allowIPv6 = $allowIPv6;
+		return $this;
+	}
+	
+	/**
+	 * Get if allowed url with ports, `TRUE` by default.
+	 * @return bool
+	 */
+	public function GetAllowPorts () {
+		return $this->allowPorts;
+	}
+
+	/**
+	 * Set if allowed url with ports, `TRUE` by default.
+	 * @param  bool $allowPorts
+	 * @return \MvcCore\Ext\Forms\Validators\Url
+	 */
+	public function SetAllowPorts ($allowPorts = TRUE) {
+		$this->allowPorts = $allowPorts;
+		return $this;
+	}
+
+	/**
+	 * Set allowed domains or IPs. 
+	 * All domains or ips are allowed by default.
+	 * This overwrites configuration by methods:
+	 * - `SetAllowDomains()`
+	 * - `SetAllowIPv4()`
+	 * - `SetAllowIPv6()`
+	 * There will be allowed only defined values.
+	 * @return \string[]
+	 */
+	public function GetAllowedHostnames () {
+		return $this->allowedHostnames;
+	}
+
+	/**
+	 * Set allowed domains or IPs. 
+	 * All domains or ips are allowed by default.
+	 * This overwrites configuration by methods:
+	 * - `SetAllowDomains()`
+	 * - `SetAllowIPv4()`
+	 * - `SetAllowIPv6()`
+	 * There will be allowed only defined values.
+	 * @param  \string[] $allowedHostnames,...
+	 * @return \MvcCore\Ext\Forms\Validators\Url
+	 */
+	public function SetAllowedHostnames ($allowedHostnames) {
+		if (!is_array($allowedHostnames)) 
+			$allowedHostnames = func_get_args();
+		$this->allowedHostnames = $allowedHostnames;
+		return $this;
+	}
+	
+	/**
+	 * Get allowed port numbers. 
+	 * No port number or any port number is allowed by default.
+	 * This overwrites configuration by `SetAllowPorts()`.
+	 * To allow some specific ports and also no port definition,
+	 * define port values to allow and empty string for no port definition option.
+	 * @return \string[]
+	 */
+	public function GetAllowedPorts () {
+		return $this->allowedPorts;
+	}
+
+	/**
+	 * Set allowed port numbers. 
+	 * No port number or any port number is allowed by default.
+	 * This overwrites configuration by `SetAllowPorts()`.
+	 * To allow some specific ports and also no port definition,
+	 * define port values to allow and empty string for no port definition option.
+	 * @param  \string[]|\int[] $allowedPorts,...
+	 * @return \MvcCore\Ext\Forms\Validators\Url
+	 */
+	public function SetAllowedPorts ($allowedPorts) {
+		if (!is_array($allowedPorts)) 
+			$allowedPorts = func_get_args();
+		$allowedPortsStrArr = [];
+		foreach ($allowedPorts as $allowedPort)
+			$allowedPortsStrArr[] = (string) $allowedPort;
+		$this->allowedPorts = $allowedPortsStrArr;
+		return $this;
+	}
+	
+	/**
+	 * Get allowed absolute url schemes.
+	 * Schemes `http,https,ftp,ftps` are allowed by default.
 	 * @return \string[]
 	 */
 	public function GetAllowedSchemes () {
@@ -104,8 +386,8 @@ class Url extends \MvcCore\Ext\Forms\Validator {
 	}
 
 	/**
-	 * Sets the allowed absolute url schemes, 
-	 * `http,https,ftp,ftps` allowed by default.
+	 * Set allowed absolute url schemes. 
+	 * Schemes `http,https,ftp,ftps` are allowed by default.
 	 * @param  \string[] $allowedSchemes,...
 	 * @return \MvcCore\Ext\Forms\Validators\Url
 	 */
@@ -122,7 +404,8 @@ class Url extends \MvcCore\Ext\Forms\Validator {
 	}
 	
 	/**
-	 * Returns the DNS validation option.
+	 * Returns the DNS validation option. 
+	 * No DNS validation by default.
 	 * @return string|bool
 	 */
 	public function GetDnsValidation () {
@@ -130,7 +413,8 @@ class Url extends \MvcCore\Ext\Forms\Validator {
 	}
 
 	/**
-	 * Sets the DNS validation option.
+	 * Sets the DNS validation option. 
+	 * No DNS validation by default.
 	 * @param  string|bool $dnsValidation
 	 * @return \MvcCore\Ext\Forms\Validators\Url
 	 */
@@ -146,7 +430,6 @@ class Url extends \MvcCore\Ext\Forms\Validator {
 
 	/**
 	 * Validate URI string by regular expression and optionally by DNS check.
-	 * @see https://github.com/nette/utils/blob/72d8f087e7d750521a15e0b25b7a4f6d20ed45dc/src/Utils/Validators.php#L327
 	 * @param string|array $rawSubmittedValue Raw submitted value from user.
 	 * @return string|NULL Safe submitted value or `NULL` if not possible to return safe value.
 	 */
@@ -158,39 +441,49 @@ class Url extends \MvcCore\Ext\Forms\Validator {
 		while (preg_match("#%[0-9a-zA-Z]{2}#", $rawSubmittedValue)) 
 			$rawSubmittedValue = rawurldecode($rawSubmittedValue);
 		
-		$alpha = "a-z\x80-\xFF";
-		$schemes = implode('|', $this->allowedSchemes);
-		$pattern = <<<PATTERN
-		(^
-			{$schemes}://(
-				(([-_0-9{$alpha}]+\\.)*											# subdomain
-					[0-9{$alpha}]([-0-9{$alpha}]{0,61}[0-9{$alpha}])?\\.)?		# domain
-					[{$alpha}]([-0-9{$alpha}]{0,17}[{$alpha}])?					# top domain
-				|\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}						# IPv4
-				|\\[[0-9a-f:]{3,39}\\]											# IPv6
-			)(:\\d{1,5})?														# port
-			(/\\S*)?															# path
-			(\\?\\S*)?															# query
-			(\\#\\S*)?															# fragment
-		$)Dix
-PATTERN;
-		$urlIsValid = (bool) preg_match($pattern, $rawSubmittedValue);
+		$this->preparePatternAndBackReferenceIndexes();
+
+		$urlIsValid = (bool) preg_match_all($this->pattern, $rawSubmittedValue, $matches);
 		if (!$urlIsValid) {
 			$rawSubmittedValue = NULL;
 			$this->field->AddValidationError(
 				static::GetErrorMessage(self::ERROR_URL)
 			);
+		} else {
+			if (count($this->allowedHostnames) > 0) {
+				$rawHostname = $matches[$this->backReferencePosHostname][0];
+				if (!in_array($rawHostname, $this->allowedHostnames, TRUE)) {
+					$rawSubmittedValue = NULL;
+					$this->field->AddValidationError(
+						static::GetErrorMessage(self::ERROR_URL)
+					);
+				}
+			}
+			if ($rawSubmittedValue !== NULL && count($this->allowedPorts) > 0) {
+				$rawPort = ltrim($matches[$this->backReferencePosPort][0], ':');
+				if (!in_array($rawPort, $this->allowedPorts, TRUE)) {
+					$rawSubmittedValue = NULL;
+					$this->field->AddValidationError(
+						static::GetErrorMessage(self::ERROR_URL)
+					);
+				}
+			}
 		}
 
-		if ($this->dnsValidation) {
+		if ($rawSubmittedValue !== NULL && $this->dnsValidation) {
+			/*
+			 * PHP 5.6 BUG
+			 * @see https://bugs.php.net/bug.php?id=73192
 			$queryPos = mb_strpos($rawSubmittedValue, '?');
 			if ($queryPos !== FALSE) {
 				$rawSubmittedValueWithoutQs = mb_substr($rawSubmittedValue, 0, $queryPos);
 			} else {
 				$rawSubmittedValueWithoutQs = $rawSubmittedValue;
 			}
-			$host = parse_url($rawSubmittedValueWithoutQs, PHP_URL_HOST);
-			if (!is_string($host) || !checkdnsrr($host, $this->dnsValidation)) {
+			$rawHostname = parse_url($rawSubmittedValueWithoutQs, PHP_URL_HOST);
+			*/
+			$rawHostname = $matches[$this->backReferencePosHostname][0];
+			if (!is_string($rawHostname) || !checkdnsrr($rawHostname, $this->dnsValidation)) {
 				$rawSubmittedValue = NULL;
 				$this->field->AddValidationError(
 					static::GetErrorMessage(self::ERROR_DNS)
@@ -200,7 +493,64 @@ PATTERN;
 		
 		if ($rawSubmittedValue !== NULL) 
 			$result = $rawSubmittedValue;
-
+		
 		return $result;
+	}
+
+	/**
+	 * Prepare pattern and back reference indexes to validate URL only once.
+	 * @return void
+	 */
+	protected function preparePatternAndBackReferenceIndexes () {
+		$protocol = $this->allowRelativeProtocol
+			? '(?:('.implode('|', $this->allowedSchemes).'):)?'
+			: '('.implode('|', $this->allowedSchemes).'):' ;
+
+
+		$auth = '';
+		if ($this->allowBasicAuth) {
+			$auth = static::PATTERN_PART_AUTH;
+			$this->backReferencePosHostname = 5;
+			$this->backReferencePosPort = 9;
+		} else {
+			$this->backReferencePosHostname = 2;
+			$this->backReferencePosPort = 6;
+		}
+		
+
+		$hostname = '';
+		$hostnameParts = [];
+		if ($this->allowDomains)
+			$hostnameParts[] = static::PATTERN_PART_DOMAIN;
+		if ($this->allowIPv4)
+			$hostnameParts[] = static::PATTERN_PART_IPV4;
+		if ($this->allowIPv6)
+			$hostnameParts[] = static::PATTERN_PART_IPV6;
+		if (count($hostnameParts) > 0) {
+			$hostname = '(' . implode('|', $hostnameParts) . ')';
+		} else {
+			$hostname = '(' . implode('|', [
+				static::PATTERN_PART_DOMAIN,
+				static::PATTERN_PART_IPV4,
+				static::PATTERN_PART_IPV6
+			]) . ')';
+		}
+		
+
+		$port = '';
+		if (count($this->allowedPorts) > 0 || $this->allowPorts) {
+			$port = static::PATTERN_PART_PORT;
+		} else {
+			$this->backReferencePosPort = NULL;
+		}
+
+
+		$this->pattern = str_replace([
+			'{%protocol}', '{%auth}', '{%hostname}', '{%port}', 
+			'{%path}', '{%query}', '{%fragment}'
+		], [
+			$protocol, $auth, $hostname, $port, 
+			static::PATTERN_PART_PATH, static::PATTERN_PART_QUERY, static::PATTERN_PART_FRAGMENT
+		], static::PATTERN_ALL);
 	}
 }
