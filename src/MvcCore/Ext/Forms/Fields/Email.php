@@ -18,6 +18,7 @@ namespace MvcCore\Ext\Forms\Fields;
  *				   type `email`. `Email` field has it's own validator to check 
  *				   submitted email/emails format by default.
  */
+#[\Attribute(\Attribute::TARGET_PROPERTY)]
 class		Email
 extends		Text
 implements	\MvcCore\Ext\Forms\Fields\IMultiple {

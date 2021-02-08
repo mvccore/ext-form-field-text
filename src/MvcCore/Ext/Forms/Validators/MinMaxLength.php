@@ -19,6 +19,7 @@ namespace MvcCore\Ext\Forms\Validators;
  *				   attributes. To measure characters length in submitted value,
  *				   validator uses multi-byte string function `mb_strlen()`.
  */
+#[\Attribute(\Attribute::TARGET_PROPERTY)]
 class		MinMaxLength
 extends		\MvcCore\Ext\Forms\Validator
 implements	\MvcCore\Ext\Forms\Fields\IMinMaxLength {

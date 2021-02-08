@@ -18,6 +18,7 @@ namespace MvcCore\Ext\Forms\Fields;
  *				   `url`. `Url` field has it's own validator to check raw submitted 
  *				   value only by `filter_var($rawSubmittedValue, FILTER_VALIDATE_URL);`.
  */
+#[\Attribute(\Attribute::TARGET_PROPERTY)]
 class Url extends Text {
 
 	/**

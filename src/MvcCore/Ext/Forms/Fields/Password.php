@@ -23,6 +23,7 @@ namespace MvcCore\Ext\Forms\Fields;
  *				   It doesn't escape everything. It only check if configured 
  *				   character groups are presented and how much and that's all.
  */
+#[\Attribute(\Attribute::TARGET_PROPERTY)]
 class Password extends Text {
 
 	/**

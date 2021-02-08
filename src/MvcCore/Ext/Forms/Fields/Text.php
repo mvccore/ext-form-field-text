@@ -24,6 +24,7 @@ namespace MvcCore\Ext\Forms\Fields;
  *				   text value(s). But it don't prevent SQL inject attacks
  *				   and more.
  */
+#[\Attribute(\Attribute::TARGET_PROPERTY)]
 class		Text 
 extends		\MvcCore\Ext\Forms\Field 
 implements	\MvcCore\Ext\Forms\Fields\IVisibleField, 
@@ -48,7 +49,7 @@ implements	\MvcCore\Ext\Forms\Fields\IVisibleField,
 	 * Comparison by PHP function version_compare();
 	 * @see http://php.net/manual/en/function.version-compare.php
 	 */
-	const VERSION = '5.1.0';
+	const VERSION = '5.1.1';
 
 	/**
 	 * Possible values: `text` and `email`, `password`, `search`, `tel` and `url` in extended class.

@@ -21,6 +21,7 @@ namespace MvcCore\Ext\Forms\Fields;
  *				   characters in submitted text value. But it don't prevent 
  *				   SQL inject attacks and more.
  */
+#[\Attribute(\Attribute::TARGET_PROPERTY)]
 class		Textarea 
 extends		\MvcCore\Ext\Forms\Field 
 implements	\MvcCore\Ext\Forms\Fields\IVisibleField, 

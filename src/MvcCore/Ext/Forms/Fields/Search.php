@@ -23,6 +23,7 @@ namespace MvcCore\Ext\Forms\Fields;
  *				   or you need to replace back `&#035;` to `'`, but 
  *				   every time - you have to use database escaping by `\PDO::prepare()`!
  */
+#[\Attribute(\Attribute::TARGET_PROPERTY)]
 class Search extends Text {
 
 	/**

@@ -18,6 +18,7 @@ namespace MvcCore\Ext\Forms\Fields;
  *				   type `email`. `Tel` field has it's own validator to check 
  *				   raw submitted value only by `preg_match("#[^0-9\+]#", '', $tel);`.
  */
+#[\Attribute(\Attribute::TARGET_PROPERTY)]
 class Tel extends Text {
 
 	/**

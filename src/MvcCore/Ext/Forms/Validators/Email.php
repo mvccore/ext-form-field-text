@@ -17,6 +17,7 @@ namespace MvcCore\Ext\Forms\Validators;
  * Responsibility: Validate single email format or multiple emails formats, 
  *				   if field has defined `multiple` boolean attribute.
  */
+#[\Attribute(\Attribute::TARGET_PROPERTY)]
 class		Email 
 extends		\MvcCore\Ext\Forms\Validator
 implements	\MvcCore\Ext\Forms\Fields\IMultiple {
