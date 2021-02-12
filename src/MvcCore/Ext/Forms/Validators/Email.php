@@ -15,7 +15,7 @@ namespace MvcCore\Ext\Forms\Validators;
 
 /**
  * Responsibility: Validate single email format or multiple emails formats, 
- *				   if field has defined `multiple` boolean attribute.
+ *                 if field has defined `multiple` boolean attribute.
  */
 #[\Attribute(\Attribute::TARGET_PROPERTY)]
 class		Email 
@@ -49,7 +49,7 @@ implements	\MvcCore\Ext\Forms\Fields\IMultiple {
 	/**
 	 * Validate URI string by regular expression.
 	 * @see https://github.com/nette/utils/blob/72d8f087e7d750521a15e0b25b7a4f6d20ed45dc/src/Utils/Validators.php#L308
-	 * @param string|array $rawSubmittedValue Raw submitted value from user.
+	 * @param  string|array $rawSubmittedValue Raw submitted value from user.
 	 * @return string|\string[]|NULL Safe submitted string value or array of string for `multiple` attribute defined or `NULL` if not possible to return safe value.
 	 */
 	public function Validate ($rawSubmittedValue) {

@@ -15,9 +15,9 @@ namespace MvcCore\Ext\Forms\Validators;
 
 /**
  * Responsibility: Validate minimum or maximum characters length in submitted
- *				   value by configured field `minlength` and `maxlength` HTML
- *				   attributes. To measure characters length in submitted value,
- *				   validator uses multi-byte string function `mb_strlen()`.
+ *                 value by configured field `minlength` and `maxlength` HTML
+ *                 attributes. To measure characters length in submitted value,
+ *                 validator uses multi-byte string function `mb_strlen()`.
  */
 #[\Attribute(\Attribute::TARGET_PROPERTY)]
 class		MinMaxLength
@@ -53,8 +53,8 @@ implements	\MvcCore\Ext\Forms\Fields\IMinMaxLength {
 
 	/**
 	 * Validate raw user input with maximum string length check.
-	 * @param string|array $submitValue Raw submitted value from user.
-	 * @return string|NULL Safe submitted value or `NULL` if not possible to return safe value.
+	 * @param  string|array $submitValue Raw submitted value from user.
+	 * @return string|NULL  Safe submitted value or `NULL` if not possible to return safe value.
 	 */
 	public function Validate ($rawSubmittedValue) {
 		$rawSubmittedValue = trim((string) $rawSubmittedValue);

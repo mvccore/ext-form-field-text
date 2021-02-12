@@ -44,7 +44,7 @@ interface IPattern {
 	 * added automatically after field is added into form, if any 
 	 * RegExp pattern value defined.
 	 * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-pattern
-	 * @param string $pattern RegExp pattern without border characters for javascript and PHP.
+	 * @param  string $pattern RegExp pattern without border characters for javascript and PHP.
 	 * @return \MvcCore\Ext\Forms\Field
 	 */
 	public function SetPattern ($pattern);

@@ -15,8 +15,8 @@ namespace MvcCore\Ext\Forms\Fields;
 
 /**
  * Responsibility: init, pre-dispatch and render `<input>` HTML element with 
- *				   type `email`. `Tel` field has it's own validator to check 
- *				   raw submitted value only by `preg_match("#[^0-9\+]#", '', $tel);`.
+ *                 type `email`. `Tel` field has it's own validator to check 
+ *                 raw submitted value only by `preg_match("#[^0-9\+]#", '', $tel);`.
  */
 #[\Attribute(\Attribute::TARGET_PROPERTY)]
 class Tel extends Text {
@@ -30,7 +30,7 @@ class Tel extends Text {
 	/**
 	 * Validators: 
 	 * - `Tel` - to simply check phone by PHP `preg_match("#[^0-9\+]#", '', $tel);`.
-	 * @var string[]|\Closure[]
+	 * @var \string[]|\Closure[]
 	 */
 	protected $validators = ['Tel'/*, 'SafeString', 'MinLength', 'MaxLength', 'Pattern'*/];
 }

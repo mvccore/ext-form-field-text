@@ -15,8 +15,8 @@ namespace MvcCore\Ext\Forms\Fields;
 
 /**
  * Responsibility: init, pre-dispatch and render `<input>` HTML element with 
- *				   type `email`. `Email` field has it's own validator to check 
- *				   submitted email/emails format by default.
+ *                 type `email`. `Email` field has it's own validator to check 
+ *                 submitted email/emails format by default.
  */
 #[\Attribute(\Attribute::TARGET_PROPERTY)]
 class		Email
@@ -39,14 +39,14 @@ implements	\MvcCore\Ext\Forms\Fields\IMultiple {
 	/**
 	 * Validators: 
 	 * - `Email` - to check single email format or multiple emails formats, 
-	 *			   if field has defined `multiple` boolean attribute.
-	 * @var string[]|\Closure[]
+	 *             if field has defined `multiple` boolean attribute.
+	 * @var \string[]|\Closure[]
 	 */
 	protected $validators = ['Email'/*, 'MinLength', 'MaxLength', 'Pattern'*/];
 
 	/**
 	 * Return field specific data for validator.
-	 * @param array $fieldPropsDefaultValidValues 
+	 * @param  array $fieldPropsDefaultValidValues 
 	 * @return array
 	 */
 	public function & GetValidatorData ($fieldPropsDefaultValidValues = []) {

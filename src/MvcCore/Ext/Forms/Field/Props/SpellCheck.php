@@ -59,7 +59,7 @@ trait SpellCheck {
 	 * element should not be checked. Possible values are strings: `default`, `true` or `false`. 
 	 * Value `NULL` means to not render any attribute in HTML.
 	 * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-spellcheck
-	 * @param string|bool|NULL $spellCheck Values could be strings: `default`, `true` or `false` or boolean values `TRUE` or `FALSE`. Value `NULL` means to not render any attribute in HTML.
+	 * @param  string|bool|NULL $spellCheck Values could be strings: `default`, `true` or `false` or boolean values `TRUE` or `FALSE`. Value `NULL` means to not render any attribute in HTML.
 	 * @return \MvcCore\Ext\Forms\Field
 	 */
 	public function SetSpellCheck ($spellCheck) {

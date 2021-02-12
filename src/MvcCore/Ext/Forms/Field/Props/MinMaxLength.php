@@ -48,7 +48,7 @@ trait MinMaxLength {
 
 	/**
 	 * Set minimum characters length. Default value is `NULL`.
-	 * @param int|NULL $minLength 
+	 * @param  int|NULL $minLength 
 	 * @return \MvcCore\Ext\Forms\Field
 	 */
 	public function SetMinLength ($minLength) {
@@ -67,7 +67,7 @@ trait MinMaxLength {
 
 	/**
 	 * Set maximum characters length. Default value is `NULL`.
-	 * @param int|NULL $minLength 
+	 * @param  int|NULL $minLength 
 	 * @return \MvcCore\Ext\Forms\Field
 	 */
 	public function SetMaxLength ($maxLength) {

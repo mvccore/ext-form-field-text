@@ -21,8 +21,8 @@ namespace MvcCore\Ext\Forms\Validators;
 
 /**
  * Responsibility: Validate URI string by PHP regular expression and optionally by DNS record.
- *				   THIS VALIDATOR DOESN'T MEAN YOU WILL GET SAFE VALUE TO PREVENT SQL INJECTS! 
- *				   To prevent sql injects - use `\PDO::prepare();` and `\PDO::execute()`.
+ *                 THIS VALIDATOR DOESN'T MEAN YOU WILL GET SAFE VALUE TO PREVENT SQL INJECTS! 
+ *                 To prevent sql injects - use `\PDO::prepare();` and `\PDO::execute()`.
  */
 #[\Attribute(\Attribute::TARGET_PROPERTY)]
 class Url extends \MvcCore\Ext\Forms\Validator {
@@ -431,8 +431,8 @@ class Url extends \MvcCore\Ext\Forms\Validator {
 
 	/**
 	 * Validate URI string by regular expression and optionally by DNS check.
-	 * @param string|array $rawSubmittedValue Raw submitted value from user.
-	 * @return string|NULL Safe submitted value or `NULL` if not possible to return safe value.
+	 * @param  string|array $rawSubmittedValue Raw submitted value from user.
+	 * @return string|NULL  Safe submitted value or `NULL` if not possible to return safe value.
 	 */
 	public function Validate ($rawSubmittedValue) {
 		$result = NULL;

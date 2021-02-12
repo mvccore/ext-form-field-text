@@ -15,14 +15,14 @@ namespace MvcCore\Ext\Forms\Fields;
 
 /**
  * Responsibility: init, pre-dispatch and render `<input>` HTML element 
- *				   with types `text` and types `email`, `password`, 
- *				   `search`, `tel` and `url` in extended class. `Text` 
- *				   field and it's extended fields could have their own 
- *				   validator(s) to check submitted value for 
- *				   min length/max length/pattern and some of extended 
- *				   classes also dangerous characters in submitted 
- *				   text value(s). But it don't prevent SQL inject attacks
- *				   and more.
+ *                 with types `text` and types `email`, `password`, 
+ *                 `search`, `tel` and `url` in extended class. `Text` 
+ *                 field and it's extended fields could have their own 
+ *                 validator(s) to check submitted value for 
+ *                 min length/max length/pattern and some of extended 
+ *                 classes also dangerous characters in submitted 
+ *                 text value(s). But it don't prevent SQL inject attacks
+ *                 and more.
  */
 #[\Attribute(\Attribute::TARGET_PROPERTY)]
 class		Text 
@@ -49,7 +49,7 @@ implements	\MvcCore\Ext\Forms\Fields\IVisibleField,
 	 * Comparison by PHP function version_compare();
 	 * @see http://php.net/manual/en/function.version-compare.php
 	 */
-	const VERSION = '5.1.1';
+	const VERSION = '5.1.2';
 
 	/**
 	 * Possible values: `text` and `email`, `password`, `search`, `tel` and `url` in extended class.
@@ -60,9 +60,9 @@ implements	\MvcCore\Ext\Forms\Fields\IVisibleField,
 	/**
 	 * Validators: 
 	 * - `SafeString` - remove from submitted value base ASCII characters from 0 to 31 incl. 
-	 *					(first column) and escape special characters: `& " ' < > | = \ %`.
-	 *					This validator is not prevent SQL inject attacks!
-	 * @var string[]|\Closure[]
+	 *                  (first column) and escape special characters: `& " ' < > | = \ %`.
+	 *                  This validator is not prevent SQL inject attacks!
+	 * @var \string[]|\Closure[]
 	 */
 	protected $validators = ['SafeString'/*, 'MinMaxLength', 'Pattern'*/];
 
@@ -76,7 +76,7 @@ implements	\MvcCore\Ext\Forms\Fields\IVisibleField,
 	 * - Set up translate boolean property.
 	 * - Set up `Pattern` validator, if any `pattern` property value defined.
 	 * - Set up min/max length validator if necessary.
-	 * @param \MvcCore\Ext\Form $form
+	 * @param  \MvcCore\Ext\Form $form
 	 * @throws \InvalidArgumentException
 	 * @return \MvcCore\Ext\Forms\Fields\Text
 	 */
@@ -90,7 +90,7 @@ implements	\MvcCore\Ext\Forms\Fields\IVisibleField,
 
 	/**
 	 * Return field specific data for validator.
-	 * @param array $fieldPropsDefaultValidValues 
+	 * @param  array $fieldPropsDefaultValidValues 
 	 * @return array
 	 */
 	public function & GetValidatorData ($fieldPropsDefaultValidValues = []) {

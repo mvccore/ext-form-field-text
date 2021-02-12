@@ -15,11 +15,11 @@ namespace MvcCore\Ext\Forms\Fields;
 
 /**
  * Responsibility: init, pre-dispatch and render `<textarea>` HTML element.
- *				   `Textarea` field has it's own validator(s) to check 
- *				   submitted value for min length/max length and validator
- *				   `SafeString` to remove base ASCII chars and escape dangerous 
- *				   characters in submitted text value. But it don't prevent 
- *				   SQL inject attacks and more.
+ *                 `Textarea` field has it's own validator(s) to check 
+ *                 submitted value for min length/max length and validator
+ *                 `SafeString` to remove base ASCII chars and escape dangerous 
+ *                 characters in submitted text value. But it don't prevent 
+ *                 SQL inject attacks and more.
  */
 #[\Attribute(\Attribute::TARGET_PROPERTY)]
 class		Textarea 
@@ -45,15 +45,15 @@ implements	\MvcCore\Ext\Forms\Fields\IVisibleField,
 	/**
 	 * Validators: 
 	 * - `SafeString` - remove from submitted value base ASCII characters from 0 to 31 incl. 
-	 *					(first column) and escape special characters: `& " ' < > | = \ %`.
-	 *					This validator is not prevent SQL inject attacks!
-	 * @var string[]|\Closure[]
+	 *                  (first column) and escape special characters: `& " ' < > | = \ %`.
+	 *                  This validator is not prevent SQL inject attacks!
+	 * @var \string[]|\Closure[]
 	 */
 	protected $validators = ['SafeString'/*, 'MinLength', 'MaxLength', 'Pattern'*/];
 
 	/**
 	 * Standard field template strings for natural rendering `control`.
-	 * @var string
+	 * @var \string[]|\stdClass
 	 */
 	protected static $templates = [
 		'control'	=> '<textarea id="{id}" name="{name}"{attrs}>{value}</textarea>',
@@ -61,9 +61,9 @@ implements	\MvcCore\Ext\Forms\Fields\IVisibleField,
 	
 	/**
 	 * Create new form `<textarea>` control instance.
-	 * @param array $cfg Config array with public properties and it's 
-	 *					 values which you want to configure, presented 
-	 *					 in camel case properties names syntax.
+	 * @param  array $cfg Config array with public properties and it's 
+	 *                    values which you want to configure, presented 
+	 *                    in camel case properties names syntax.
 	 * @throws \InvalidArgumentException
 	 * @return void
 	 */
@@ -84,7 +84,7 @@ implements	\MvcCore\Ext\Forms\Fields\IVisibleField,
 	 * - Set up required.
 	 * - Set up translate boolean property.
 	 * - Set up min/max length validator if necessary.
-	 * @param \MvcCore\Ext\Form $form
+	 * @param  \MvcCore\Ext\Form $form
 	 * @throws \InvalidArgumentException
 	 * @return \MvcCore\Ext\Forms\Fields\Text
 	 */
@@ -97,7 +97,7 @@ implements	\MvcCore\Ext\Forms\Fields\IVisibleField,
 
 	/**
 	 * Return field specific data for validator.
-	 * @param array $fieldPropsDefaultValidValues 
+	 * @param  array $fieldPropsDefaultValidValues 
 	 * @return array
 	 */
 	public function & GetValidatorData ($fieldPropsDefaultValidValues = []) {

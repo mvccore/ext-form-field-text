@@ -15,8 +15,8 @@ namespace MvcCore\Ext\Forms\Validators;
 
 /**
  * Responsibility: Validate phone number only by removing all other characters 
- *				   than digits and plus. To validate phone number really deeply
- *				   by local conventions, use Zend validator instead.
+ *                 than digits and plus. To validate phone number really deeply
+ *                 by local conventions, use Zend validator instead.
  * @see https://github.com/zendframework/zend-i18n
  * @see https://github.com/zendframework/zend-i18n/blob/master/src/Validator/PhoneNumber.php
  * @see https://olegkrivtsov.github.io/using-zend-framework-3-book/html/en/Checking_Input_Data_with_Validators/Validator_Usage_Examples.html#Example
@@ -44,8 +44,8 @@ class Tel extends \MvcCore\Ext\Forms\Validator {
 	 * @see https://github.com/zendframework/zend-i18n
 	 * @see https://github.com/zendframework/zend-i18n/blob/master/src/Validator/PhoneNumber.php
 	 * @see https://olegkrivtsov.github.io/using-zend-framework-3-book/html/en/Checking_Input_Data_with_Validators/Validator_Usage_Examples.html#Example
-	 * @param string|array			$rawSubmittedValue
-	 * @return string|array|NULL	Safe submitted value or `NULL` if not possible to return safe value.
+	 * @param  string|array      $rawSubmittedValue
+	 * @return string|array|NULL Safe submitted value or `NULL` if not possible to return safe value.
 	 */
 	public function Validate ($rawSubmittedValue) {
 		// remove spaces

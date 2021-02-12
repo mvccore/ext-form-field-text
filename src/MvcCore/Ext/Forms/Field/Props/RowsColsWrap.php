@@ -39,13 +39,13 @@ trait RowsColsWrap {
 	/**
 	 * Indicates how the control wraps text. Possible values are:
 	 * - `'hard'`: The browser automatically inserts line breaks (`CR+LF`) so that each
-	 * 			line has no more than the width of the control; the `cols` attribute
-	 * 			must also be specified for this to take effect.
+	 *             line has no more than the width of the control; the `cols` attribute
+	 *             must also be specified for this to take effect.
 	 * - `'soft'`: The browser ensures that all line breaks in the value consist of 
-	 * 			a `CR+LF` pair, but does not insert any additional line breaks.
+	 *             a `CR+LF` pair, but does not insert any additional line breaks.
 	 * - `'off '`: Like `soft` but changes appearance to `white-space: pre;` so line 
-	 * 			segments exceeding `cols` are not wrapped and the `<textarea>` 
-	 * 			becomes horizontally scrollable.
+	 *             segments exceeding `cols` are not wrapped and the `<textarea>` 
+	 *             becomes horizontally scrollable.
 	 * If this attribute is not specified, `soft` is its default browser`s value.
 	 * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-wrap
 	 * @var string|NULL
@@ -66,7 +66,7 @@ trait RowsColsWrap {
 	 * The number of visible text lines for the control. `NULL` value means no `cols`
 	 * attribute will bee rendered.
 	 * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-rows
-	 * @param int|NULL $rows 
+	 * @param  int|NULL $rows 
 	 * @return \MvcCore\Ext\Forms\Field
 	 */
 	public function SetRows ($rows) {
@@ -91,7 +91,7 @@ trait RowsColsWrap {
 	 * specified, it must be a positive integer. If it is not specified, the default 
 	 * browser's value is `20`. `NULL` value means no `cols` attribute will bee rendered.
 	 * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-cols
-	 * @param int|NULL $columns 
+	 * @param  int|NULL $columns 
 	 * @return \MvcCore\Ext\Forms\Field
 	 */
 	public function SetCols ($columns = 20) {
@@ -103,13 +103,13 @@ trait RowsColsWrap {
 	/**
 	 * Indicates how the control wraps text. Possible values are:
 	 * - `'hard'`: The browser automatically inserts line breaks (`CR+LF`) so that each
-	 * 			line has no more than the width of the control; the `cols` attribute
-	 * 			must also be specified for this to take effect.
+	 *             line has no more than the width of the control; the `cols` attribute
+	 *             must also be specified for this to take effect.
 	 * - `'soft'`: The browser ensures that all line breaks in the value consist of 
-	 * 			a `CR+LF` pair, but does not insert any additional line breaks.
-	 * - `'off'`: Like `soft` but changes appearance to `white-space: pre;` so line 
-	 * 			segments exceeding `cols` are not wrapped and the `<textarea>` 
-	 * 			becomes horizontally scrollable.
+	 *             a `CR+LF` pair, but does not insert any additional line breaks.
+	 * - `'off'`:  Like `soft` but changes appearance to `white-space: pre;` so line 
+	 *             segments exceeding `cols` are not wrapped and the `<textarea>` 
+	 *             becomes horizontally scrollable.
 	 * If this attribute is not specified, `soft` is its default browser`s value.
 	 * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-wrap
 	 * @return string|NULL
@@ -121,16 +121,16 @@ trait RowsColsWrap {
 	/**
 	 * Indicates how the control wraps text. Possible values are:
 	 * - `'hard'`: The browser automatically inserts line breaks (`CR+LF`) so that each
-	 * 			line has no more than the width of the control; the `cols` attribute
-	 * 			must also be specified for this to take effect.
+	 *             line has no more than the width of the control; the `cols` attribute
+	 *             must also be specified for this to take effect.
 	 * - `'soft'`: The browser ensures that all line breaks in the value consist of 
-	 * 			a `CR+LF` pair, but does not insert any additional line breaks.
+	 *             a `CR+LF` pair, but does not insert any additional line breaks.
 	 * - `'off '`: Like `soft` but changes appearance to `white-space: pre;` so line 
-	 * 			segments exceeding `cols` are not wrapped and the `<textarea>` 
-	 * 			becomes horizontally scrollable.
+	 *             segments exceeding `cols` are not wrapped and the `<textarea>` 
+	 *             becomes horizontally scrollable.
 	 * If this attribute is not specified, `soft` is its default browser`s value.
 	 * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-wrap
-	 * @param string|NULL $wrap 
+	 * @param  string|NULL $wrap 
 	 * @return \MvcCore\Ext\Forms\Field
 	 */
 	public function SetWrap ($wrap = 'soft') {

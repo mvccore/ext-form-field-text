@@ -15,10 +15,10 @@ namespace MvcCore\Ext\Forms\Validators;
 
 /**
  * Responsibility: Validate raw user password by configured password strength
- *				   rules.  Password still could contain very dangerous
- *				   characters for XSS, SQL or any other attacks. Be careful!!!
- *				   This doesn't escape everything. It only check if configured
- *				   character groups are presented and how much and that's all.
+ *                 rules.  Password still could contain very dangerous
+ *                 characters for XSS, SQL or any other attacks. Be careful!!!
+ *                 This doesn't escape everything. It only check if configured
+ *                 character groups are presented and how much and that's all.
  */
 #[\Attribute(\Attribute::TARGET_PROPERTY)]
 class Password extends \MvcCore\Ext\Forms\Validator {
@@ -198,7 +198,7 @@ class Password extends \MvcCore\Ext\Forms\Validator {
 
 	/**
 	 * Set global minimum password characters length, default value is 12.
-	 * @param int $mustHaveMinLength
+	 * @param  int $mustHaveMinLength
 	 * @return \MvcCore\Ext\Forms\Validators\Password
 	 */
 	public function SetMustHaveMinLength ($mustHaveMinLength = self::MIN_LENGTH) {
@@ -217,7 +217,7 @@ class Password extends \MvcCore\Ext\Forms\Validator {
 
 	/**
 	 * Set global maximum password characters length, default value is 255.
-	 * @param int $mustHaveMaxLength
+	 * @param  int $mustHaveMaxLength
 	 * @return \MvcCore\Ext\Forms\Validators\Password
 	 */
 	public function SetMustHaveMaxLength ($mustHaveMaxLength = self::MAX_LENGTH) {
@@ -235,7 +235,7 @@ class Password extends \MvcCore\Ext\Forms\Validator {
 	 * second item is minimum lower case characters count i n password as `integer`.
 	 * If you set function first argument to `FALSE`, function returns only array
 	 * `[TRUE]`, if the rule is `TRUE` or an empty array `[]` if the rule is `FALSE`.
-	 * @param bool $getWithMinCount
+	 * @param  bool $getWithMinCount
 	 * @return array
 	 */
 	public function GetMustHaveLowerCaseChars ($getWithMinCount = TRUE) {
@@ -251,8 +251,8 @@ class Password extends \MvcCore\Ext\Forms\Validator {
 	 *
 	 * Function has second argument to set minimum lower case characters in password.
 	 * Default value is at least one lower case character in password.
-	 * @param bool $mustHaveLowerCaseChars
-	 * @param int $minCount
+	 * @param  bool $mustHaveLowerCaseChars
+	 * @param  int  $minCount
 	 * @return \MvcCore\Ext\Forms\Validators\Password
 	 */
 	public function SetMustHaveLowerCaseChars ($mustHaveLowerCaseChars = TRUE, $minCount = self::MIN_LOWERCASE_CHARS_COUNT) {
@@ -271,7 +271,7 @@ class Password extends \MvcCore\Ext\Forms\Validator {
 	 * second item is minimum upper case characters count i n password as `integer`.
 	 * If you set function first argument to `FALSE`, function returns only array
 	 * `[TRUE]`, if the rule is `TRUE` or an empty array `[]` if the rule is `FALSE`.
-	 * @param bool $getWithMinCount
+	 * @param  bool $getWithMinCount
 	 * @return array
 	 */
 	public function GetMustHaveUpperCaseChars ($getWithMinCount = TRUE) {
@@ -287,8 +287,8 @@ class Password extends \MvcCore\Ext\Forms\Validator {
 	 *
 	 * Function has second argument to set minimum upper case characters in password.
 	 * Default value is at least one upper case character in password.
-	 * @param bool $mustHaveUpperCaseChars
-	 * @param int $minCount
+	 * @param  bool $mustHaveUpperCaseChars
+	 * @param  int  $minCount
 	 * @return \MvcCore\Ext\Forms\Validators\Password
 	 */
 	public function SetMustHaveUpperCaseChars ($mustHaveUpperCaseChars = TRUE, $minCount = self::MIN_UPPERCASE_CHARS_COUNT) {
@@ -307,7 +307,7 @@ class Password extends \MvcCore\Ext\Forms\Validator {
 	 * second item is minimum digit characters count i n password as `integer`.
 	 * If you set function first argument to `FALSE`, function returns only array
 	 * `[TRUE]`, if the rule is `TRUE` or an empty array `[]` if the rule is `FALSE`.
-	 * @param bool $getWithMinCount
+	 * @param  bool $getWithMinCount
 	 * @return array|bool
 	 */
 	public function GetMustHaveDigits ($getWithMinCount = TRUE) {
@@ -323,8 +323,8 @@ class Password extends \MvcCore\Ext\Forms\Validator {
 	 *
 	 * Function has second argument to set minimum digit characters in password.
 	 * Default value is at least one digit character in password.
-	 * @param bool $mustHaveDigits
-	 * @param int $minCount
+	 * @param  bool $mustHaveDigits
+	 * @param  int  $minCount
 	 * @return \MvcCore\Ext\Forms\Validators\Password
 	 */
 	public function SetMustHaveDigits ($mustHaveDigits = TRUE, $minCount = self::MIN_DIGIT_CHARS_COUNT) {
@@ -348,7 +348,7 @@ class Password extends \MvcCore\Ext\Forms\Validator {
 	 * if any of them is presented in password by method:
 	 * `$validator->SetSpecialChars('...');` or by constructor configuration record:
 	 * `new \MvcCore\Ext\Forms\Validators\Password(['specialChars' => '...']);
-	 * @param bool $getWithMinCount
+	 * @param  bool $getWithMinCount
 	 * @return array|bool
 	 */
 	public function GetMustHaveSpecialChars ($getWithMinCount = TRUE) {
@@ -369,8 +369,8 @@ class Password extends \MvcCore\Ext\Forms\Validator {
 	 * if any of them is presented in password by method:
 	 * `$validator->SetSpecialChars('...');` or by constructor configuration record:
 	 * `new \MvcCore\Ext\Forms\Validators\Password(['specialChars' => '...']);
-	 * @param bool $mustHaveSpecialChars
-	 * @param int $minCount
+	 * @param  bool $mustHaveSpecialChars
+	 * @param  int  $minCount
 	 * @return \MvcCore\Ext\Forms\Validators\Password
 	 */
 	public function SetMustHaveSpecialChars ($mustHaveSpecialChars = TRUE, $minCount = self::MIN_SPECIAL_CHARS_COUNT) {
@@ -397,7 +397,7 @@ class Password extends \MvcCore\Ext\Forms\Validator {
 	 * if any of them is presented in password by this method:
 	 * `$validator->SetSpecialChars('...');` or by constructor configuration record:
 	 * `new \MvcCore\Ext\Forms\Validators\Password(['specialChars' => '...']);
-	 * @param string $specialChars
+	 * @param  string $specialChars
 	 * @return \MvcCore\Ext\Forms\Validators\Password
 	 */
 	public function SetSpecialChars ($specialChars = self::SPECIAL_CHARS) {
@@ -413,21 +413,21 @@ class Password extends \MvcCore\Ext\Forms\Validator {
 	 * you need to configure.
 	 * Example:
 	 * ```
-	 * $validator = new \MvcCore\Ext\Forms\Validators\Password([
-	 *    'mustHaveMinLength'			=> 12,
-	 *    'mustHaveMaxLength'			=> 255,
-	 *    'mustHaveLowerCaseChars'		=> TRUE,
-	 *    'mustHaveLowerCaseCharsCount'	=> 1,
-	 * 	  'mustHaveUpperCaseChars'		=> TRUE,
-	 * 	  'mustHaveUpperCaseCharsCount'	=> 1,
-	 * 	  'mustHaveDigits'				=> TRUE,
-	 * 	  'mustHaveDigitsCount'			=> 1,
-	 * 	  'mustHaveSpecialChars'		=> TRUE,
-	 * 	  'mustHaveSpecialCharsCount'	=> 1,
-	 * 	  'specialChars'				=> '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~',
-	 * );
+	 *   $validator = new \MvcCore\Ext\Forms\Validators\Password([
+	 *       'mustHaveMinLength'           => 12,
+	 *       'mustHaveMaxLength'           => 255,
+	 *       'mustHaveLowerCaseChars'      => TRUE,
+	 *       'mustHaveLowerCaseCharsCount' => 1,
+	 *       'mustHaveUpperCaseChars'      => TRUE,
+	 *       'mustHaveUpperCaseCharsCount' => 1,
+	 *       'mustHaveDigits'              => TRUE,
+	 *       'mustHaveDigitsCount'         => 1,
+	 *       'mustHaveSpecialChars'        => TRUE,
+	 *       'mustHaveSpecialCharsCount'   => 1,
+	 *       'specialChars'                => '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~',
+	 *   );
 	 * ```
-	 * @param array $cfg
+	 * @param  array $cfg
 	 * @return void
 	 */
 	public function __construct (array $cfg = []) {
@@ -461,8 +461,8 @@ class Password extends \MvcCore\Ext\Forms\Validator {
 	/**
 	 * Validate raw user password by configured rules. Password still could contain
 	 * very dangerous characters for XSS, SQL or any other attacks. Be careful!!!
-	 * @param string|array $rawSubmittedValue Raw submitted value from user.
-	 * @return string|NULL Safe submitted value or `NULL` if not possible to return safe value.
+	 * @param  string|array $rawSubmittedValue Raw submitted value from user.
+	 * @return string|NULL  Safe submitted value or `NULL` if not possible to return safe value.
 	 */
 	public function Validate ($rawSubmittedValue) {
 		$password = trim((string) $rawSubmittedValue);
