@@ -23,6 +23,7 @@ namespace MvcCore\Ext\Forms\Field\Props;
  *    - `\MvcCore\Ext\Forms\Fields\Url`
  * - `\MvcCore\Ext\Forms\Fields\Textarea`
  * - `\MvcCore\Ext\Forms\Validators\MinMaxLength`
+ * @mixin \MvcCore\Ext\Forms\Field
  */
 trait MinMaxLength {
 
@@ -52,7 +53,6 @@ trait MinMaxLength {
 	 * @return \MvcCore\Ext\Forms\Field
 	 */
 	public function SetMinLength ($minLength) {
-		/** @var $this \MvcCore\Ext\Forms\Field */
 		$this->minLength = $minLength;
 		return $this;
 	}
@@ -71,7 +71,6 @@ trait MinMaxLength {
 	 * @return \MvcCore\Ext\Forms\Field
 	 */
 	public function SetMaxLength ($maxLength) {
-		/** @var $this \MvcCore\Ext\Forms\Field */
 		$this->maxLength = $maxLength;
 		return $this;
 	}

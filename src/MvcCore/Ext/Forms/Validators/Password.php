@@ -202,7 +202,7 @@ class Password extends \MvcCore\Ext\Forms\Validator {
 	 * @return \MvcCore\Ext\Forms\Validators\Password
 	 */
 	public function SetMustHaveMinLength ($mustHaveMinLength = self::MIN_LENGTH) {
-		/** @var $this \MvcCore\Ext\Forms\Validator */
+		/** @var \MvcCore\Ext\Forms\Validator $this */
 		$this->mustHaveMinLength = $mustHaveMinLength;
 		return $this;
 	}
@@ -221,7 +221,7 @@ class Password extends \MvcCore\Ext\Forms\Validator {
 	 * @return \MvcCore\Ext\Forms\Validators\Password
 	 */
 	public function SetMustHaveMaxLength ($mustHaveMaxLength = self::MAX_LENGTH) {
-		/** @var $this \MvcCore\Ext\Forms\Validator */
+		/** @var \MvcCore\Ext\Forms\Validator $this */
 		$this->mustHaveMaxLength = $mustHaveMaxLength;
 		return $this;
 	}
@@ -256,7 +256,7 @@ class Password extends \MvcCore\Ext\Forms\Validator {
 	 * @return \MvcCore\Ext\Forms\Validators\Password
 	 */
 	public function SetMustHaveLowerCaseChars ($mustHaveLowerCaseChars = TRUE, $minCount = self::MIN_LOWERCASE_CHARS_COUNT) {
-		/** @var $this \MvcCore\Ext\Forms\Validator */
+		/** @var \MvcCore\Ext\Forms\Validator $this */
 		$this->mustHaveLowerCaseChars = $mustHaveLowerCaseChars;
 		$this->mustHaveLowerCaseCharsCount = $minCount;
 		return $this;
@@ -292,7 +292,7 @@ class Password extends \MvcCore\Ext\Forms\Validator {
 	 * @return \MvcCore\Ext\Forms\Validators\Password
 	 */
 	public function SetMustHaveUpperCaseChars ($mustHaveUpperCaseChars = TRUE, $minCount = self::MIN_UPPERCASE_CHARS_COUNT) {
-		/** @var $this \MvcCore\Ext\Forms\Validator */
+		/** @var \MvcCore\Ext\Forms\Validator $this */
 		$this->mustHaveUpperCaseChars = $mustHaveUpperCaseChars;
 		$this->mustHaveUpperCaseCharsCount = $minCount;
 		return $this;
@@ -328,7 +328,7 @@ class Password extends \MvcCore\Ext\Forms\Validator {
 	 * @return \MvcCore\Ext\Forms\Validators\Password
 	 */
 	public function SetMustHaveDigits ($mustHaveDigits = TRUE, $minCount = self::MIN_DIGIT_CHARS_COUNT) {
-		/** @var $this \MvcCore\Ext\Forms\Validator */
+		/** @var \MvcCore\Ext\Forms\Validator $this */
 		$this->mustHaveDigits = $mustHaveDigits;
 		$this->mustHaveDigitsCount = $minCount;
 		return $this;
@@ -374,7 +374,7 @@ class Password extends \MvcCore\Ext\Forms\Validator {
 	 * @return \MvcCore\Ext\Forms\Validators\Password
 	 */
 	public function SetMustHaveSpecialChars ($mustHaveSpecialChars = TRUE, $minCount = self::MIN_SPECIAL_CHARS_COUNT) {
-		/** @var $this \MvcCore\Ext\Forms\Validator */
+		/** @var \MvcCore\Ext\Forms\Validator $this */
 		$this->mustHaveSpecialChars = $mustHaveSpecialChars;
 		$this->mustHaveSpecialCharsCount = $minCount;
 		return $this;
@@ -401,7 +401,7 @@ class Password extends \MvcCore\Ext\Forms\Validator {
 	 * @return \MvcCore\Ext\Forms\Validators\Password
 	 */
 	public function SetSpecialChars ($specialChars = self::SPECIAL_CHARS) {
-		/** @var $this \MvcCore\Ext\Forms\Validator */
+		/** @var \MvcCore\Ext\Forms\Validator $this */
 		$this->specialChars = $specialChars;
 		return $this;
 	}
@@ -427,35 +427,88 @@ class Password extends \MvcCore\Ext\Forms\Validator {
 	 *       'specialChars'                => '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~',
 	 *   );
 	 * ```
-	 * @param  array $cfg
+	 * 
+	 * @param  array  $cfg
+	 * Config array with protected properties and it's 
+	 * values which you want to configure, presented 
+	 * in camel case properties names syntax.
+	 * 
+	 * @param  int    $mustHaveMinLength
+	 * Global minimum password characters length, default value is 12.
+	 * @param  int    $mustHaveMaxLength
+	 * Global maximum password characters length, default value is 255.
+	 * @param  bool   $mustHaveLowerCaseChars
+	 * Password strength rule to have any lower case character presented in password.
+	 * Default value is `TRUE` to must have lower case character in password.
+	 * Lower case characters from latin alphabet: abcdefghijklmnopqrstuvwxyz.
+	 * @param  int    $mustHaveLowerCaseCharsCount
+	 * Password strength rule to have minimum lower case characters count presented in password.
+	 * Default value is `1` to must have at least one lower case character in password.
+	 * Lower case characters from latin alphabet: abcdefghijklmnopqrstuvwxyz.
+	 * @param  bool   $mustHaveUpperCaseChars
+	 * Password strength rule to have any upper case character presented in password.
+	 * Default value is `TRUE` to must have upper case character in password.
+	 * Upper case characters from latin alphabet: ABCDEFGHIJKLMNOPQRSTUVWXYZ.
+	 * @param  int    $mustHaveUpperCaseCharsCount
+	 * Password strength rule to have minimum upper case characters count presented in password.
+	 * Default value is `1` to must have at least one upper case character in password.
+	 * Upper case characters from latin alphabet: ABCDEFGHIJKLMNOPQRSTUVWXYZ.
+	 * @param  bool   $mustHaveDigits
+	 * Password strength rule to have any digit presented in password.
+	 * Default value is `TRUE` to must have digit characters in password.
+	 * Digit (arabian) characters from arabian alphabet: 0123456789.
+	 * @param  int    $mustHaveDigitsCount
+	 * Password strength rule to have minimum digits count presented in password.
+	 * Default value is `1` to must have at least one digit character in password.
+	 * Digit (arabian) characters from arabian alphabet: 0123456789.
+	 * @param  bool   $mustHaveSpecialChars
+	 * Password strength rule to have any special character presented in password.
+	 * Default value is `TRUE` to must have special character in password.
+	 * Default special characters are: !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~.
+	 * It's possible to configure own collection of special characters to check
+	 * if any of them is presented in password by method:
+	 * `$validator->SetSpecialChars('...');` or by constructor configuration record:
+	 * `new \MvcCore\Ext\Forms\Validators\Password(['specialChars' => '...']);
+	 * @param  int    $mustHaveSpecialCharsCount
+	 * Password strength rule to have minimum special characters count presented in password.
+	 * Default value is `1` to must have at least one special character in password.
+	 * Default special characters are: !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~.
+	 * It's possible to configure own collection of special characters to check
+	 * if any of them is presented in password by method:
+	 * `$validator->SetSpecialChars('...');` or by constructor configuration record:
+	 * `new \MvcCore\Ext\Forms\Validators\Password(['specialChars' => '...']);
+	 * @param  string $specialChars
+	 * Special characters collection to check if any of them is presented in password.
+	 * Default special characters are: !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~.
+	 * It's possible to configure own collection of special characters to check
+	 * if any of them is presented in password by method:
+	 * `$validator->SetSpecialChars('...');` or by constructor configuration record:
+	 * `new \MvcCore\Ext\Forms\Validators\Password(['specialChars' => '...']);
+	 * 
 	 * @return void
 	 */
-	public function __construct (array $cfg = []) {
-		foreach ($cfg as $propertyName => $propertyValue) {
-			if (!property_exists($this, $propertyName)) {
-				$this->throwNewInvalidArgumentException(
-					'Property `'.$propertyName.'` is not possible '
-					.'to configure by constructor `$cfg` param. '
-					. 'There is only possible to configure properties: `'
-					. implode('`, `', [
-						'mustHaveMinLength:int',
-						'mustHaveMaxLength:int',
-						'mustHaveLowerCaseChars:bool',
-						'mustHaveLowerCaseCharsCount:int',
-						'mustHaveUpperCaseChars:bool',
-						'mustHaveUpperCaseCharsCount:int',
-						'mustHaveDigits:bool',
-						'mustHaveDigitsCount:int',
-						'mustHaveSpecialChars:bool',
-						'mustHaveSpecialCharsCount:int',
-						'specialChars:string',
-					]) . '`.'
-				);
-			} else {
-				settype($propertyValue, gettype($this->{$propertyName}));
-				$this->{$propertyName} = $propertyValue;
-			}
-		}
+	public function __construct (
+		array $cfg = [],
+		$mustHaveMinLength = NULL,
+		$mustHaveMaxLength = NULL,
+		$mustHaveLowerCaseChars = NULL,
+		$mustHaveLowerCaseCharsCount = NULL,
+		$mustHaveUpperCaseChars = NULL,
+		$mustHaveUpperCaseCharsCount = NULL,
+		$mustHaveDigits = NULL,
+		$mustHaveDigitsCount = NULL,
+		$mustHaveSpecialChars = NULL,
+		$mustHaveSpecialCharsCount = NULL,
+		$specialChars = NULL
+	) {
+		$errorMessages = static::$errorMessages;
+		$this->consolidateCfg($cfg, func_get_args(), func_num_args());
+		parent::__construct($cfg);
+		if (self::$errorMessages !== $errorMessages)
+			static::$errorMessages = array_replace(
+				self::$errorMessages,
+				$errorMessages
+			);
 	}
 
 	/**

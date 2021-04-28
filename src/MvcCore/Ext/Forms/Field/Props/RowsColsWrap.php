@@ -16,6 +16,7 @@ namespace MvcCore\Ext\Forms\Field\Props;
 /**
  * Trait for classes:
  * - `\MvcCore\Ext\Forms\Fields\Textarea`
+ * @mixin \MvcCore\Ext\Forms\Field
  */
 trait RowsColsWrap {
 
@@ -70,7 +71,6 @@ trait RowsColsWrap {
 	 * @return \MvcCore\Ext\Forms\Field
 	 */
 	public function SetRows ($rows) {
-		/** @var $this \MvcCore\Ext\Forms\Field */
 		$this->rows = $rows;
 		return $this;
 	}
@@ -95,7 +95,6 @@ trait RowsColsWrap {
 	 * @return \MvcCore\Ext\Forms\Field
 	 */
 	public function SetCols ($columns = 20) {
-		/** @var $this \MvcCore\Ext\Forms\Field */
 		$this->cols = $columns;
 		return $this;
 	}
@@ -134,7 +133,6 @@ trait RowsColsWrap {
 	 * @return \MvcCore\Ext\Forms\Field
 	 */
 	public function SetWrap ($wrap = 'soft') {
-		/** @var $this \MvcCore\Ext\Forms\Field */
 		$this->wrap = $wrap;
 		return $this;
 	}

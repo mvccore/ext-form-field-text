@@ -46,6 +46,38 @@ implements	\MvcCore\Ext\Forms\Fields\IPattern {
 		'pattern'	=> NULL,
 	];
 
+	
+	/**
+	 * Create pattern validator instance.
+	 * 
+	 * @param  array  $cfg
+	 * Config array with protected properties and it's 
+	 * values which you want to configure, presented 
+	 * in camel case properties names syntax.
+	 * 
+	 * @param  string $pattern
+	 * RegExp match pattern for HTML attribute `pattern` and
+	 * RegExp match pattern for build in `Pattern` validator
+	 * added automatically after field is added into form, if any 
+	 * RegExp pattern value defined.
+	 * 
+	 * @throws \InvalidArgumentException 
+	 * @return void
+	 */
+	public function __construct(
+		array $cfg = [],
+		$pattern = NULL
+	) {
+		$errorMessages = static::$errorMessages;
+		$this->consolidateCfg($cfg, func_get_args(), func_num_args());
+		parent::__construct($cfg);
+		if (self::$errorMessages !== $errorMessages)
+			static::$errorMessages = array_replace(
+				self::$errorMessages,
+				$errorMessages
+			);
+	}
+
 	/**
 	 * Validate raw user input by configured regular expression match pattern.
   * @param string|array $rawSubmittedValue Raw submitted value from user.

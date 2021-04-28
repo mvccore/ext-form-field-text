@@ -22,6 +22,7 @@ namespace MvcCore\Ext\Forms\Field\Props;
  *    - `\MvcCore\Ext\Forms\Fields\Tel`
  *    - `\MvcCore\Ext\Forms\Fields\Url`
  * - `\MvcCore\Ext\Forms\Fields\Textarea`
+ * @mixin \MvcCore\Ext\Forms\Field
  */
 trait SpellCheck {
 
@@ -30,8 +31,8 @@ trait SpellCheck {
 	 * to have its spelling and grammar checked. The value `default` indicates that 
 	 * the element is to act according to a default behaviour, possibly based on the 
 	 * parent element's own spellcheck value. The value `FALSE indicates that the 
-	 * element should not be checked. Possible values are strings: `default`, `true` or `false`. 
-	 * Value `NULL` means to not render any attribute in HTML.
+	 * element should not be checked. Possible values are strings: `default`, `true` 
+	 * or `false`. Value `NULL` means to not render any attribute in HTML.
 	 * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-spellcheck
 	 * @var string|NULL
 	 */
@@ -63,7 +64,6 @@ trait SpellCheck {
 	 * @return \MvcCore\Ext\Forms\Field
 	 */
 	public function SetSpellCheck ($spellCheck) {
-		/** @var $this \MvcCore\Ext\Forms\Field */
 		if ($spellCheck === TRUE) {
 			$spellCheck = 'true';
 		} else if ($spellCheck === FALSE) {

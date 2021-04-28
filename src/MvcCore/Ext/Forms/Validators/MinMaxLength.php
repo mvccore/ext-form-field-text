@@ -51,6 +51,38 @@ implements	\MvcCore\Ext\Forms\Fields\IMinMaxLength {
 		'maxLength'	=> NULL,
 	];
 
+	
+	/**
+	 * Create min./max. length validator instance.
+	 * 
+	 * @param  array $cfg
+	 * Config array with protected properties and it's 
+	 * values which you want to configure, presented 
+	 * in camel case properties names syntax.
+	 * 
+	 * @param  int   $minLength
+	 * Minimum characters length. Default value is `NULL`.
+	 * @param  int   $maxLength
+	 * Maximum characters length. Default value is `NULL`.
+	 * 
+	 * @throws \InvalidArgumentException 
+	 * @return void
+	 */
+	public function __construct(
+		array $cfg = [],
+		$minLength = NULL,
+		$maxLength = NULL
+	) {
+		$errorMessages = static::$errorMessages;
+		$this->consolidateCfg($cfg, func_get_args(), func_num_args());
+		parent::__construct($cfg);
+		if (self::$errorMessages !== $errorMessages)
+			static::$errorMessages = array_replace(
+				self::$errorMessages,
+				$errorMessages
+			);
+	}
+
 	/**
 	 * Validate raw user input with maximum string length check.
 	 * @param  string|array $submitValue Raw submitted value from user.

@@ -22,6 +22,7 @@ namespace MvcCore\Ext\Forms\Field\Props;
  *    - `\MvcCore\Ext\Forms\Fields\Tel`
  *    - `\MvcCore\Ext\Forms\Fields\Url`
  * - `\MvcCore\Ext\Forms\Validators\Pattern`
+ * @mixin \MvcCore\Ext\Forms\Field
  */
 trait Pattern {
 
@@ -57,7 +58,6 @@ trait Pattern {
 	 * @return \MvcCore\Ext\Forms\Field
 	 */
 	public function SetPattern ($pattern) {
-		/** @var $this \MvcCore\Ext\Forms\Field */
 		$this->pattern = $pattern;
 		return $this;
 	}

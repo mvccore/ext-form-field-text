@@ -199,6 +199,78 @@ class Url extends \MvcCore\Ext\Forms\Validator {
 	 */
 	protected $backReferencePosPort = NULL;
 	
+
+	/**
+	 * Create URL validator instance.
+	 * 
+	 * @param  array     $cfg
+	 * Config array with protected properties and it's 
+	 * values which you want to configure, presented 
+	 * in camel case properties names syntax.
+	 * 
+	 * @param  string    $dnsValidation
+	 * DNS validation. No DNS validation by default.
+	 * @param  bool      $allowRelativeProtocol
+	 * Allow url with not defined protocol, like: `//domain.com/...`. 
+	 * `FALSE` by default.
+	 * @param  \string[] $allowedSchemes
+	 * Allowed URL schemes. 
+	 * Schemes `http,https,ftp,ftps` are allowed by default.
+	 * @param  bool      $allowBasicAuth
+	 * Allow url with basic authentication before hostname, 
+	 * like: `https://john.doe@www.domain.com/...`.
+	 * `FALSE` by default.
+	 * @param  bool      $allowDomains
+	 * Allow url with domains, `TRUE` by default.
+	 * @param  bool      $allowIPv4
+	 * Allow url with IPv4, `TRUE` by default.
+	 * @param  bool      $allowIPv6
+	 * Allow url with IPv4, `TRUE` by default.
+	 * @param  bool      $allowPorts
+	 * Allow url with ports, `TRUE` by default.
+	 * @param  \string[] $allowedHostnames
+	 * Set allowed domains or IPs. 
+	 * All domains or ips are allowed by default.
+	 * @param  \string[] $allowedPorts
+	 * Allowed port numbers. 
+	 * No port number or any port number is allowed by default.
+	 * @param  string    $pattern
+	 * Completed pattern for validation
+	 * @param  int       $backReferencePosHostname
+	 * Completed back reference index for completed pattern 
+	 * to check hostname against allowed values.
+	 * @param  int       $backReferencePosPort
+	 * Completed back reference index for completed pattern 
+	 * to check port against allowed values.
+	 * 
+	 * @throws \InvalidArgumentException 
+	 * @return void
+	 */
+	public function __construct (
+		array $cfg = [],
+		$dnsValidation = NULL,
+		$allowRelativeProtocol = NULL,
+		array $allowedSchemes = [],
+		$allowBasicAuth = NULL,
+		$allowDomains = NULL,
+		$allowIPv4 = NULL,
+		$allowIPv6 = NULL,
+		$allowPorts = NULL,
+		array $allowedHostnames = [],
+		array $allowedPorts = [],
+		$pattern = NULL,
+		$backReferencePosHostname = NULL,
+		$backReferencePosPort = NULL
+	) {
+		$errorMessages = static::$errorMessages;
+		$this->consolidateCfg($cfg, func_get_args(), func_num_args());
+		parent::__construct($cfg);
+		if (self::$errorMessages !== $errorMessages)
+			static::$errorMessages = array_replace(
+				self::$errorMessages,
+				$errorMessages
+			);
+	}
 	
 	/**
 	 * Get if allowed url with not defined protocol, like: `//domain.com/...`. 

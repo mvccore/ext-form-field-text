@@ -16,10 +16,9 @@ namespace MvcCore\Ext\Forms\Validators;
 /**
  * Responsibility: Validate phone number only by removing all other characters 
  *                 than digits and plus. To validate phone number really deeply
- *                 by local conventions, use Zend validator instead.
- * @see https://github.com/zendframework/zend-i18n
- * @see https://github.com/zendframework/zend-i18n/blob/master/src/Validator/PhoneNumber.php
- * @see https://olegkrivtsov.github.io/using-zend-framework-3-book/html/en/Checking_Input_Data_with_Validators/Validator_Usage_Examples.html#Example
+ *                 by local conventions, use Laminas validator instead.
+ * @see https://github.com/laminas/laminas-i18n
+ * @see https://github.com/laminas/laminas-i18n/blob/2.12.x/src/Validator/PhoneNumber.php
  */
 #[\Attribute(\Attribute::TARGET_PROPERTY)]
 class Tel extends \MvcCore\Ext\Forms\Validator {
@@ -40,10 +39,9 @@ class Tel extends \MvcCore\Ext\Forms\Validator {
 
 	/**
 	 * Validate phone number only by removing all other characters than digits and plus.
-	 * To validate phone number really deeply - use Zend validator instead:
-	 * @see https://github.com/zendframework/zend-i18n
-	 * @see https://github.com/zendframework/zend-i18n/blob/master/src/Validator/PhoneNumber.php
-	 * @see https://olegkrivtsov.github.io/using-zend-framework-3-book/html/en/Checking_Input_Data_with_Validators/Validator_Usage_Examples.html#Example
+	 * To validate phone number really deeply - use Laminas validator instead:
+	 * @see https://github.com/laminas/laminas-i18n
+	 * @see https://github.com/laminas/laminas-i18n/blob/2.12.x/src/Validator/PhoneNumber.php
 	 * @param  string|array      $rawSubmittedValue
 	 * @return string|array|NULL Safe submitted value or `NULL` if not possible to return safe value.
 	 */
