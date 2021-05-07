@@ -39,7 +39,7 @@
 	"require": {
 		"php": ">=5.4.0",
 		"mvccore/mvccore": "^5.0.4",
-		"mvccore/ext-form": "^5.1.2"
+		"mvccore/ext-form": "^5.1.8"
 	},
 	"suggest": {
 		"mvccore/ext-form-validator-special": "MvcCore form extension with special text and numeric validators."
