@@ -33,7 +33,7 @@ class Url extends \MvcCore\Ext\Forms\Validator {
 	 */
 	const PATTERN_ALL				= '~^{%protocol}//{%auth}{%hostname}{%port}{%path}{%query}{%fragment}$~ixu';
 
-	const PATTERN_PART_AUTH			= '(((?:[\_\.\pL\pN-]|%%[0-9A-Fa-f]{2})+:)?((?:[\_\.\pL\pN-]|%%[0-9A-Fa-f]{2})+)@)?';
+	const PATTERN_PART_AUTH			= '(((?:[\_\.\pL\pN-]|%[0-9A-Fa-f]{2})+:)?((?:[\_\.\pL\pN-]|%[0-9A-Fa-f]{2})+)@)?';
 
 	const PATTERN_PART_DOMAIN		= '([\pL\pN\pS\-\_\.])+(\.?([\pL\pN]|xn\-\-[\pL\pN-]+)+\.?)';
 
@@ -43,11 +43,11 @@ class Url extends \MvcCore\Ext\Forms\Validator {
 	
 	const PATTERN_PART_PORT			= '(:[0-9]+)?';
 
-	const PATTERN_PART_PATH			= '(?:/(?:[\pL\pN\-._\~!$&\'()*+,;=:@]|%%[0-9A-Fa-f]{2})*)*';
+	const PATTERN_PART_PATH			= '(?:/(?:[\pL\pN\-._\~!$&\'()*+,;=:@]|%[0-9A-Fa-f]{2})*)*';
 
-	const PATTERN_PART_QUERY		= '(?:\?(?:[\pL\pN\-._\~!$&\'\[\]()*+,;=:@/?]|%%[0-9A-Fa-f]{2})*)?';
+	const PATTERN_PART_QUERY		= '(?:\?(?:[\pL\pN\-._\~!$&\'\[\]()*+,;=:@/?]|%[0-9A-Fa-f]{2})*)?';
 
-	const PATTERN_PART_FRAGMENT		= '(?:\#(?:[\pL\pN\-._\~!$&\'()*+,;=:@/?]|%%[0-9A-Fa-f]{2})*)?';
+	const PATTERN_PART_FRAGMENT		= '(?:\#(?:[\pL\pN\-._\~!$&\'()*+,;=:@/?]|%[0-9A-Fa-f]{2})*)?';
 
 
 	const VALIDATE_DNS_TYPE_NONE	= FALSE;
@@ -510,12 +510,13 @@ class Url extends \MvcCore\Ext\Forms\Validator {
 		$result = NULL;
 		$rawSubmittedValue = trim((string) $rawSubmittedValue);
 		if ($rawSubmittedValue === '') return NULL;
-
+		
 		while (preg_match("#%[0-9a-zA-Z]{2}#", $rawSubmittedValue)) 
 			$rawSubmittedValue = rawurldecode($rawSubmittedValue);
-		
-		$this->preparePatternAndBackReferenceIndexes();
+		$rawSubmittedValue = str_replace('%', '%25', $rawSubmittedValue);
 
+		$this->preparePatternAndBackReferenceIndexes();
+		
 		$urlIsValid = (bool) preg_match_all($this->pattern, $rawSubmittedValue, $matches);
 		if (!$urlIsValid) {
 			$rawSubmittedValue = NULL;
@@ -566,7 +567,7 @@ class Url extends \MvcCore\Ext\Forms\Validator {
 		
 		if ($rawSubmittedValue !== NULL) 
 			$result = $rawSubmittedValue;
-		
+
 		return $result;
 	}
 
