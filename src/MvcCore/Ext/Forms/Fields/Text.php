@@ -51,7 +51,7 @@ implements	\MvcCore\Ext\Forms\Fields\IVisibleField,
 	 * Comparison by PHP function version_compare();
 	 * @see http://php.net/manual/en/function.version-compare.php
 	 */
-	const VERSION = '5.1.8';
+	const VERSION = '5.1.9';
 
 	/**
 	 * Possible values: `text` and `email`, `password`, `search`, `tel` and `url` in extended class.
