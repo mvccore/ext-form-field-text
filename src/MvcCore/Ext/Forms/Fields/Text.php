@@ -389,7 +389,7 @@ implements	\MvcCore\Ext\Forms\Fields\IVisibleField,
 	 * @return string
 	 */
 	public function RenderControl () {
-		$attrsStr = $this->renderControlAttrsWithFieldVars([
+		$attrsStr = $this->RenderControlAttrsWithFieldVars([
 			'pattern',
 			'minLength', 'maxLength',
 			'list',
