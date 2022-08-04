@@ -281,6 +281,7 @@ implements	\MvcCore\Ext\Forms\Fields\IVisibleField,
 
 		$wrapper = NULL
 	) {
+		$this->consolidateCfg($cfg, func_get_args(), func_num_args());
 		parent::__construct($cfg);
 		static::$templates = (object) array_merge(
 			(array) parent::$templates, 
