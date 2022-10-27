@@ -34,7 +34,7 @@ class Url extends Text {
 
 	/**
 	 * Validators: 
-	 * - `Url` - to check URL format by PHP `filter_var($url, FILTER_VALIDATE_URL)`.
+	 * - `Url` - Validate by PHP regular expression and optionally by DNS record.
 	 * @var \string[]|\Closure[]
 	 */
 	protected $validators = ['Url'/*, 'SafeString', 'MinLength', 'MaxLength', 'Pattern'*/];
