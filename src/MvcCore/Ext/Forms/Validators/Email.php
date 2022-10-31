@@ -102,17 +102,17 @@ implements	\MvcCore\Ext\Forms\Fields\IMultiple {
 		}
 		$errorReported = FALSE;
 		foreach ($rawValues as $rawValue) {
-			$atom = "[-a-z0-9!#$%&'*+/=?^_`{|}~]"; // RFC 5322 unquoted characters in local-part
+			$atom = "[-a-z0-9\!\#\$%\&'\*\+/\=\?\^_`\{\|\}~]"; // RFC 5322 unquoted characters in local-part
 			$alpha = "a-z\x80-\xFF"; // superset of IDN
-			$emailIsValid = (bool) preg_match(<<<MAIL
+			$regExpPattern = <<<MAIL
 			(^
 				("([ !#-[\\]-~]*|\\\\[ -~])+"|{$atom}+(\\.{$atom}+)*)    # quoted or unquoted
 				@
 				([0-9{$alpha}]([-0-9{$alpha}]{0,61}[0-9{$alpha}])?\\.)+  # domain - RFC 1034
 				[{$alpha}]([-0-9{$alpha}]{0,17}[{$alpha}])?              # top domain
 			$)Dix
-MAIL
-			, $rawValue);
+MAIL;
+			$emailIsValid = (bool) preg_match($regExpPattern, $rawValue);
 			if ($emailIsValid) {
 				if ($this->multiple) {
 					$result[] = $rawValue;
