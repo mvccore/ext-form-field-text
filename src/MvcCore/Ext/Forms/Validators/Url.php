@@ -31,7 +31,7 @@ class Url extends \MvcCore\Ext\Forms\Validator {
 	 * @author Bernhard Schussek <bschussek@gmail.com>
 	 * @see https://en.wikipedia.org/wiki/Uniform_Resource_Identifier
 	 */
-	const PATTERN_ALL				= '~^{%protocol}//{%auth}{%hostname}{%port}{%path}{%query}{%fragment}$~ixu';
+	const PATTERN_ALL				= '~^{%protocol}{%auth}{%hostname}{%port}{%path}{%query}{%fragment}$~ixu';
 
 	const PATTERN_PART_AUTH			= '(((?:[\_\.\pL\pN-]|%[0-9A-Fa-f]{2})+:)?((?:[\_\.\pL\pN-]|%[0-9A-Fa-f]{2})+)@)?';
 
@@ -77,6 +77,12 @@ class Url extends \MvcCore\Ext\Forms\Validator {
 	const VALIDATE_DNS_TYPE_TXT		= 'TXT';
 
 
+	const ALLOW_PROTOCOL_NONE		= 0;
+
+	const ALLOW_PROTOCOL_RELATIVE	= 1;
+
+	const ALLOW_PROTOCOL_ABSOLUTE	= 2;
+
 	/**
 	 * All DNS validation types.
 	 * @var \string[]
@@ -120,11 +126,13 @@ class Url extends \MvcCore\Ext\Forms\Validator {
 	protected $dnsValidation = self::VALIDATE_DNS_TYPE_NONE;
 
 	/**
-	 * Allow url with not defined protocol, like: `//domain.com/...`. 
-	 * `FALSE` by default.
-	 * @var bool
+	 * Allow url with or without defined protocol
+	 * - no protocol: `domain.com/path`,
+	 * - relative protocol: `//domain.com/path`,
+	 * - absolute protocol: `https://domain.com/path` (by default).
+	 * @var int
 	 */
-	protected $allowRelativeProtocol = FALSE;
+	protected $allowProtocol = self::ALLOW_PROTOCOL_ABSOLUTE;
 
 	/**
 	 * Allowed URL schemes. 
@@ -210,9 +218,11 @@ class Url extends \MvcCore\Ext\Forms\Validator {
 	 * 
 	 * @param  string    $dnsValidation
 	 * DNS validation. No DNS validation by default.
-	 * @param  bool      $allowRelativeProtocol
-	 * Allow url with not defined protocol, like: `//domain.com/...`. 
-	 * `FALSE` by default.
+	 * @param  int       $allowProtocol
+	 * Allow url with or without defined protocol
+	 * - no protocol: `domain.com/path`,
+	 * - relative protocol: `//domain.com/path`,
+	 * - absolute protocol: `https://domain.com/path` (by default).
 	 * @param  \string[] $allowedSchemes
 	 * Allowed URL schemes. 
 	 * Schemes `http,https,ftp,ftps` are allowed by default.
@@ -249,7 +259,7 @@ class Url extends \MvcCore\Ext\Forms\Validator {
 	public function __construct (
 		array $cfg = [],
 		$dnsValidation = NULL,
-		$allowRelativeProtocol = NULL,
+		$allowProtocol = NULL,
 		array $allowedSchemes = [],
 		$allowBasicAuth = NULL,
 		$allowDomains = NULL,
@@ -273,22 +283,26 @@ class Url extends \MvcCore\Ext\Forms\Validator {
 	}
 	
 	/**
-	 * Get if allowed url with not defined protocol, like: `//domain.com/...`. 
-	 * Relative protocols are not allowed by default.
-	 * @return bool
+	 * Get allowed url with or without defined protocol
+	 * - no protocol: `domain.com/path`,
+	 * - relative protocol: `//domain.com/path`,
+	 * - absolute protocol: `https://domain.com/path` (by default).
+	 * @return int
 	 */
-	public function GetAllowRelativeProtocol () {
-		return $this->allowRelativeProtocol;
+	public function GetAllowProtocol () {
+		return $this->allowProtocol;
 	}
 
 	/**
-	 * Set if allowed url with not defined protocol, like: `//domain.com/...`. 
-	 * Relative protocols are not allowed by default.
-	 * @param  bool $allowRelativeProtocol
+	 * Set allowed url with or without defined protocol
+	 * - no protocol: `domain.com/path`,
+	 * - relative protocol: `//domain.com/path`,
+	 * - absolute protocol: `https://domain.com/path` (by default).
+	 * @param  int $allowProtocol
 	 * @return \MvcCore\Ext\Forms\Validators\Url
 	 */
-	public function SetAllowRelativeProtocol ($allowRelativeProtocol = TRUE) {
-		$this->allowRelativeProtocol = $allowRelativeProtocol;
+	public function SetAllowProtocol ($allowProtocol = self::ALLOW_PROTOCOL_ABSOLUTE) {
+		$this->allowProtocol = $allowProtocol;
 		return $this;
 	}
 	
@@ -576,10 +590,14 @@ class Url extends \MvcCore\Ext\Forms\Validator {
 	 * @return void
 	 */
 	protected function preparePatternAndBackReferenceIndexes () {
-		$protocol = $this->allowRelativeProtocol
-			? '(?:('.implode('|', $this->allowedSchemes).'):)?'
-			: '('.implode('|', $this->allowedSchemes).'):' ;
-
+		$protocols = implode('|', $this->allowedSchemes);
+		if (($this->allowProtocol & self::ALLOW_PROTOCOL_ABSOLUTE) != 0) {
+			$protocol = '('.$protocols.')://';
+		} else if (($this->allowProtocol & self::ALLOW_PROTOCOL_RELATIVE) != 0) {
+			$protocol = '(?:('.$protocols.'):)?//';
+		} else {
+			$protocol = '(?:('.$protocols.')://)?';
+		}
 
 		$auth = '';
 		if ($this->allowBasicAuth) {
