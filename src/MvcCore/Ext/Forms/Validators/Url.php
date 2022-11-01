@@ -31,7 +31,7 @@ class Url extends \MvcCore\Ext\Forms\Validator {
 	 * @author Bernhard Schussek <bschussek@gmail.com>
 	 * @see https://en.wikipedia.org/wiki/Uniform_Resource_Identifier
 	 */
-	const PATTERN_ALL				= '~^{%protocol}{%auth}{%hostname}{%port}{%path}{%query}{%fragment}$~ixu';
+	const PATTERN_ALL				= '~^{%protocol}{%auth}{%hostname}{%port}{%path}{%query}{%fragment}$~iu';
 
 	const PATTERN_PART_AUTH			= '(((?:[\_\.\pL\pN-]|%[0-9A-Fa-f]{2})+:)?((?:[\_\.\pL\pN-]|%[0-9A-Fa-f]{2})+)@)?';
 
@@ -39,7 +39,7 @@ class Url extends \MvcCore\Ext\Forms\Validator {
 
 	const PATTERN_PART_IPV4			= '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}';
 
-	const PATTERN_PART_IPV6			= '\[(?:(?:(?:(?:(?:(?:(?:[0-9a-f]{1,4})):){6})(?:(?:(?:(?:(?:[0-9a-f]{1,4})):(?:(?:[0-9a-f]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:::(?:(?:(?:[0-9a-f]{1,4})):){5})(?:(?:(?:(?:(?:[0-9a-f]{1,4})):(?:(?:[0-9a-f]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:[0-9a-f]{1,4})))?::(?:(?:(?:[0-9a-f]{1,4})):){4})(?:(?:(?:(?:(?:[0-9a-f]{1,4})):(?:(?:[0-9a-f]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-f]{1,4})):){0,1}(?:(?:[0-9a-f]{1,4})))?::(?:(?:(?:[0-9a-f]{1,4})):){3})(?:(?:(?:(?:(?:[0-9a-f]{1,4})):(?:(?:[0-9a-f]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-f]{1,4})):){0,2}(?:(?:[0-9a-f]{1,4})))?::(?:(?:(?:[0-9a-f]{1,4})):){2})(?:(?:(?:(?:(?:[0-9a-f]{1,4})):(?:(?:[0-9a-f]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-f]{1,4})):){0,3}(?:(?:[0-9a-f]{1,4})))?::(?:(?:[0-9a-f]{1,4})):)(?:(?:(?:(?:(?:[0-9a-f]{1,4})):(?:(?:[0-9a-f]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-f]{1,4})):){0,4}(?:(?:[0-9a-f]{1,4})))?::)(?:(?:(?:(?:(?:[0-9a-f]{1,4})):(?:(?:[0-9a-f]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-f]{1,4})):){0,5}(?:(?:[0-9a-f]{1,4})))?::)(?:(?:[0-9a-f]{1,4})))|(?:(?:(?:(?:(?:(?:[0-9a-f]{1,4})):){0,6}(?:(?:[0-9a-f]{1,4})))?::))))\]';
+	const PATTERN_PART_IPV6			= '\[(?:(?:(?:(?:(?:(?:(?:[0-9A-Fa-f]{1,4})):){6})(?:(?:(?:(?:(?:[0-9A-Fa-f]{1,4})):(?:(?:[0-9A-Fa-f]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:::(?:(?:(?:[0-9A-Fa-f]{1,4})):){5})(?:(?:(?:(?:(?:[0-9A-Fa-f]{1,4})):(?:(?:[0-9A-Fa-f]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:[0-9A-Fa-f]{1,4})))?::(?:(?:(?:[0-9A-Fa-f]{1,4})):){4})(?:(?:(?:(?:(?:[0-9A-Fa-f]{1,4})):(?:(?:[0-9A-Fa-f]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9A-Fa-f]{1,4})):){0,1}(?:(?:[0-9A-Fa-f]{1,4})))?::(?:(?:(?:[0-9A-Fa-f]{1,4})):){3})(?:(?:(?:(?:(?:[0-9A-Fa-f]{1,4})):(?:(?:[0-9A-Fa-f]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9A-Fa-f]{1,4})):){0,2}(?:(?:[0-9A-Fa-f]{1,4})))?::(?:(?:(?:[0-9A-Fa-f]{1,4})):){2})(?:(?:(?:(?:(?:[0-9A-Fa-f]{1,4})):(?:(?:[0-9A-Fa-f]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9A-Fa-f]{1,4})):){0,3}(?:(?:[0-9A-Fa-f]{1,4})))?::(?:(?:[0-9A-Fa-f]{1,4})):)(?:(?:(?:(?:(?:[0-9A-Fa-f]{1,4})):(?:(?:[0-9A-Fa-f]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9A-Fa-f]{1,4})):){0,4}(?:(?:[0-9A-Fa-f]{1,4})))?::)(?:(?:(?:(?:(?:[0-9A-Fa-f]{1,4})):(?:(?:[0-9A-Fa-f]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9A-Fa-f]{1,4})):){0,5}(?:(?:[0-9A-Fa-f]{1,4})))?::)(?:(?:[0-9A-Fa-f]{1,4})))|(?:(?:(?:(?:(?:(?:[0-9A-Fa-f]{1,4})):){0,6}(?:(?:[0-9A-Fa-f]{1,4})))?::))))\]';
 	
 	const PATTERN_PART_PORT			= '(:[0-9]+)?';
 
@@ -188,7 +188,7 @@ class Url extends \MvcCore\Ext\Forms\Validator {
 	protected $allowedPorts = [];
 
 	/**
-	 * Completed pattern for validation
+	 * Pattern for URL validation.
 	 * @var string|NULL
 	 */
 	protected $pattern = NULL;
@@ -245,12 +245,12 @@ class Url extends \MvcCore\Ext\Forms\Validator {
 	 * Allowed port numbers. 
 	 * No port number or any port number is allowed by default.
 	 * @param  string    $pattern
-	 * Completed pattern for validation
+	 * Pattern for validation
 	 * @param  int       $backReferencePosHostname
-	 * Completed back reference index for completed pattern 
+	 * Back reference index for completed pattern 
 	 * to check hostname against allowed values.
 	 * @param  int       $backReferencePosPort
-	 * Completed back reference index for completed pattern 
+	 * Back reference index for completed pattern 
 	 * to check port against allowed values.
 	 * 
 	 * @throws \InvalidArgumentException 
@@ -514,6 +514,69 @@ class Url extends \MvcCore\Ext\Forms\Validator {
 		return $this;
 	}
 
+	/**
+	 * Get pattern for URL validation.
+	 * @return string|NULL
+	 */
+	public function GetPattern () {
+		if ($this->pattern === NULL)
+			$this->preparePatternAndBackReferenceIndexes();
+		return $this->pattern;
+	}
+
+	/**
+	 * Set pattern for URL validation.
+	 * @param  string|NULL $pattern 
+	 * @return \MvcCore\Ext\Forms\Validators\Url
+	 */
+	public function SetPattern ($pattern) {
+		$this->pattern = $pattern;
+		return $this;
+	}
+	
+	/**
+	 * Get back reference index for completed pattern 
+	 * to check hostname against allowed values.
+	 * @return int|NULL
+	 */
+	public function GetBackReferencePosHostname () {
+		if ($this->backReferencePosHostname === NULL)
+			$this->preparePatternAndBackReferenceIndexes();
+		return $this->backReferencePosHostname;
+	}
+
+	/**
+	 * Set back reference index for completed pattern 
+	 * to check hostname against allowed values.
+	 * @param  int $backReferencePosHostname 
+	 * @return \MvcCore\Ext\Forms\Validators\Url
+	 */
+	public function SetBackReferencePosHostname ($backReferencePosHostname) {
+		$this->backReferencePosHostname = $backReferencePosHostname;
+		return $this;
+	}
+
+	/**
+	 * Get back reference index for completed pattern 
+	 * to check port against allowed values.
+	 * @return int|NULL
+	 */
+	public function GetBackReferencePosPort () {
+		if ($this->backReferencePosPort === NULL)
+			$this->preparePatternAndBackReferenceIndexes();
+		return $this->backReferencePosPort;
+	}
+
+	/**
+	 * Set back reference index for completed pattern 
+	 * to check port against allowed values.
+	 * @param  int $backReferencePosPort 
+	 * @return \MvcCore\Ext\Forms\Validators\Url
+	 */
+	public function SetBackReferencePosPort ($backReferencePosPort) {
+		$this->backReferencePosPort = $backReferencePosPort;
+		return $this;
+	}
 
 	/**
 	 * Validate URI string by regular expression and optionally by DNS check.
