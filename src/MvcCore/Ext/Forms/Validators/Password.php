@@ -184,8 +184,8 @@ class Password extends \MvcCore\Ext\Forms\Validator {
 		self::ERROR_UPPERCASE_CHARS_MIN	=> "Password must contain at minimum {1} upper case characters ({2}).",
 		self::ERROR_DIGIT_CHARS			=> "Password must contain digits ({1}).",
 		self::ERROR_DIGIT_CHARS_MIN		=> "Password must contain at minimum {1} digits ({2}).",
-		self::ERROR_SPECIAL_CHARS		=> "Password must contain special characters ( {1} ).",
-		self::ERROR_SPECIAL_CHARS_MIN	=> "Password must contain at minimum {1} special characters ( {2} ).",
+		self::ERROR_SPECIAL_CHARS		=> "Password must contain special characters ({1}).",
+		self::ERROR_SPECIAL_CHARS_MIN	=> "Password must contain at minimum {1} special characters ({2}).",
 	];
 
 	/**
