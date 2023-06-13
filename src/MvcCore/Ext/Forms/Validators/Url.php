@@ -588,8 +588,10 @@ class Url extends \MvcCore\Ext\Forms\Validator {
 		$rawSubmittedValue = trim((string) $rawSubmittedValue);
 		if ($rawSubmittedValue === '') return NULL;
 		
-		while (preg_match("#%[0-9a-zA-Z]{2}#", $rawSubmittedValue)) 
+		while (preg_match("#%[0-9a-zA-Z]{2}#", $rawSubmittedValue)) {
+			if (json_encode(rawurldecode($rawSubmittedValue)) === FALSE) break;
 			$rawSubmittedValue = rawurldecode($rawSubmittedValue);
+		}
 		$rawSubmittedValue = str_replace('%', '%25', $rawSubmittedValue);
 
 		$this->preparePatternAndBackReferenceIndexes();
