@@ -51,7 +51,7 @@ implements	\MvcCore\Ext\Forms\Fields\IVisibleField,
 	 * Comparison by PHP function version_compare();
 	 * @see http://php.net/manual/en/function.version-compare.php
 	 */
-	const VERSION = '5.1.15';
+	const VERSION = '5.2.0';
 
 	/**
 	 * Possible values: `text` and `email`, `password`, `search`, `tel` and `url` in extended class.
@@ -389,19 +389,20 @@ implements	\MvcCore\Ext\Forms\Fields\IVisibleField,
 	 * @return string
 	 */
 	public function RenderControl () {
-		$attrsStr = $this->RenderControlAttrsWithFieldVars([
-			'pattern',
-			'minLength', 'maxLength',
-			'list',
-			'autoComplete',
-			'placeHolder',
-			'size',
-			'spellCheck',
-			'inputMode',
-		]);
+		$attrsStrItems = [
+			$this->RenderControlAttrsWithFieldVars([
+				'pattern',
+				'minLength', 'maxLength',
+				'list',
+				'autoComplete',
+				'placeHolder',
+				'size',
+				'spellCheck',
+				'inputMode',
+			])
+		];
 		if (!$this->form->GetFormTagRenderingStatus()) 
-			$attrsStr .= (strlen($attrsStr) > 0 ? ' ' : '')
-				. 'form="' . $this->form->GetId() . '"';
+			$attrsStrItems[] = 'form="' . $this->form->GetId() . '"';
 		$formViewClass = $this->form->GetViewClass();
 		$view = $this->form->GetView() ?: $this->form->GetController()->GetView();
 		/** @var \stdClass $templates */
@@ -411,7 +412,7 @@ implements	\MvcCore\Ext\Forms\Fields\IVisibleField,
 			'name'		=> $this->name,
 			'type'		=> $this->type,
 			'value'		=> $view->EscapeAttr($this->value),
-			'attrs'		=> strlen($attrsStr) > 0 ? ' ' . $attrsStr : '',
+			'attrs'		=> count($attrsStrItems) > 0 ? ' ' . implode(' ', $attrsStrItems) : '',
 		]);
 		return $this->renderControlWrapper($result);
 	}

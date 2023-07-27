@@ -348,16 +348,17 @@ implements	\MvcCore\Ext\Forms\Fields\IVisibleField,
 	 * @return string
 	 */
 	public function RenderControl () {
-		$attrsStr = $this->RenderControlAttrsWithFieldVars([
-			'minLength', 'maxLength', 
-			'autoComplete',
-			'placeHolder',
-			'rows', 'cols', 'wrap',
-			'spellCheck',
-		]);
+		$attrsStrItems = [
+			$this->RenderControlAttrsWithFieldVars([
+				'minLength', 'maxLength', 
+				'autoComplete',
+				'placeHolder',
+				'rows', 'cols', 'wrap',
+				'spellCheck',
+			])
+		];
 		if (!$this->form->GetFormTagRenderingStatus()) 
-			$attrsStr .= (strlen($attrsStr) > 0 ? ' ' : '')
-				. 'form="' . $this->form->GetId() . '"';
+			$attrsStrItems[] = 'form="' . $this->form->GetId() . '"';
 		$formViewClass = $this->form->GetViewClass();
 		$view = $this->form->GetView() ?: $this->form->GetController()->GetView();
 		/** @var \stdClass $templates */
@@ -366,7 +367,7 @@ implements	\MvcCore\Ext\Forms\Fields\IVisibleField,
 			'id'		=> $this->id,
 			'name'		=> $this->name,
 			'value'		=> $view->EscapeAttr($this->value),
-			'attrs'		=> strlen($attrsStr) > 0 ? ' ' . $attrsStr : '',
+			'attrs'		=> count($attrsStrItems) > 0 ? ' ' . implode(' ', $attrsStrItems) : '',
 		]);
 		return $this->renderControlWrapper($result);
 	}
