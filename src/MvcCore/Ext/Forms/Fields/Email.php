@@ -242,7 +242,7 @@ implements	\MvcCore\Ext\Forms\Fields\IMultiple {
 	 * RegExp pattern value defined.
 	 * 
 	 * @param  string     $list
-	 * Element `list` attribute value - the `<list>` element `id` attribute value.
+	 * `DataList` form instance or `DataList` field unique name.
 	 * 
 	 * @param  bool       $multiple
 	 * If control is `<input>` with `type` as `file` or `email`,
