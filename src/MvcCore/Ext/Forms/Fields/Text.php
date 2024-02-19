@@ -51,7 +51,7 @@ implements	\MvcCore\Ext\Forms\Fields\IVisibleField,
 	 * Comparison by PHP function version_compare();
 	 * @see http://php.net/manual/en/function.version-compare.php
 	 */
-	const VERSION = '5.2.1';
+	const VERSION = '5.2.2';
 
 	/**
 	 * Possible values: `text` and `email`, `password`, `search`, `tel` and `url` in extended class.
@@ -318,6 +318,8 @@ implements	\MvcCore\Ext\Forms\Fields\IVisibleField,
 	) {
 		$this->consolidateCfg($cfg, func_get_args(), func_num_args());
 		parent::__construct($cfg);
+		if ($this->list !== NULL)
+			$this->SetList($this->list);
 	}
 
 	/**
